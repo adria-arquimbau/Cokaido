@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Shouldly;
 using Xunit;
@@ -45,21 +46,11 @@ namespace ConsoleTwitterTests
         [Fact]
         public void PrintsBobsWallWithOneMessage()
         {
-            inputStream = new StringReader($"Bob -> Hello{Environment.NewLine}Bob");
+            inputStream = new StringReader($"Bob -> Hello nene{Environment.NewLine}Bob");
             Console.SetIn(inputStream);
             consoleTwitter.Run();
             var output = outputStream.ToString();
-            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello{Environment.NewLine}{Environment.NewLine}");
-        }
-
-        [Fact]
-        public void PrintsMikeWallWithOneMessage()
-        {
-            inputStream = new StringReader($"Mike -> Hello{Environment.NewLine}Mike");
-            Console.SetIn(inputStream);
-            consoleTwitter.Run();
-            var output = outputStream.ToString();
-            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello{Environment.NewLine}{Environment.NewLine}");
+            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello nene{Environment.NewLine}{Environment.NewLine}");
         }
 
     }
@@ -73,11 +64,7 @@ namespace ConsoleTwitterTests
 
             while (input != null)
             {
-                if (input.StartsWith("Bob ->"))
-                {
-                    Console.WriteLine(input.Split(">")[1].Substring(1));
-                }
-                if (input.StartsWith("Mike ->"))
+                if (input.Contains("->"))
                 {
                     Console.WriteLine(input.Split(">")[1].Substring(1));
                 }
