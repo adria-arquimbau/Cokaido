@@ -10,8 +10,7 @@ namespace ConsoleTwitterTests
         private StringWriter outputStream;
         private StringReader inputStream;
         private ConsoleTwitter consoleTwitter;
-        private const string WelcomeMessage = "Welcome to console twitter.";
-        private const string SomeThingToWrite = "You need to write something!";
+        private const string WelcomeMessage = "Welcome to TwitKaido.";
 
         public ConsoleTwitterShould()
         {
@@ -30,10 +29,13 @@ namespace ConsoleTwitterTests
             output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}");
         }
 
-        [Fact]
-        public void PrintsEmptyBobsWallWhenThereAreNoMessagesFromBob()
+        [Theory]
+        [InlineData ("Bob")]
+        [InlineData ("Mike")]
+        [InlineData ("John")]
+        public void PrintsEmptyBobsWallWhenThereAreNoMessagesFromBob(string value)
         {
-            inputStream = new StringReader("Bob");
+            inputStream = new StringReader(value);
             Console.SetIn(inputStream);
             consoleTwitter.Run();
             var output = outputStream.ToString();
@@ -51,20 +53,19 @@ namespace ConsoleTwitterTests
         }
 
         [Fact]
-        public void PrintsNeedWriteSomthingIfMessageIsNull()
+        public void PrintsMikeWallWithOneMessage()
         {
-            inputStream = new StringReader("");
+            inputStream = new StringReader($"Mike -> Hello{Environment.NewLine}Mike");
             Console.SetIn(inputStream);
             consoleTwitter.Run();
             var output = outputStream.ToString();
-            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}{SomeThingToWrite}");
+            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello{Environment.NewLine}{Environment.NewLine}");
         }
-    }
 
+    }
     public class ConsoleTwitter
     {
-        private const string WelcomeMessage = "Welcome to console twitter.";
-        private const string SomeThingToWrite = "You need to write something!";
+        private const string WelcomeMessage = "Welcome to TwitKaido.";
         public void Run()
         {
             Console.WriteLine(WelcomeMessage);
@@ -76,13 +77,13 @@ namespace ConsoleTwitterTests
                 {
                     Console.WriteLine(input.Split(">")[1].Substring(1));
                 }
-                if (input == "Bob")
+                if (input.StartsWith("Mike ->"))
+                {
+                    Console.WriteLine(input.Split(">")[1].Substring(1));
+                }
+                if (input == "Bob" || input == "Mike" || input == "John")
                 {
                     Console.WriteLine();
-                }
-                if (input == "")
-                {
-                    Console.WriteLine(SomeThingToWrite);
                 }
                 input = Console.ReadLine();
             }
