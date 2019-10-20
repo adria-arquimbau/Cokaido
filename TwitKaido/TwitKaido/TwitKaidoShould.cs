@@ -4,13 +4,13 @@ using System.IO;
 using Shouldly;
 using Xunit;
 
-namespace ConsoleTwitterTests
+namespace TwitKaidoTests
 {
     public class ConsoleTwitterShould
     {
         private StringWriter outputStream;
         private StringReader inputStream;
-        private ConsoleTwitter consoleTwitter;
+        private TwitKaido twitKaido;
         private const string WelcomeMessage = "Welcome to TwitKaido.";
 
         public ConsoleTwitterShould()
@@ -19,13 +19,13 @@ namespace ConsoleTwitterTests
             Console.SetOut(outputStream);
             inputStream = new StringReader("");
             Console.SetIn(inputStream);
-            consoleTwitter = new ConsoleTwitter();
+            twitKaido = new TwitKaido();
         }
 
         [Fact]
         public void PrintWelcomeMessageWhenProgramStarts()
         {
-            consoleTwitter.Run();
+            twitKaido.Run();
             var output = outputStream.ToString();
             output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}");
         }
@@ -38,7 +38,7 @@ namespace ConsoleTwitterTests
         {
             inputStream = new StringReader(value);
             Console.SetIn(inputStream);
-            consoleTwitter.Run();
+            twitKaido.Run();
             var output = outputStream.ToString();
             output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}{Environment.NewLine}");
         }
@@ -46,17 +46,29 @@ namespace ConsoleTwitterTests
         [Fact]
         public void PrintsBobsWallWithOneMessage()
         {
-            inputStream = new StringReader($"Bob -> Hello nene{Environment.NewLine}Bob");
+            inputStream = new StringReader($"Bob -> Hello{Environment.NewLine}Bob");
             Console.SetIn(inputStream);
-            consoleTwitter.Run();
+            twitKaido.Run();
             var output = outputStream.ToString();
-            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello nene{Environment.NewLine}{Environment.NewLine}");
+            output.ShouldBe($"{WelcomeMessage}{Environment.NewLine}Hello{Environment.NewLine}{Environment.NewLine}");
         }
 
     }
-    public class ConsoleTwitter
+    public class TwitKaido
     {
+        public class Member
+        {
+            public string Name { get; set; }
+            public string Posts { get; set; }
+            public Member(string name, string posts)
+            {
+                Name = name;
+                Posts = posts;
+            }
+        }
+
         private const string WelcomeMessage = "Welcome to TwitKaido.";
+
         public void Run()
         {
             Console.WriteLine(WelcomeMessage);
@@ -67,6 +79,8 @@ namespace ConsoleTwitterTests
                 if (input.Contains("->"))
                 {
                     Console.WriteLine(input.Split(">")[1].Substring(1));
+                    var name = input.Split(">")[1].Substring(0);
+                    Member member1 = new Member(name, input.Split(">")[1].Substring(1));
                 }
                 if (input == "Bob" || input == "Mike" || input == "John")
                 {
