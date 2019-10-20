@@ -56,17 +56,6 @@ namespace TwitKaidoTests
     }
     public class TwitKaido
     {
-        public class Member
-        {
-            public string Name { get; set; }
-            public string Posts { get; set; }
-            public Member(string name, string posts)
-            {
-                Name = name;
-                Posts = posts;
-            }
-        }
-
         private const string WelcomeMessage = "Welcome to TwitKaido.";
 
         public void Run()
@@ -79,8 +68,6 @@ namespace TwitKaidoTests
                 if (input.Contains("->"))
                 {
                     Console.WriteLine(input.Split(">")[1].Substring(1));
-                    var name = input.Split(">")[1].Substring(0);
-                    Member member1 = new Member(name, input.Split(">")[1].Substring(1));
                 }
                 if (input == "Bob" || input == "Mike" || input == "John")
                 {
