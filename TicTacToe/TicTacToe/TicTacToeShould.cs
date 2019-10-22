@@ -10,11 +10,20 @@ namespace TicTacToe
         {
             //Arrange
             TicTacToe ticTacToe = new TicTacToe();
-
-            //Act
-
+            
             //Assert
             Assert.Throws<Exception>((() => ticTacToe.Play("O")));
+        }
+
+        [Fact]
+        public void ShowErrorMessageWhenPlayer2PlaceAnXAsTheSecondMove()
+        {
+            //Arrange
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.Play("X");
+            
+            //Assert
+            Assert.Throws<Exception>((() => ticTacToe.Play("X")));
         }
     }
 }
