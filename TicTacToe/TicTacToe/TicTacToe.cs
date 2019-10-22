@@ -29,7 +29,9 @@ namespace TicTacToe
         {
             for (var column = 0; column <= 2; column++)
             {
-                if (_board[0, column] == token && _board[1, column] == token && _board[2, column] == token)
+                if (_board[0, column] == token &&
+                    _board[1, column] == token &&
+                    _board[2, column] == token)
                 {
                     return true;
                 }
