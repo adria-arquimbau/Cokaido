@@ -27,19 +27,12 @@ namespace TicTacToe
 
         private bool CheckWinConditionByColumn(Token token)
         {
-            if (_board[0, 0] == token && _board[1, 0] == token && _board[2, 0] == token)
+            for (var column = 0; column <= 2; column++)
             {
-                return true;
-            }
-
-            if (_board[0, 1] == token && _board[1, 1] == token && _board[2, 1] == token)
-            {
-                return true;
-            }
-
-            if (_board[0, 2] == token && _board[1, 2] == token && _board[2, 2] == token)
-            {
-                return true;
+                if (_board[0, column] == token && _board[1, column] == token && _board[2, column] == token)
+                {
+                    return true;
+                }
             }
 
             return false;
