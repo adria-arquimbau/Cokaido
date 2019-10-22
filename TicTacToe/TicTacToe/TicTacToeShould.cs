@@ -78,5 +78,19 @@ namespace TicTacToe
 
             Assert.Equal("Player O Wins", result);
         }
+
+        [Fact]
+        public void NamePlayerXTheWinnerWhenHeHas3XInTheThirdColumn()
+        {
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.Play(Token.X, 0, 2);
+            ticTacToe.Play(Token.O, 1, 1);
+            ticTacToe.Play(Token.X, 1, 2);
+            ticTacToe.Play(Token.O, 2, 1);
+
+            var result = ticTacToe.Play(Token.X, 2, 2);
+
+            Assert.Equal("Player X Wins", result);
+        }
     }
 }

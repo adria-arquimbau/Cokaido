@@ -37,6 +37,11 @@ namespace TicTacToe
                 return true;
             }
 
+            if (_board[0, 2] == token && _board[1, 2] == token && _board[2, 2] == token)
+            {
+                return true;
+            }
+
             return false;
         }
 
