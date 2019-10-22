@@ -5,34 +5,54 @@ namespace TicTacToe
     class TicTacToe
     {
         private Token _lastToken;
-        private Token[,] board = new Token[3,3];
+        private Token[,] _board = new Token[3,3];
 
         public string Play(Token token, int positionX, int positionY)
         {
-            if (_lastToken == Token.Unknown && token == Token.O)
-            {
-                throw new Exception();
-            }
+            ValidateFirstPlaceIsAnX(token);
 
-            if (_lastToken == token)
-            {
-                throw new Exception();
-            }
+            ValidateAlternationOfTokens(token);
 
-            if (board[positionX,positionY] != Token.Unknown)
-            {
-                throw new Exception();
-            }
+            ValidateThePositionIsEmpty(positionX, positionY);
 
-            board[positionX, positionY] = token;
-            _lastToken = token;
+            SaveLastPlayPlayed(token, positionX, positionY);
 
-            if (board[0,0] == Token.X && board[1,0] == Token.X && board[2,0] == Token.X)
+            if (_board[0,0] == Token.X && _board[1,0] == Token.X && _board[2,0] == Token.X)
             {
                 return "Player X Wins";
             }
 
             return "Next";
+        }
+
+        private void SaveLastPlayPlayed(Token token, int positionX, int positionY)
+        {
+            _board[positionX, positionY] = token;
+            _lastToken = token;
+        }
+
+        private void ValidateAlternationOfTokens(Token token)
+        {
+            if (_lastToken == token)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void ValidateThePositionIsEmpty(int positionX, int positionY)
+        {
+            if (_board[positionX, positionY] != Token.Unknown)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void ValidateFirstPlaceIsAnX(Token token)
+        {
+            if (_lastToken == Token.Unknown && token == Token.O)
+            {
+                throw new Exception();
+            }
         }
     }
 }
