@@ -21,8 +21,29 @@ namespace TicTacToe
             {
                 return $"Player {token.ToString()} Wins";
             }
-            
+
+            if (CheckIfBoardIsFull())
+            {
+                return "It's a draw";
+            }
+
             return "Next";
+        }
+
+        private bool CheckIfBoardIsFull()
+        {
+            for (var column = 0; column <= 2; column++)
+            {
+                for (var row = 0; row <= 2; row++)
+                {
+                    if (_board[row, column] == Token.Unknown)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private bool CheckWinConditionByColumn(Token token)

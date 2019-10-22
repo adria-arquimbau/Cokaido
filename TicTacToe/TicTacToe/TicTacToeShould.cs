@@ -92,5 +92,23 @@ namespace TicTacToe
 
             Assert.Equal("Player X Wins", result);
         }
+
+        [Fact]
+        public void ShowMessageWhenTheMatchFinishesInADraw()
+        {
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.Play(Token.X, 0, 1);
+            ticTacToe.Play(Token.O, 0, 0);
+            ticTacToe.Play(Token.X, 1, 1);
+            ticTacToe.Play(Token.O, 1, 0);
+            ticTacToe.Play(Token.X, 1, 2);
+            ticTacToe.Play(Token.O, 0, 2);
+            ticTacToe.Play(Token.X, 2, 0);
+            ticTacToe.Play(Token.O, 2, 1);
+
+            var result = ticTacToe.Play(Token.X, 2, 2);
+
+            Assert.Equal("It's a draw", result);
+        }
     }
 }
