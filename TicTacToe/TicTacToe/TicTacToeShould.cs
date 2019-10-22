@@ -40,17 +40,6 @@ namespace TicTacToe
         }
 
         [Fact]
-        public void ShowErrorWhenTheSecondMoveIsInTheSamePositionAsTheFirstMove()
-        {
-            // Arrange
-            TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.Play(Token.X, 0, 0);
-
-            //Assert
-            Assert.Throws<Exception>(() => ticTacToe.Play(Token.O, 0, 0));
-        }
-
-        [Fact]
         public void ShowErrorWhenPlayingInAUsedPosition()
         {
             TicTacToe ticTacToe = new TicTacToe();
