@@ -10,9 +10,9 @@ namespace TicTacToe
         {
             //Arrange
             TicTacToe ticTacToe = new TicTacToe();
-            
+
             //Assert
-            Assert.Throws<Exception>((() => ticTacToe.Play(Token.O)));
+            Assert.Throws<Exception>((() => ticTacToe.Play(Token.O, 0, 0)));
         }
 
         [Fact]
@@ -20,10 +20,10 @@ namespace TicTacToe
         {
             //Arrange
             TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.Play(Token.X);
-            
+            ticTacToe.Play(Token.X, 0, 0);
+
             //Assert
-            Assert.Throws<Exception>((() => ticTacToe.Play(Token.X)));
+            Assert.Throws<Exception>((() => ticTacToe.Play(Token.X, 0, 1)));
         }
 
         [Fact]
@@ -31,11 +31,24 @@ namespace TicTacToe
         {
             //Arrange
             TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.Play(Token.X);
-            ticTacToe.Play(Token.O);
+            ticTacToe.Play(Token.X, 0, 0);
+            ticTacToe.Play(Token.O, 0, 1);
 
             //Assert
-            Assert.Throws<Exception>((() => ticTacToe.Play(Token.O)));
+            Assert.Throws<Exception>((() => ticTacToe.Play(Token.O, 0, 3)));
         }
+
+        [Fact]
+        public void ShowErrorWhenTheSecondMoveIsInTheSamePositionAsTheFirstMove()
+        {
+            // Arrange
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.Play(Token.X, 0, 0);
+
+            //Assert
+            Assert.Throws<Exception>(() => ticTacToe.Play(Token.O, 0, 0));
+        }
+
+
     }
 }
