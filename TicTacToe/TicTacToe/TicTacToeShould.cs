@@ -50,6 +50,18 @@ namespace TicTacToe
             Assert.Throws<Exception>(() => ticTacToe.Play(Token.O, 1, 2));
         }
 
+        [Fact]
+        public void NamePlayerXTheWinnerWhenHeHas3XInARow()
+        {
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.Play(Token.X, 0, 0);
+            ticTacToe.Play(Token.O, 1, 2);
+            ticTacToe.Play(Token.X, 1, 0);
+            ticTacToe.Play(Token.O, 2, 1);
 
+            var result = ticTacToe.Play(Token.X, 2, 0);
+
+            Assert.Equal("Player X Wins", result);
+        }
     }
 }
