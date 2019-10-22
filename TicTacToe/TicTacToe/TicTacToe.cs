@@ -5,8 +5,7 @@ namespace TicTacToe
     class TicTacToe
     {
         private Token _lastToken;
-        private int? _lastPositionX;
-        private int? _lastPositionY;
+        private Token[,] board = new Token[3,3];
 
         public void Play(Token token, int positionX, int positionY)
         {
@@ -20,13 +19,12 @@ namespace TicTacToe
                 throw new Exception();
             }
 
-            if (_lastPositionX == positionX && _lastPositionY == positionY)
+            if (board[positionX,positionY] != Token.Unknown)
             {
                 throw new Exception();
             }
 
-            _lastPositionX = positionX;
-            _lastPositionY = positionY;
+            board[positionX, positionY] = token;
             _lastToken = token;
         }
     }
