@@ -17,9 +17,14 @@ namespace TicTacToe
 
             SaveLastPlayPlayed(token, positionX, positionY);
 
-            if (_board[0,0] == Token.X && _board[1,0] == Token.X && _board[2,0] == Token.X)
+            if (_board[0,0] == token && _board[1,0] == token && _board[2,0] == token)
             {
-                return "Player X Wins";
+                return $"Player {token.ToString()} Wins";
+            }
+
+            if (_board[0, 1] == token && _board[1, 1] == token && _board[2, 1] == token)
+            {
+                return $"Player {token.ToString()} Wins";
             }
 
             return "Next";
