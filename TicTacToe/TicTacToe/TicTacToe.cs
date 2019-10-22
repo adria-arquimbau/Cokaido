@@ -4,11 +4,11 @@ namespace TicTacToe
 {
     class TicTacToe
     {
-        private string _lastToken;
+        private Token _lastToken;
 
-        public void Play(string token)
+        public void Play(Token token)
         {
-            if (string.IsNullOrEmpty(_lastToken) && token == "O")
+            if (_lastToken == Token.Unknown && token == Token.O)
             {
                 throw new Exception();
             }

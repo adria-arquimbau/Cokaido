@@ -12,7 +12,7 @@ namespace TicTacToe
             TicTacToe ticTacToe = new TicTacToe();
             
             //Assert
-            Assert.Throws<Exception>((() => ticTacToe.Play("O")));
+            Assert.Throws<Exception>((() => ticTacToe.Play(Token.O)));
         }
 
         [Fact]
@@ -20,10 +20,10 @@ namespace TicTacToe
         {
             //Arrange
             TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.Play("X");
+            ticTacToe.Play(Token.X);
             
             //Assert
-            Assert.Throws<Exception>((() => ticTacToe.Play("X")));
+            Assert.Throws<Exception>((() => ticTacToe.Play(Token.X)));
         }
     }
 }
