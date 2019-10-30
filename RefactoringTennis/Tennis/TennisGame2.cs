@@ -19,33 +19,32 @@ namespace Tennis
 
         public string GetScore()
         {
-            var regularScoreAndNoAdvantage = playerOnePoints > playerTwoPoints && playerOnePoints < 4 || playerTwoPoints > playerOnePoints && playerTwoPoints < 4;
+            var regularScoreAndNoAdvantageNoDraw = playerOnePoints > playerTwoPoints && playerOnePoints < 4 || playerTwoPoints > playerOnePoints && playerTwoPoints < 4;
             var totalScore = String.Empty;
 
             if (playerOnePoints == playerTwoPoints) totalScore = EqualResult(totalScore);
 
+            if (Draw() && playerOnePoints > 2) totalScore = "Deuce";
 
-            if (regularScoreAndNoAdvantage)
-            {
-                if (playerOnePoints == 1) playerOneResult = "Fifteen";
-                if (playerOnePoints == 2) playerOneResult = "Thirty";
-                if (playerOnePoints == 3) playerOneResult = "Forty";
-                if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
-                if (playerTwoPoints == 2) playerTwoResult = "Thirty";
-                if (playerTwoPoints == 3) playerTwoResult = "Forty";
-                totalScore = RegularResult();
-            }
-        
+            if (regularScoreAndNoAdvantageNoDraw) totalScore = RegularResult();
+            
             totalScore = AdvantageResult(totalScore);
             return totalScore;
         }
-
+        
         private string RegularResult()
         {
             string totalScore;
+            if (playerOnePoints == 1) playerOneResult = "Fifteen";
+            if (playerOnePoints == 2) playerOneResult = "Thirty";
+            if (playerOnePoints == 3) playerOneResult = "Forty";
+            if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
+            if (playerTwoPoints == 2) playerTwoResult = "Thirty";
+            if (playerTwoPoints == 3) playerTwoResult = "Forty";
             totalScore = playerOneResult + "-" + playerTwoResult;
             return totalScore;
         }
+
 
         private string EqualResult(string totalScore)
         {
