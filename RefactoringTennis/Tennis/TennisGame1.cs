@@ -37,20 +37,20 @@ namespace Tennis
 
         private string RegularScoreCalculate(string score)
         {
-            int tempScore = 0;
+            int regularScore = 0;
             for (var i = 1; i < 3; i++)
             {
-                if (i == 1) tempScore = playerOneScore;
+                if (i == 1) regularScore = playerOneScore;
                 if (i > 1)
                 {
                     score += "-";
-                    tempScore = playerTwoScore;
+                    regularScore = playerTwoScore;
                 }
 
-                if (tempScore == 0) score += "Love";
-                if (tempScore == 1) score += "Fifteen";
-                if (tempScore == 2) score += "Thirty";
-                if (tempScore == 3) score += "Forty";
+                if (regularScore == 0) score += "Love";
+                if (regularScore == 1) score += "Fifteen";
+                if (regularScore == 2) score += "Thirty";
+                if (regularScore == 3) score += "Forty";
             }
 
             return score;
