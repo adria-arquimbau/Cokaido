@@ -54,7 +54,7 @@ namespace Tennis
 
 
         private string EqualResult(string totalScore)
-        {
+        { //mirar de enquadrar amb dictionary, el forty dona error
             if (playerOnePoints == 0) totalScore = "Love";
             if (playerOnePoints == 1) totalScore = "Fifteen";
             if (playerOnePoints == 2) totalScore = "Thirty";
