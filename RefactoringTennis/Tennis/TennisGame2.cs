@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Tennis
 {
@@ -7,10 +8,18 @@ namespace Tennis
         private int playerOnePoints;
         private int playerTwoPoints;
 
-        private string playerOneResult = "Love";
-        private string playerTwoResult = "Love";
+        private string playerOneResult = String.Empty;
+        private string playerTwoResult = String.Empty;
         private string player1Name;
         private string player2Name;
+
+        readonly Dictionary<int, string> scoreDictionary = new Dictionary<int, string>
+        {
+            {0, "Love"},
+            {1, "Fifteen"},
+            {2, "Thirty"},
+            {3, "Forty"}
+        };
 
         public TennisGame2(string player1Name, string player2Name)
         {
@@ -19,12 +28,13 @@ namespace Tennis
 
         public string GetScore()
         {
+            var equalResultAnd3OrMorePoints = playerOnePoints == playerTwoPoints && playerOnePoints > 2;
             var regularScoreAndNoAdvantageNoDraw = playerOnePoints > playerTwoPoints && playerOnePoints < 4 || playerTwoPoints > playerOnePoints && playerTwoPoints < 4;
             var totalScore = String.Empty;
 
             if (playerOnePoints == playerTwoPoints) totalScore = EqualResult(totalScore);
 
-            if (Draw() && playerOnePoints > 2) totalScore = "Deuce";
+            if (equalResultAnd3OrMorePoints) totalScore = "Deuce";
 
             if (regularScoreAndNoAdvantageNoDraw) totalScore = RegularResult();
             
@@ -35,12 +45,9 @@ namespace Tennis
         private string RegularResult()
         {
             string totalScore;
-            if (playerOnePoints == 1) playerOneResult = "Fifteen";
-            if (playerOnePoints == 2) playerOneResult = "Thirty";
-            if (playerOnePoints == 3) playerOneResult = "Forty";
-            if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
-            if (playerTwoPoints == 2) playerTwoResult = "Thirty";
-            if (playerTwoPoints == 3) playerTwoResult = "Forty";
+
+            playerOneResult = scoreDictionary[playerOnePoints];
+            playerTwoResult = scoreDictionary[playerTwoPoints];
             totalScore = playerOneResult + "-" + playerTwoResult;
             return totalScore;
         }
@@ -54,11 +61,6 @@ namespace Tennis
             if (playerOnePoints == 3) playerOneResult = "Forty";
             totalScore += "-All";
             return totalScore;
-        }
-
-        private bool Draw()
-        {
-            return playerOnePoints == playerTwoPoints;
         }
 
         private string AdvantageResult(string totalScore)

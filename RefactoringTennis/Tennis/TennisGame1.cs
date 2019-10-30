@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Tennis
 {
@@ -17,46 +19,41 @@ namespace Tennis
 
         public void WonPoint(string playerName)
         {
-            if (playerName == "player1")
-                playerOneScore += 1;
-            if (playerName != "player1")
-                playerTwoScore += 1;
+            if (playerName == "player1") playerOneScore += 1;
+            if (playerName != "player1") playerTwoScore += 1;
         }
 
         public string GetScore()
         {
+            var advantageScore = playerOneScore >= 4 || playerTwoScore >= 4;
             string score = String.Empty;
-            if (playerOneScore == playerTwoScore)
-                return score = EqualScoreResult();
 
-            if (playerOneScore >= 4 || playerTwoScore >= 4)
-                return score = AdvantageScoreResult();
+            if (playerOneScore == playerTwoScore) return score = EqualResult();
+
+            if (advantageScore) return score = AdvantageResult();
 
             return score = RegularScoreCalculate(score);
         }
 
         private string RegularScoreCalculate(string score)
         {
-            int regularScore = 0;
-            for (var i = 1; i < 3; i++)
+            string playerOneResult = String.Empty;
+            string playerTwoResult = String.Empty;
+            string totalScore;
+            var scoreDictionary = new Dictionary<int, string>
             {
-                if (i == 1) regularScore = playerOneScore;
-                if (i > 1)
-                {
-                    score += "-";
-                    regularScore = playerTwoScore;
-                }
-
-                if (regularScore == 0) score += "Love";
-                if (regularScore == 1) score += "Fifteen";
-                if (regularScore == 2) score += "Thirty";
-                if (regularScore == 3) score += "Forty";
-            }
-
-            return score;
+                { 0, "Love" },
+                { 1, "Fifteen" },
+                { 2, "Thirty" },
+                { 3, "Forty" }
+            };
+            playerOneResult = scoreDictionary[playerOneScore];
+            playerTwoResult = scoreDictionary[playerTwoScore];
+            totalScore = playerOneResult + "-" + playerTwoResult;
+            return totalScore;
         }
 
-        private string AdvantageScoreResult()
+        private string AdvantageResult()
         {
             string score;
             var advantageScore = playerOneScore - playerTwoScore;
@@ -66,7 +63,7 @@ namespace Tennis
             return score = "Win for player2";
         }
 
-        private string EqualScoreResult()
+        private string EqualResult()
         {
             string score;
             if (playerOneScore == 0) return score = "Love-All";
