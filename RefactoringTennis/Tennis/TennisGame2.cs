@@ -7,8 +7,8 @@ namespace Tennis
         private int playerOnePoints;
         private int playerTwoPoints;
 
-        private string playerOneResult = "";
-        private string playerTwoResult = "";
+        private string playerOneResult = "Love";
+        private string playerTwoResult = "Love";
         private string player1Name;
         private string player2Name;
 
@@ -19,20 +19,19 @@ namespace Tennis
 
         public string GetScore()
         {
+            var regularScoreAndNoAdvantage = playerOnePoints > playerTwoPoints && playerOnePoints < 4 || playerTwoPoints > playerOnePoints && playerTwoPoints < 4;
             var totalScore = String.Empty;
             if (playerOnePoints == playerTwoPoints) totalScore = EqualResult(totalScore);
-            
+
             if (Draw() && playerOnePoints > 2) totalScore = "Deuce";
 
             if (playerOnePoints > 0 && playerTwoPoints == 0 || playerTwoPoints > 0 && playerOnePoints == 0)
             {
-                playerOneResult = "Love";
-                playerTwoResult = "Love";
                 if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
                 if (playerTwoPoints == 2) playerTwoResult = "Thirty";
             }
 
-            if (playerOnePoints > playerTwoPoints && playerOnePoints < 4)
+            if (regularScoreAndNoAdvantage)
             {
                 if (playerOnePoints == 1) playerOneResult = "Fifteen";
                 if (playerOnePoints == 2) playerOneResult = "Thirty";
@@ -40,21 +39,10 @@ namespace Tennis
                 if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
                 if (playerTwoPoints == 2) playerTwoResult = "Thirty";
                 if (playerTwoPoints == 3) playerTwoResult = "Forty";
-
                 totalScore = RegularResult();
             }
-            if (playerTwoPoints > playerOnePoints && playerTwoPoints < 4)
-            {
-                if (playerTwoPoints == 2) playerTwoResult = "Thirty";
-                if (playerTwoPoints == 3) playerTwoResult = "Forty";
-                if (playerOnePoints == 1) playerOneResult = "Fifteen";
-                if (playerOnePoints == 2) playerOneResult = "Thirty";
-
-                totalScore = RegularResult();
-            }
-
+        
             totalScore = AdvantageResult(totalScore);
-
             return totalScore;
         }
 
