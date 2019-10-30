@@ -21,15 +21,9 @@ namespace Tennis
         {
             var regularScoreAndNoAdvantage = playerOnePoints > playerTwoPoints && playerOnePoints < 4 || playerTwoPoints > playerOnePoints && playerTwoPoints < 4;
             var totalScore = String.Empty;
+
             if (playerOnePoints == playerTwoPoints) totalScore = EqualResult(totalScore);
 
-            if (Draw() && playerOnePoints > 2) totalScore = "Deuce";
-
-            if (playerOnePoints > 0 && playerTwoPoints == 0 || playerTwoPoints > 0 && playerOnePoints == 0)
-            {
-                if (playerTwoPoints == 1) playerTwoResult = "Fifteen";
-                if (playerTwoPoints == 2) playerTwoResult = "Thirty";
-            }
 
             if (regularScoreAndNoAdvantage)
             {
