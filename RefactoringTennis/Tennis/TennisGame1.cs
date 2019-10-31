@@ -10,6 +10,13 @@ namespace Tennis
         private int playerTwoScore;
         private string _player1Name;
         private string _player2Name;
+        var scoreDictionary = new Dictionary<int, string>
+        {
+            { 0, "Love" },
+            { 1, "Fifteen" },
+            { 2, "Thirty" },
+            { 3, "Forty" }
+        };
 
         public TennisGame1(string player1Name, string player2Name)
         {
@@ -40,13 +47,7 @@ namespace Tennis
             string playerOneResult = String.Empty;
             string playerTwoResult = String.Empty;
             string totalScore;
-            var scoreDictionary = new Dictionary<int, string>
-            {
-                { 0, "Love" },
-                { 1, "Fifteen" },
-                { 2, "Thirty" },
-                { 3, "Forty" }
-            };
+            
             playerOneResult = scoreDictionary[playerOneScore];
             playerTwoResult = scoreDictionary[playerTwoScore];
             totalScore = playerOneResult + "-" + playerTwoResult;
@@ -70,6 +71,8 @@ namespace Tennis
             if (playerOneScore == 1) return score = "Fifteen-All";
             if (playerOneScore == 2) return score = "Thirty-All";
             return score = "Deuce";
+
+            score = scoreDictionary[playerOneScore];
         }
     }
 }
