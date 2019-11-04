@@ -16,7 +16,7 @@ namespace GildedRoseKata
             {
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (Items[i].Quality > 0)
+                    if (Items[i].Quality > 1)
                     {
                         if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
@@ -42,7 +42,7 @@ namespace GildedRoseKata
 
                             if (Items[i].SellIn < 6)
                             {
-                                if (Items[i].Quality < 50)
+                                if (Items[i].Quality < 50) 
                                 {
                                     Items[i].Quality = Items[i].Quality + 1;
                                 }

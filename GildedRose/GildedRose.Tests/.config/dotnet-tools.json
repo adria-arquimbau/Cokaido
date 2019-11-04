@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "stryker-config": {
+    "reporters": [
+      "ConsoleProgressBar",
+      "ConsoleReport"
+    ],
+    "log-level": "info",
+    "timeout-ms": 10000,
+    "log-file": true,
+    "max-concurrent-test-runners": 4,
+    "threshold-high": 80,
+    "threshold-low": 70,
+    "threshold-break": 60,
+    "files-to-exclude": [
+      "../GildedRose/Program.cs"
+    ],
+    "excluded-mutations": [
+      "string",
+      "Logical operators"
+    ]
+  }
+}
