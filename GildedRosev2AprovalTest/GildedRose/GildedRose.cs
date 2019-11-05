@@ -19,30 +19,51 @@ namespace GildedRoseKata
                 var isAgedBrieItem = item.Name == "Aged Brie";
                 var isSulfurasItem = item.Name == "Sulfuras, Hand of Ragnaros";
 
-                if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && item.Quality > 0)
-                    DecreaseQuality(item);
-             
-                if (IsAgedAndBackstage(isBackstageItem, isAgedBrieItem) && item.Quality < 50)
-                    IncreaseQuality(item);
-
-                if (isBackstageItem && item.SellIn < 11 && item.Quality < 50)
-                    IncreaseQuality(item);
-            
-                if (isBackstageItem && item.SellIn < 6 && item.Quality < 50)
-                    IncreaseQuality(item);
-
-                if (!isSulfurasItem)
-                    DecreaseSellIn(item);
-          
-                if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && item.SellIn < 0 && item.Quality > 0)
-                    DecreaseQuality(item);
-             
-                if (isBackstageItem && !isAgedBrieItem && item.SellIn < 0)
-                    QualityToZero(item);
-
-                if (isAgedBrieItem && item.Quality < 50 && item.SellIn < 0)
-                    IncreaseQuality(item);
+                Check(isBackstageItem, isSulfurasItem, isAgedBrieItem, item);
             }
+        }
+
+        private static void Check(bool isBackstageItem, bool isSulfurasItem, bool isAgedBrieItem, Item item)
+        {
+            if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && PositiveQuality(item))
+                DecreaseQuality(item);
+
+            if (IsAgedAndBackstage(isBackstageItem, isAgedBrieItem) && MinorThanFiftyQuality(item))
+                IncreaseQuality(item);
+
+            if (isBackstageItem && item.SellIn < 11 && MinorThanFiftyQuality(item))
+                IncreaseQuality(item);
+
+            if (isBackstageItem && item.SellIn < 6 && MinorThanFiftyQuality(item))
+                IncreaseQuality(item);
+
+            if (!isSulfurasItem)
+                DecreaseSellIn(item);
+
+            if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && NegativeSellIn(item) &&
+                PositiveQuality(item))
+                DecreaseQuality(item);
+
+            if (isBackstageItem && !isAgedBrieItem && NegativeSellIn(item))
+                QualityToZero(item);
+
+            if (isAgedBrieItem && MinorThanFiftyQuality(item) && NegativeSellIn(item))
+                IncreaseQuality(item);
+        }
+
+        private static bool NegativeSellIn(Item item)
+        {
+            return item.SellIn < 0;
+        }
+
+        private static bool PositiveQuality(Item item)
+        {
+            return item.Quality > 0;
+        }
+
+        private static bool MinorThanFiftyQuality(Item item)
+        {
+            return item.Quality < 50;
         }
 
         private static bool IsNotAReservedItem(bool isBackstageItem, bool isSulfurasItem, bool isAgedBrieItem)
