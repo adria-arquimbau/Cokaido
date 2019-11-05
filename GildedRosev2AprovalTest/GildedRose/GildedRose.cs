@@ -15,69 +15,64 @@ namespace GildedRoseKata
         {
             foreach (var item in Items)
             {
-                if (IsNotAReservedItem(item) && item.Quality > 0)
-                {
-                    item.Quality = DecreaseQuality(item);
-                }
-                if (IsNotAgedBrieAndBackstage(item) && item.Quality < 50)
-                {
-                    item.Quality = IncreaseQuality(item);
-                }
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.SellIn < 11 && item.Quality < 50)
-                {
-                    item.Quality = IncreaseQuality(item);
-                }
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.SellIn < 6 && item.Quality < 50)
-                {
-                    item.Quality = IncreaseQuality(item);
-                }
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    item.SellIn = DecreaseSellIn(item);
-                }
-                if (IsNotAReservedItem(item) && item.SellIn < 0 && item.Quality > 0)
-                {
-                    item.Quality = DecreaseQuality(item);
-                }
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.Name != "Aged Brie" && item.SellIn < 0)
-                {
-                    item.Quality = QualityToZero(item);
-                }
-                if (item.Name == "Aged Brie" && item.Quality < 50 && item.SellIn < 0)
-                {
-                    item.Quality = IncreaseQuality(item);
-                }
+                var isBackstageItem = item.Name == "Backstage passes to a TAFKAL80ETC concert";
+                var isAgedBrieItem = item.Name == "Aged Brie";
+                var isSulfurasItem = item.Name == "Sulfuras, Hand of Ragnaros";
+
+                if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && item.Quality > 0)
+                    DecreaseQuality(item);
+             
+                if (IsAgedAndBackstage(isBackstageItem, isAgedBrieItem) && item.Quality < 50)
+                    IncreaseQuality(item);
+
+                if (isBackstageItem && item.SellIn < 11 && item.Quality < 50)
+                    IncreaseQuality(item);
+            
+                if (isBackstageItem && item.SellIn < 6 && item.Quality < 50)
+                    IncreaseQuality(item);
+
+                if (!isSulfurasItem)
+                    DecreaseSellIn(item);
+          
+                if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && item.SellIn < 0 && item.Quality > 0)
+                    DecreaseQuality(item);
+             
+                if (isBackstageItem && !isAgedBrieItem && item.SellIn < 0)
+                    QualityToZero(item);
+
+                if (isAgedBrieItem && item.Quality < 50 && item.SellIn < 0)
+                    IncreaseQuality(item);
             }
         }
 
-        private static bool IsNotAReservedItem(Item item)
+        private static bool IsNotAReservedItem(bool isBackstageItem, bool isSulfurasItem, bool isAgedBrieItem)
         {
-            return item.Name != "Backstage passes to a TAFKAL80ETC concert" && item.Name != "Sulfuras, Hand of Ragnaros" && item.Name != "Aged Brie";
+            return !isBackstageItem && !isSulfurasItem && !isAgedBrieItem;
+        }
+
+        private static bool IsAgedAndBackstage(bool isBackstageItem, bool isAgedBrieItem)
+        {
+            return isBackstageItem || isAgedBrieItem;
         }
 
         private static int QualityToZero(Item item)
         {
-            return item.Quality - item.Quality;
+            return item.Quality = item.Quality - item.Quality;
         }
 
         private static int DecreaseSellIn(Item item)
         {
-            return item.SellIn - 1;
+            return item.SellIn = item.SellIn - 1;
         }
 
         private static int DecreaseQuality(Item item)
         {
-            return item.Quality - 1;
+            return item.Quality = item.Quality - 1;
         }
 
         private static int IncreaseQuality(Item item)
         {
-            return item.Quality + 1;
-        }
-
-        private static bool IsNotAgedBrieAndBackstage(Item item)
-        {
-            return item.Name == "Aged Brie" || item.Name == "Backstage passes to a TAFKAL80ETC concert";
+            return item.Quality = item.Quality + 1;
         }
     }
 }
