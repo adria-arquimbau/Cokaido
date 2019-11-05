@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
@@ -14,66 +15,69 @@ namespace GildedRoseKata
         {
             foreach (var item in Items)
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert" && item.Quality > 0 && item.Name != "Sulfuras, Hand of Ragnaros")
+                if (IsNotAReservedItem(item) && item.Quality > 0)
                 {
-                    item.Quality = item.Quality - 1;
+                    item.Quality = DecreaseQuality(item);
                 }
-                if (item.Name == "Aged Brie" || item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                if (IsNotAgedBrieAndBackstage(item) && item.Quality < 50)
                 {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.SellIn < 11 && item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-
-                            if (item.SellIn < 6 && item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                                
-                            }
-                        }
-                    }
+                    item.Quality = IncreaseQuality(item);
                 }
-
+                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.SellIn < 11 && item.Quality < 50)
+                {
+                    item.Quality = IncreaseQuality(item);
+                }
+                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.SellIn < 6 && item.Quality < 50)
+                {
+                    item.Quality = IncreaseQuality(item);
+                }
                 if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    item.SellIn = item.SellIn - 1;
+                    item.SellIn = DecreaseSellIn(item);
                 }
-
-                if (item.SellIn < 0)
+                if (IsNotAReservedItem(item) && item.SellIn < 0 && item.Quality > 0)
                 {
-                    if (item.Name != "Aged Brie")
-                    {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.Quality > 0)
-                            {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    item.Quality = item.Quality - 1;
-                                }
-                            }
-                        }
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-
-                        {
-                            item.Quality = item.Quality - item.Quality;
-                        }
-                    }
-                    if (item.Name == "Aged Brie")
-                    {
-                        if (item.Quality < 50)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
-                    }
+                    item.Quality = DecreaseQuality(item);
+                }
+                if (item.Name == "Backstage passes to a TAFKAL80ETC concert" && item.Name != "Aged Brie" && item.SellIn < 0)
+                {
+                    item.Quality = QualityToZero(item);
+                }
+                if (item.Name == "Aged Brie" && item.Quality < 50 && item.SellIn < 0)
+                {
+                    item.Quality = IncreaseQuality(item);
                 }
             }
+        }
+
+        private static bool IsNotAReservedItem(Item item)
+        {
+            return item.Name != "Backstage passes to a TAFKAL80ETC concert" && item.Name != "Sulfuras, Hand of Ragnaros" && item.Name != "Aged Brie";
+        }
+
+        private static int QualityToZero(Item item)
+        {
+            return item.Quality - item.Quality;
+        }
+
+        private static int DecreaseSellIn(Item item)
+        {
+            return item.SellIn - 1;
+        }
+
+        private static int DecreaseQuality(Item item)
+        {
+            return item.Quality - 1;
+        }
+
+        private static int IncreaseQuality(Item item)
+        {
+            return item.Quality + 1;
+        }
+
+        private static bool IsNotAgedBrieAndBackstage(Item item)
+        {
+            return item.Name == "Aged Brie" || item.Name == "Backstage passes to a TAFKAL80ETC concert";
         }
     }
 }
