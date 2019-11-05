@@ -19,11 +19,11 @@ namespace GildedRoseKata
                 var isAgedBrieItem = item.Name == "Aged Brie";
                 var isSulfurasItem = item.Name == "Sulfuras, Hand of Ragnaros";
 
-                Check(isBackstageItem, isSulfurasItem, isAgedBrieItem, item);
+                UpdateQuality(isBackstageItem, isSulfurasItem, isAgedBrieItem, item);
             }
         }
 
-        private static void Check(bool isBackstageItem, bool isSulfurasItem, bool isAgedBrieItem, Item item)
+        private static void UpdateQuality(bool isBackstageItem, bool isSulfurasItem, bool isAgedBrieItem, Item item)
         {
             if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && PositiveQuality(item))
                 DecreaseQuality(item);
@@ -40,8 +40,7 @@ namespace GildedRoseKata
             if (!isSulfurasItem)
                 DecreaseSellIn(item);
 
-            if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && NegativeSellIn(item) &&
-                PositiveQuality(item))
+            if (IsNotAReservedItem(isBackstageItem, isSulfurasItem, isAgedBrieItem) && NegativeSellIn(item) && PositiveQuality(item))
                 DecreaseQuality(item);
 
             if (isBackstageItem && !isAgedBrieItem && NegativeSellIn(item))

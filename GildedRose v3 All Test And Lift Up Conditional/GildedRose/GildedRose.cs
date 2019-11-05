@@ -14,80 +14,86 @@ namespace GildedRoseKata
         {
             foreach (var item in Items)
             {
-                UpdateQuality(item);
+                var someItem = Item.CreateItem(item.Name, item.SellIn, item.Quality);
+                someItem.UpdateQuality();
+                item.Name = someItem.Name;
+                item.Quality = someItem.Quality;
+                item.SellIn = someItem.SellIn;
             }
         }
+    }
 
-        private void UpdateQuality(Item item)
+    public class AgedBrie : Item
+    {
+        public AgedBrie(string name, int sellIn, int quality) : base(name, sellIn, quality)
         {
-            if (item.Name == "Aged Brie")
+        }
+
+        public override void UpdateQuality()
+        {
+            if (this.Quality < 50)
             {
-                if (item.Quality < 50)
+                this.Quality = this.Quality + 1;
+            }
+
+            this.SellIn = this.SellIn - 1;
+
+            if (this.SellIn < 0)
+            {
+                if (this.Quality < 50)
                 {
-                    item.Quality = item.Quality + 1;
+                    this.Quality = this.Quality + 1;
+                }
+            }
+        }
+    }
+
+    public class BackStage : Item
+    {
+        public BackStage(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        {
+        }
+
+        public override void UpdateQuality()
+        {
+            if (this.Quality < 50)
+            {
+                this.Quality = this.Quality + 1;
+
+                if (this.SellIn < 11)
+                {
+                    if (this.Quality < 50)
+                    {
+                        this.Quality = this.Quality + 1;
+                    }
                 }
 
-                item.SellIn = item.SellIn - 1;
-
-                if (item.SellIn < 0)
+                if (this.SellIn < 6)
                 {
-                    if (item.Quality < 50)
+                    if (this.Quality < 50)
                     {
-                        item.Quality = item.Quality + 1;
+                        this.Quality = this.Quality + 1;
                     }
                 }
             }
-            else
+
+            this.SellIn = this.SellIn - 1;
+
+            if (this.SellIn < 0)
             {
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-                    }
-
-                    item.SellIn = item.SellIn - 1;
-
-                    if (item.SellIn < 0)
-                    {
-                        item.Quality = item.Quality - item.Quality;
-                    }
-                }
-                else
-                {
-                    if (item.Name == "Sulfuras, Hand of Ragnaros") return;
-                    if (item.Quality > 1)
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-
-                    item.SellIn = item.SellIn - 1;
-
-                    if (item.SellIn < 0)
-                    {
-                        if (item.Quality > 0)
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
-                    }
-                }
+                this.Quality = this.Quality - this.Quality;
             }
+        }
+    }
+
+    public class Sulfuras : Item
+    {
+        public Sulfuras(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        {
+        }
+
+        public override void UpdateQuality()
+        {
         }
     }
 }
