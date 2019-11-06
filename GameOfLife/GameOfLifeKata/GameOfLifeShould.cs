@@ -104,5 +104,25 @@ namespace GameOfLifeChallenge
 
             Assert.Equal(new List<CellPosition> { new CellPosition(0, 1), new CellPosition(0, 2), new CellPosition(0, 0)}, resultSecondRound);
         }
+
+        [Fact]
+        public void ReturnNewPatternAfterThreeGenerationsOnFourVerticalLinePattern()
+        {
+            var cellPositions = new List<CellPosition> { new CellPosition(0, 0), new CellPosition(0, 1), new CellPosition(0, 2), new CellPosition(0, 3) };
+
+            GameOfLife gameOfLifeFirstRound = new GameOfLife(cellPositions);
+
+            var resultFirstRound = gameOfLifeFirstRound.Play();
+
+            GameOfLife gameOfLifeSecondRound = new GameOfLife(resultFirstRound);
+
+            var resultSecondRound = gameOfLifeSecondRound.Play();
+
+            GameOfLife gameOfLifeThirdRound = new GameOfLife(resultSecondRound);
+
+            var resultThirdRound = gameOfLifeThirdRound.Play();
+
+            Assert.Equal(new List<CellPosition> { new CellPosition(1, 1), new CellPosition(-1,1), new CellPosition(1,2), new CellPosition(-1,2), new CellPosition(0,0), new CellPosition(0,3) }, resultThirdRound);
+        }
     }
 }
