@@ -29,7 +29,7 @@ namespace GameOfLifeV2
         }
 
         [Fact]
-        public void ReturnNullIfCurrentGenerationIstwoCells()
+        public void ReturnNullIfCurrentGenerationAreTwoCells()
         {
             var currentGeneration =  new List<CellPosition>{ new CellPosition(0,0), new CellPosition(0,1) };
             GameOfLife gameOfLife = new GameOfLife(currentGeneration);
