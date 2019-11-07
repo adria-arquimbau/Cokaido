@@ -8,14 +8,19 @@ namespace GameOfLifeV2
     {
         private List<CellPosition> _currentGeneration = new List<CellPosition>();
 
-        public List<CellPosition> NewGeneration()
+        public Ecosystem NewGeneration()
         {
             if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
             {
                 throw new Exception();
             }
 
-            return null;
+            foreach (var cell in _currentGeneration)
+            {
+                var cellNeighbors = cell.GetNeighbors();
+            }
+
+            return;
         }
 
         public void AddCell(int positionX, int positionY)
