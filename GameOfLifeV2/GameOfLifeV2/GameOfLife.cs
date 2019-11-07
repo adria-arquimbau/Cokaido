@@ -1,23 +1,19 @@
 using System;
-using System.Collections.Generic;
 
 namespace GameOfLifeV2
 {
     public class GameOfLife
     {
-        private List<CellPosition> _currentGeneration;
+        private readonly Ecosystem _ecosystem;
 
-        public GameOfLife(List<CellPosition> currentGeneration)
+        public GameOfLife(Ecosystem ecosystem)
         {
-            _currentGeneration = currentGeneration;
+            _ecosystem = ecosystem;
         }
 
-        public List<CellPosition> Play()
+        public void Evolve()
         {
-            if (_currentGeneration.Count == 0)
-                throw new Exception();
-
-            return null;
+            _ecosystem.NewGeneration();
         }
     }
 }
