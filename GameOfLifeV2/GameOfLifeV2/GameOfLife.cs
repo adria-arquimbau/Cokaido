@@ -11,7 +11,7 @@ namespace GameOfLifeV2
             _ecosystem = ecosystem;
         }
 
-        public void Evolve()
+        public void Play()
         {
             _ecosystem.NewGeneration();
         }
