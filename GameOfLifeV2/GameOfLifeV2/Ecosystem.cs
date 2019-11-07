@@ -10,12 +10,12 @@ namespace GameOfLifeV2
 
         public List<CellPosition> NewGeneration()
         {
-            if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1)
+            if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
             {
                 throw new Exception();
             }
 
-            throw new Exception();
+            return null;
         }
 
         public void AddCell(int positionX, int positionY)
