@@ -15,12 +15,10 @@ namespace GameOfLifeV2
                 throw new Exception();
             }
 
-            foreach (var cell in _currentGeneration)
-            {
-                var cellNeighbors = cell.GetNeighbors();
-            }
+            Ecosystem nextGeneration = new Ecosystem();
+            nextGeneration.AddCell(1,0);
 
-            return null;
+            return nextGeneration;
         }
 
         public void AddCell(int positionX, int positionY)
