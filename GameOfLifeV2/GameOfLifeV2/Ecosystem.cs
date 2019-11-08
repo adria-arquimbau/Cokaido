@@ -20,7 +20,7 @@ namespace GameOfLifeV2
                 var cellNeighbors = cell.GetNeighbors();
             }
 
-            return;
+            return null;
         }
 
         public void AddCell(int positionX, int positionY)
