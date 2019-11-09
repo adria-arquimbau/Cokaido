@@ -8,9 +8,12 @@ namespace GameOfLifeV2
     public class Ecosystem
     {
         private List<CellPosition> _currentGeneration = new List<CellPosition>();
+        private const int MinCellsToSurvive = 2;
+        private const int MaxCellsToSurvive = 3;
+        private int _neighborsCount = 0;
 
         public void NewGeneration()
-        {
+        {   
             var nextGeneration = new List<CellPosition>();
 
             if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
@@ -25,13 +28,13 @@ namespace GameOfLifeV2
         private void GetSurvivedCellsToNextGeneration(CellPosition cell, List<CellPosition> nextGeneration)
         {
             var cellNeighbors = cell.GetNeighbors();
-            var neighborsCount = 0;
+            
             foreach (var neighbor in cellNeighbors)
             {
-                neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
+                _neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, _neighborsCount);
             }
 
-            if (neighborsCount == 2 || neighborsCount == 3) nextGeneration.Add(cell);
+            if (_neighborsCount == MinCellsToSurvive || _neighborsCount == MaxCellsToSurvive) nextGeneration.Add(cell);
         }
 
         private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
