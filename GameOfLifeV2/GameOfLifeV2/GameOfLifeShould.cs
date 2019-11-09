@@ -40,11 +40,11 @@ namespace GameOfLifeV2
         }
 
         [Fact]
-        public void KeepAliveMiddleCellWhenTheresThreeCellsInARow()
+        public void KeepAliveMiddleCellWhenThereIsThreeCellsInARow()
         {
             Ecosystem expectedEcosystem = new Ecosystem();
             expectedEcosystem.AddCell(1,0);
-
+                
             Ecosystem ecosystem = new Ecosystem();
             ecosystem.AddCell(0,0);
             ecosystem.AddCell(1,0);
