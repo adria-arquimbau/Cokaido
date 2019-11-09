@@ -11,13 +11,29 @@ namespace GameOfLifeV2
 
         public void NewGeneration()
         {
+            var nextGeneration = new List<CellPosition>();
+
             if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
             {
                 throw new Exception();
             }
 
-            var nextGeneration = new List<CellPosition>();
-            nextGeneration.Add(new CellPosition(1,0));
+            foreach (var cell in _currentGeneration)
+            {
+                var cellNeighbors = cell.GetNeighbors();
+                var neighborsCount = 0;
+
+                foreach (var neighbor in cellNeighbors)
+                {
+                    if (_currentGeneration.Contains(neighbor))
+                        neighborsCount ++;
+                }
+
+                if (neighborsCount == 2 || neighborsCount == 3)
+                    nextGeneration.Add(cell);
+            }
+
+            //nextGeneration.Add(new CellPosition(1,0));
 
             _currentGeneration = nextGeneration;
         }
