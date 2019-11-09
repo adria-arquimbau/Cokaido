@@ -33,8 +33,6 @@ namespace GameOfLifeV2
                     nextGeneration.Add(cell);
             }
 
-            //nextGeneration.Add(new CellPosition(1,0));
-
             _currentGeneration = nextGeneration;
         }
 
