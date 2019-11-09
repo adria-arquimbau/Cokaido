@@ -5,18 +5,18 @@ namespace GameOfLifeChallenge
 {
     public class GameOfLife
     {
-        private List<CellPosition> _initialCells;
+        private List<CellPosition> _currentGeneration;
 
-        public GameOfLife(List<CellPosition> initialCells)
+        public GameOfLife(List<CellPosition> currentGeneration)
         {
-            _initialCells = initialCells;
+            _currentGeneration = currentGeneration;
         }
         public List<CellPosition> Play()
         {
-            if (_initialCells.Count == 0)
+            if (_currentGeneration.Count == 0)
                 throw new Exception();
 
-            if (_initialCells.Count < 3)
+            if (_currentGeneration.Count < 3)
                 return null;
 
             var newCells = new List<CellPosition>();
@@ -31,7 +31,7 @@ namespace GameOfLifeChallenge
         
         private void AddSurvivedCellsToNewCells(List<CellPosition> allNeighbors, List<CellPosition> newCells)
         {
-            foreach (var cell in _initialCells)
+            foreach (var cell in _currentGeneration)
             {
                 var neighborsList = cell.GetNeighbors();
 
@@ -40,7 +40,7 @@ namespace GameOfLifeChallenge
                     if (!allNeighbors.Contains(neighbor)) allNeighbors.Add(neighbor);
                 }
 
-                var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborsList, _initialCells);
+                var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborsList, _currentGeneration);
 
                 newCells.AddRange(GetSurvivedCells(numberOfAliveAndDeadNeighbors, cell));
             }
@@ -50,11 +50,11 @@ namespace GameOfLifeChallenge
         {
             foreach (var neighbor in allNeighbors)
             {
-                if (!_initialCells.Contains(neighbor))
+                if (!_currentGeneration.Contains(neighbor))
                 {
                     var neighborList = neighbor.GetNeighbors();
 
-                    var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborList, _initialCells);
+                    var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborList, _currentGeneration);
 
                     newCells.AddRange(GetRevivedCells(numberOfAliveAndDeadNeighbors, neighbor));
                 }
