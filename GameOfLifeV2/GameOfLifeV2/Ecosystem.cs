@@ -16,7 +16,7 @@ namespace GameOfLifeV2
             var nextGeneration = new List<CellPosition>();
 
             if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStart)
-                throw new Exception();
+                throw new Exception("Game of Life ended, you need more than 3 cells to continue");
 
             foreach (var cell in _currentGeneration)
                 GetSurvivedCellsToNextGeneration(cell, nextGeneration);
