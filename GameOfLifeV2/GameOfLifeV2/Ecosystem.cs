@@ -28,10 +28,16 @@ namespace GameOfLifeV2
             var neighborsCount = 0;
             foreach (var neighbor in cellNeighbors)
             {
-                if (_currentGeneration.Contains(neighbor)) neighborsCount++;
+                neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
             }
 
             if (neighborsCount == 2 || neighborsCount == 3) nextGeneration.Add(cell);
+        }
+
+        private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
+        {
+            if (_currentGeneration.Contains(neighbor)) neighborsCount++;
+            return neighborsCount;
         }
 
         public void AddCell(int positionX, int positionY)
