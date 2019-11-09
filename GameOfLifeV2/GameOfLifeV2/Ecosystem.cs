@@ -15,7 +15,7 @@ namespace GameOfLifeV2
         {   
             var nextGeneration = new List<CellPosition>();
 
-            if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
+            if (_currentGeneration.Count < 3)
                 throw new Exception();
 
             foreach (var cell in _currentGeneration)
