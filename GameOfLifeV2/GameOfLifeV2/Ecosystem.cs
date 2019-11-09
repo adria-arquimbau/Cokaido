@@ -8,14 +8,14 @@ namespace GameOfLifeV2
     public class Ecosystem
     {
         private List<CellPosition> _currentGeneration = new List<CellPosition>();
-        private const int MinCellsToSurvive = 2;
-        private const int MaxCellsToSurvive = 3;
+        private const int MinNeighborsToSurvive = 2;
+        private const int MaxNeighborsToSurviveAndCellsToStart = 3;
 
         public void NewGeneration()
         {   
             var nextGeneration = new List<CellPosition>();
 
-            if (_currentGeneration.Count < 3)
+            if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStart)
                 throw new Exception();
 
             foreach (var cell in _currentGeneration)
@@ -34,7 +34,7 @@ namespace GameOfLifeV2
                 neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
             }
 
-            if (neighborsCount == MinCellsToSurvive || neighborsCount == MaxCellsToSurvive) nextGeneration.Add(cell);
+            if (neighborsCount == MinNeighborsToSurvive || neighborsCount == MaxNeighborsToSurviveAndCellsToStart) nextGeneration.Add(cell);
         }
 
         private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
