@@ -7,34 +7,54 @@ namespace GameOfLifeV2
     public class GameOfLifeShould
     {
         [Fact]
-        public void ShowErrorMessageWhenThereIsNotACell()
+        public void ThrowExceptionIfNumberOfCellsIsZero()
         {
-            var currentGeneration = new List<CellPosition>();
+            Ecosystem ecosystem = new Ecosystem();
 
-            GameOfLife gameOfLife = new GameOfLife(currentGeneration);
+            GameOfLife gameOfLife = new GameOfLife(ecosystem);
+
+            Assert.Throws<Exception>(()=>gameOfLife.Play());
+        }
+
+        [Fact]
+        public void ThrowExceptionIfNumberOfCellsIsOne()
+        {
+            Ecosystem ecosystem = new Ecosystem();
+            ecosystem.AddCell(0,0);
+
+            GameOfLife gameOfLife = new GameOfLife(ecosystem);
 
             Assert.Throws<Exception>(() => gameOfLife.Play());
         }
 
         [Fact]
-        public void ReturnNullIfCurrentGenerationIsOneCell()
+        public void ThrowExceptionIfNumberOfCellsIsTwo()
         {
-            var currentGeneration =  new List<CellPosition>{ new CellPosition(0,0) };
+            Ecosystem ecosystem = new Ecosystem();
+            ecosystem.AddCell(0,0);
+            ecosystem.AddCell(0,1);
 
-            GameOfLife gameOfLife = new GameOfLife(currentGeneration);
+            GameOfLife gameOfLife = new GameOfLife(ecosystem);
 
-            var result = gameOfLife.Play();
-
-            Assert.Null(result);
+            Assert.Throws<Exception>(() => gameOfLife.Play());
         }
 
         [Fact]
-        public void ReturnNullIfCurrentGenerationIstwoCells()
+        public void KeepAliveMiddleCellWhenTheresThreeCellsInARow()
         {
-            var currentGeneration =  new List<CellPosition>{ new CellPosition(0,0), new CellPosition(0,1) };
-            GameOfLife gameOfLife = new GameOfLife(currentGeneration);
-            var result = gameOfLife.Play();
-            Assert.Null(result);
+            Ecosystem expectedEcosystem = new Ecosystem();
+            expectedEcosystem.AddCell(1,0);
+
+            Ecosystem ecosystem = new Ecosystem();
+            ecosystem.AddCell(0,0);
+            ecosystem.AddCell(1,0);
+            ecosystem.AddCell(2,0);
+
+            GameOfLife gameOfLife = new GameOfLife(ecosystem);
+
+            gameOfLife.Play();
+
+            Assert.Equal(expectedEcosystem, ecosystem);
         }
     }
 }
