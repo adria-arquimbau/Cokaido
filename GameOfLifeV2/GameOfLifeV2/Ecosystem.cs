@@ -10,7 +10,6 @@ namespace GameOfLifeV2
         private List<CellPosition> _currentGeneration = new List<CellPosition>();
         private const int MinCellsToSurvive = 2;
         private const int MaxCellsToSurvive = 3;
-        private int _neighborsCount = 0;
 
         public void NewGeneration()
         {   
@@ -28,13 +27,14 @@ namespace GameOfLifeV2
         private void GetSurvivedCellsToNextGeneration(CellPosition cell, List<CellPosition> nextGeneration)
         {
             var cellNeighbors = cell.GetNeighbors();
+            var neighborsCount = 0;
             
             foreach (var neighbor in cellNeighbors)
             {
-                _neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, _neighborsCount);
+                neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
             }
 
-            if (_neighborsCount == MinCellsToSurvive || _neighborsCount == MaxCellsToSurvive) nextGeneration.Add(cell);
+            if (neighborsCount == MinCellsToSurvive || neighborsCount == MaxCellsToSurvive) nextGeneration.Add(cell);
         }
 
         private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
