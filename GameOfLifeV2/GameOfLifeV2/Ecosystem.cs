@@ -14,26 +14,24 @@ namespace GameOfLifeV2
             var nextGeneration = new List<CellPosition>();
 
             if (_currentGeneration.Count == 0 || _currentGeneration.Count == 1 || _currentGeneration.Count == 2)
-            {
                 throw new Exception();
-            }
 
             foreach (var cell in _currentGeneration)
+                GetSurvivedCellsToNextGeneration(cell, nextGeneration);
+            
+            _currentGeneration = nextGeneration;
+        }
+
+        private void GetSurvivedCellsToNextGeneration(CellPosition cell, List<CellPosition> nextGeneration)
+        {
+            var cellNeighbors = cell.GetNeighbors();
+            var neighborsCount = 0;
+            foreach (var neighbor in cellNeighbors)
             {
-                var cellNeighbors = cell.GetNeighbors();
-                var neighborsCount = 0;
-
-                foreach (var neighbor in cellNeighbors)
-                {
-                    if (_currentGeneration.Contains(neighbor))
-                        neighborsCount ++;
-                }
-
-                if (neighborsCount == 2 || neighborsCount == 3)
-                    nextGeneration.Add(cell);
+                if (_currentGeneration.Contains(neighbor)) neighborsCount++;
             }
 
-            _currentGeneration = nextGeneration;
+            if (neighborsCount == 2 || neighborsCount == 3) nextGeneration.Add(cell);
         }
 
         public void AddCell(int positionX, int positionY)
