@@ -39,42 +39,6 @@ namespace GameOfLifeV2
             Assert.Throws<Exception>(() => gameOfLife.Play());
         }
 
-        //[Fact]
-        //public void KeepAliveMiddleCellWhenThereIsThreeCellsInARow()
-        //{
-        //    Ecosystem expectedEcosystem = new Ecosystem();
-        //    expectedEcosystem.AddCell(1,0);
-                
-        //    Ecosystem ecosystem = new Ecosystem();
-        //    ecosystem.AddCell(0,0);
-        //    ecosystem.AddCell(1,0);
-        //    ecosystem.AddCell(2,0);
-
-        //    GameOfLife gameOfLife = new GameOfLife(ecosystem);
-
-        //    gameOfLife.Play();
-
-        //    Assert.Equal(expectedEcosystem, ecosystem);
-        //}
-
-        //[Fact]
-        //public void KeepAliveMiddleCellWhenIsThreeCellsInAColumn()
-        //{
-        //    Ecosystem expectedEcosystem = new Ecosystem();
-        //    expectedEcosystem.AddCell(5,6);
-
-        //    Ecosystem ecosystem = new Ecosystem();
-        //    ecosystem.AddCell(5,5);
-        //    ecosystem.AddCell(5,6);
-        //    ecosystem.AddCell(5,7);
-
-        //    GameOfLife gameOfLife = new GameOfLife(ecosystem);
-
-        //    gameOfLife.Play();
-
-        //    Assert.Equal(expectedEcosystem, ecosystem);
-        //}
-
         [Fact]
         public void KeepAliveAllCellsWhenFirstGenerationIsASquare()
         {
@@ -107,8 +71,8 @@ namespace GameOfLifeV2
 
             Ecosystem ecosystem = new Ecosystem();
             ecosystem.AddCell(0,0);
-            ecosystem.AddCell(1,0);
             ecosystem.AddCell(2,0);
+            ecosystem.AddCell(1, 0);
 
             GameOfLife gameOfLife = new GameOfLife(ecosystem);
 

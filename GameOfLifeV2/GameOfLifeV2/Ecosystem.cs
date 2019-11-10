@@ -9,43 +9,51 @@ namespace GameOfLifeV2
     {
         private List<CellPosition> _currentGeneration = new List<CellPosition>();
         private const int MinNeighborsToSurvive = 2;
-        private const int MaxNeighborsToSurviveAndCellsToStart = 3;
+        private const int MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive = 3;
 
         public void NewGeneration()
         {   
             var nextGeneration = new List<CellPosition>();
             var allNeighbors = new List<CellPosition>();
 
-            if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStart)
+            if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive)
                 throw new Exception("Game of Life ended, you need more than 3 cells of current generation to continue");
 
             foreach (var cell in _currentGeneration)
             {
                 GetSurvivedCellsToNextGeneration(cell, nextGeneration);
-                var cellNeighbors = cell.GetNeighbors();
-
-                foreach (var neighbor in cellNeighbors)
-                {
-                    if(!allNeighbors.Contains(neighbor) && !_currentGeneration.Contains(neighbor))
-                        allNeighbors.Add(neighbor);
-                }
+                GetAllNeighbors(cell, allNeighbors);
             }
 
             foreach (var neighbor in allNeighbors)
             {
-                var neighborsOfNeighbor = neighbor.GetNeighbors();
-                var neighborsCount = 0;
-
-                foreach (var neighborOfNeighbor in neighborsOfNeighbor)
-                {
-                    if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
-                }
-
-                if (neighborsCount == 3) nextGeneration.Add(neighbor);
+                GetRevivedCells(neighbor, nextGeneration);
             }
 
-
             _currentGeneration = nextGeneration;
+        }
+
+        private void GetRevivedCells(CellPosition neighbor, List<CellPosition> nextGeneration)
+        {
+            var neighborsOfNeighbor = neighbor.GetNeighbors();
+            var neighborsCount = 0;
+
+            foreach (var neighborOfNeighbor in neighborsOfNeighbor)
+            {
+                if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
+            }
+
+            if (neighborsCount == 3) nextGeneration.Add(neighbor);
+        }
+
+        private void GetAllNeighbors(CellPosition cell, List<CellPosition> allNeighbors)
+        {
+            var cellNeighbors = cell.GetNeighbors();
+            foreach (var neighbor in cellNeighbors)
+            {
+                if (!allNeighbors.Contains(neighbor) && !_currentGeneration.Contains(neighbor))
+                    allNeighbors.Add(neighbor);
+            }
         }
 
         private void GetSurvivedCellsToNextGeneration(CellPosition cell, List<CellPosition> nextGeneration)
@@ -58,7 +66,7 @@ namespace GameOfLifeV2
                 neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
             }
 
-            if (neighborsCount == MinNeighborsToSurvive || neighborsCount == MaxNeighborsToSurviveAndCellsToStart) nextGeneration.Add(cell);
+            if (neighborsCount == MinNeighborsToSurvive || neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive) nextGeneration.Add(cell);
         }
 
         private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
