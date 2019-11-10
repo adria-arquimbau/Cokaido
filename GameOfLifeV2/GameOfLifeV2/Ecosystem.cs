@@ -40,10 +40,17 @@ namespace GameOfLifeV2
 
             foreach (var neighborOfNeighbor in neighborsOfNeighbor)
             {
-                if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
+                neighborsCount = NeighborsCountPlusOneIfNeighborOfNeighborsAreOnCurrentGeneration(neighborOfNeighbor, neighborsCount);
             }
 
             if (neighborsCount == 3) nextGeneration.Add(neighbor);
+        }
+
+        private int NeighborsCountPlusOneIfNeighborOfNeighborsAreOnCurrentGeneration(CellPosition neighborOfNeighbor,
+            int neighborsCount)
+        {
+            if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
+            return neighborsCount;
         }
 
         private void GetAllNeighbors(CellPosition cell, List<CellPosition> allNeighbors)
@@ -51,9 +58,14 @@ namespace GameOfLifeV2
             var cellNeighbors = cell.GetNeighbors();
             foreach (var neighbor in cellNeighbors)
             {
-                if (!allNeighbors.Contains(neighbor) && !_currentGeneration.Contains(neighbor))
-                    allNeighbors.Add(neighbor);
+                AddNeighborToAllNeighbors(allNeighbors, neighbor);
             }
+        }
+
+        private void AddNeighborToAllNeighbors(List<CellPosition> allNeighbors, CellPosition neighbor)
+        {
+            if (!allNeighbors.Contains(neighbor) && !_currentGeneration.Contains(neighbor))
+                allNeighbors.Add(neighbor);
         }
 
         private void GetSurvivedCellsToNextGeneration(CellPosition cell, List<CellPosition> nextGeneration)
