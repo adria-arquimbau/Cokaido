@@ -14,13 +14,37 @@ namespace GameOfLifeV2
         public void NewGeneration()
         {   
             var nextGeneration = new List<CellPosition>();
+            var allNeighbors = new List<CellPosition>();
 
             if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStart)
                 throw new Exception("Game of Life ended, you need more than 3 cells of current generation to continue");
 
             foreach (var cell in _currentGeneration)
+            {
                 GetSurvivedCellsToNextGeneration(cell, nextGeneration);
-            
+                var cellNeighbors = cell.GetNeighbors();
+
+                foreach (var neighbor in cellNeighbors)
+                {
+                    if(!allNeighbors.Contains(neighbor) && !_currentGeneration.Contains(neighbor))
+                        allNeighbors.Add(neighbor);
+                }
+            }
+
+            foreach (var neighbor in allNeighbors)
+            {
+                var neighborsOfNeighbor = neighbor.GetNeighbors();
+                var neighborsCount = 0;
+
+                foreach (var neighborOfNeighbor in neighborsOfNeighbor)
+                {
+                    if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
+                }
+
+                if (neighborsCount == 3) nextGeneration.Add(neighbor);
+            }
+
+
             _currentGeneration = nextGeneration;
         }
 
