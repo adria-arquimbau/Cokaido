@@ -40,13 +40,13 @@ namespace GameOfLifeV2
 
             foreach (var neighborOfNeighbor in neighborsOfNeighbor)
             {
-                neighborsCount = NeighborsCountPlusOneIfNeighborOfNeighborsAreOnCurrentGeneration(neighborOfNeighbor, neighborsCount);
+                neighborsCount = NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(neighborOfNeighbor, neighborsCount);
             }
 
             if (neighborsCount == 3) nextGeneration.Add(neighbor);
         }
 
-        private int NeighborsCountPlusOneIfNeighborOfNeighborsAreOnCurrentGeneration(CellPosition neighborOfNeighbor,
+        private int NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(CellPosition neighborOfNeighbor,
             int neighborsCount)
         {
             if (_currentGeneration.Contains(neighborOfNeighbor)) neighborsCount++;
