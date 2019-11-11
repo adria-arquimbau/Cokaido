@@ -92,9 +92,27 @@ namespace GameOfLifeV2
             _currentGeneration.Add(new CellPosition(positionX, positionY));
         }
 
+        //protected bool Equals(Ecosystem other)
+        //{
+        //    return _currentGeneration.SequenceEqual(other._currentGeneration);
+        //}
+
         protected bool Equals(Ecosystem other)
         {
-            return _currentGeneration.SequenceEqual(other._currentGeneration);
+            if (this._currentGeneration.Count == other._currentGeneration.Count)
+            {
+                foreach (var cell in _currentGeneration)
+                {
+                    if (!other._currentGeneration.Contains(cell))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         public override bool Equals(object obj)
