@@ -107,20 +107,7 @@ namespace GameOfLifeV2
 
         protected bool Equals(Ecosystem other)
         {
-            if (this._currentGeneration.Count == other._currentGeneration.Count)
-            {
-                foreach (var cell in _currentGeneration)
-                {
-                    if (!other._currentGeneration.Contains(cell))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-
-            return false;
+            if (this._currentGeneration.Count == other._currentGeneration.Count) foreach (var cell in _currentGeneration) if (!other._currentGeneration.Contains(cell)) return false; return true;
         }
 
         public override bool Equals(object obj)

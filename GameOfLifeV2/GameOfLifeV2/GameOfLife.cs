@@ -20,10 +20,7 @@ namespace GameOfLifeV2
 
         protected bool Equals(GameOfLife other)
         {
-            if (this._ecosystem.Equals(other._ecosystem))
-            {
-                return true;
-            }
+            if (this._ecosystem.Equals(other._ecosystem)) return true;
 
             return false;
         }
