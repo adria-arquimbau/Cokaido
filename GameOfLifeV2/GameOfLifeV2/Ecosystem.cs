@@ -11,6 +11,18 @@ namespace GameOfLifeV2
         private const int MinNeighborsToSurvive = 2;
         private const int MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive = 3;
 
+        public Ecosystem(List<CellPosition> generation)
+        {
+            foreach (var cell in generation)
+            {
+               _currentGeneration.Add(cell);
+            }
+        }
+
+        public Ecosystem()
+        {
+        }
+
         public void NewGeneration()
         {   
             var nextGeneration = new List<CellPosition>();
@@ -31,6 +43,7 @@ namespace GameOfLifeV2
             }
 
             _currentGeneration = nextGeneration;
+            
         }
 
         private void GetRevivedCells(CellPosition neighbor, List<CellPosition> nextGeneration)
