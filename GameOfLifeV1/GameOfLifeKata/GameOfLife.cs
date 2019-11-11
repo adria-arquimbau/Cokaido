@@ -20,7 +20,7 @@ namespace GameOfLifeChallenge
                 return null;
 
             var cells = new List<CellPosition>();
-            var allNeighbors = new List<CellPosition>();
+            var neighbors = new List<CellPosition>();
 
             foreach (var cell in _generation)
             {
@@ -28,7 +28,7 @@ namespace GameOfLifeChallenge
 
                 foreach (var neighbor in neighborsList)
                 {
-                    if (!allNeighbors.Contains(neighbor)) allNeighbors.Add(neighbor);
+                    if (!neighbors.Contains(neighbor)) neighbors.Add(neighbor);
                 }
 
                 var aliveNeighbors = 0;
@@ -51,7 +51,7 @@ namespace GameOfLifeChallenge
                 cells.AddRange(newCells1);
             }
 
-            foreach (var neighbor1 in allNeighbors)
+            foreach (var neighbor1 in neighbors)
             {
                 if (!_generation.Contains(neighbor1))
                 {
