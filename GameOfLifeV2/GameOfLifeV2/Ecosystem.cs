@@ -43,7 +43,7 @@ namespace GameOfLifeV2
                 neighborsCount = NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(neighborOfNeighbor, neighborsCount);
             }
 
-            if (neighborsCount == 3) nextGeneration.Add(neighbor);
+            if (neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive) nextGeneration.Add(neighbor);
         }
 
         private int NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(CellPosition neighborOfNeighbor,
@@ -91,11 +91,6 @@ namespace GameOfLifeV2
         {
             _currentGeneration.Add(new CellPosition(positionX, positionY));
         }
-
-        //protected bool Equals(Ecosystem other)
-        //{
-        //    return _currentGeneration.SequenceEqual(other._currentGeneration);
-        //}
 
         protected bool Equals(Ecosystem other)
         {
