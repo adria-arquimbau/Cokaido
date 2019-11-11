@@ -117,11 +117,11 @@ namespace GildedRose.Tests
         [InlineData(8, 50)]
         [InlineData(7, 75)]
         [InlineData(6, 51)]
-        public void ReturnsTheSameQualityWhenTheNameIsBackstagePassesToATAFKAL80ETCConcertAndValueOfSellInIsBetweenThanTenAndSixAndQuantityIsGreatestThan50(int sellIn, int quality)
+        public void ReturnsTheSameQualityWhenTheNameIsBackstagePassesToAtafkal80EtcConcertAndValueOfSellInIsBetweenThanTenAndSixAndQuantityIsGreatestThan50(int sellIn, int quality)
         {
             IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = sellIn, Quality = quality } };
 
-            GildedRoseKata.GildedRose app = new GildedRoseKata.GildedRose(Items);
+            GildedRoseKata.GildedRose app = new GildedRoseKata.GildedRose(Items);   
             app.UpdateQuality();
 
             Assert.Equal(quality, Items[0].Quality);

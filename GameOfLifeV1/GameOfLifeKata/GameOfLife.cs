@@ -5,7 +5,7 @@ namespace GameOfLifeChallenge
 {
     public class GameOfLife
     {
-        private List<CellPosition> _generation;
+        private readonly List<CellPosition> _generation;
 
         public GameOfLife(List<CellPosition> generation)
         {
