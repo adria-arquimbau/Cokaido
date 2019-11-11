@@ -15,7 +15,7 @@ namespace GameOfLifeV2
         {
             foreach (var cell in generation)
             {
-               _currentGeneration.Add(cell);
+               AddCell(cell);
             }
         }
 
@@ -105,9 +105,17 @@ namespace GameOfLifeV2
             _currentGeneration.Add(new CellPosition(positionX, positionY));
         }
 
+        private void AddCell(CellPosition cell)
+        {
+            _currentGeneration.Add(cell);
+        }
+
         protected bool Equals(Ecosystem other)
         {
-            if (this._currentGeneration.Count == other._currentGeneration.Count) foreach (var cell in _currentGeneration) if (!other._currentGeneration.Contains(cell)) return false; return true;
+            if (this._currentGeneration.Count != other._currentGeneration.Count)
+                return false;
+
+            return _currentGeneration.All(cell => other._currentGeneration.Contains(cell));
         }
 
         public override bool Equals(object obj)
