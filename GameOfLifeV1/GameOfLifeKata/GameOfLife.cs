@@ -5,24 +5,24 @@ namespace GameOfLifeChallenge
 {
     public class GameOfLife
     {
-        private List<CellPosition> _currentGeneration;
+        private List<CellPosition> _generation;
 
-        public GameOfLife(List<CellPosition> currentGeneration)
+        public GameOfLife(List<CellPosition> generation)
         {
-            _currentGeneration = currentGeneration;
+            _generation = generation;
         }
         public List<CellPosition> Play()
         {
-            if (_currentGeneration.Count == 0)
+            if (_generation.Count == 0)
                 throw new Exception();
 
-            if (_currentGeneration.Count < 3)
+            if (_generation.Count < 3)
                 return null;
 
-            var newCells = new List<CellPosition>();
+            var cells = new List<CellPosition>();
             var allNeighbors = new List<CellPosition>();
 
-            foreach (var cell in _currentGeneration)
+            foreach (var cell in _generation)
             {
                 var neighborsList = cell.GetNeighbors();
 
@@ -33,27 +33,27 @@ namespace GameOfLifeChallenge
 
                 var aliveNeighbors = 0;
 
-                foreach (var neighborPosition in neighborsList)
+                foreach (var neighbor in neighborsList)
                 {
-                    if (_currentGeneration.Contains(neighborPosition))
+                    if (_generation.Contains(neighbor))
                         aliveNeighbors++;
                 }
 
-                var numberOfAliveAndDeadNeighbors = aliveNeighbors;
+                var aliveAndDead = aliveNeighbors;
 
                 List<CellPosition> newCells1 = new List<CellPosition>();
 
-                if (numberOfAliveAndDeadNeighbors == 2 || numberOfAliveAndDeadNeighbors == 3)
+                if (aliveAndDead == 2 || aliveAndDead == 3)
                 {
                     newCells1.Add(cell);
                 }
 
-                newCells.AddRange(newCells1);
+                cells.AddRange(newCells1);
             }
 
             foreach (var neighbor1 in allNeighbors)
             {
-                if (!_currentGeneration.Contains(neighbor1))
+                if (!_generation.Contains(neighbor1))
                 {
                     var neighborList = neighbor1.GetNeighbors();
 
@@ -61,24 +61,24 @@ namespace GameOfLifeChallenge
 
                     foreach (var neighborPosition in neighborList)
                     {
-                        if (_currentGeneration.Contains(neighborPosition))
+                        if (_generation.Contains(neighborPosition))
                             aliveNeighbors++;
                     }
 
-                    var numberOfAliveAndDeadNeighbors1 = aliveNeighbors;
+                    var aliveAndDeadNeighbors1 = aliveNeighbors;
 
                     List<CellPosition> newCells1 = new List<CellPosition>();
 
-                    if (numberOfAliveAndDeadNeighbors1 == 3)
+                    if (aliveAndDeadNeighbors1 == 3)
                     {
                         newCells1.Add(neighbor1);
                     }
 
-                    newCells.AddRange(newCells1);
+                    cells.AddRange(newCells1);
                 }
             }
 
-            return newCells;
+            return cells;
         }
     }   
 }
