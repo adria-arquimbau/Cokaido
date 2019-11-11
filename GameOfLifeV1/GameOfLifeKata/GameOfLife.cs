@@ -21,16 +21,7 @@ namespace GameOfLifeChallenge
 
             var newCells = new List<CellPosition>();
             var allNeighbors = new List<CellPosition>();
-            
-            AddSurvivedCellsToNewCells(allNeighbors, newCells);
 
-            AddRevivedCellsToNewCells(allNeighbors, newCells);
-            
-            return newCells;
-        }
-        
-        private void AddSurvivedCellsToNewCells(List<CellPosition> allNeighbors, List<CellPosition> newCells)
-        {
             foreach (var cell in _currentGeneration)
             {
                 var neighborsList = cell.GetNeighbors();
@@ -40,63 +31,54 @@ namespace GameOfLifeChallenge
                     if (!allNeighbors.Contains(neighbor)) allNeighbors.Add(neighbor);
                 }
 
-                var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborsList, _currentGeneration);
+                var aliveNeighbors = 0;
 
-                newCells.AddRange(GetSurvivedCells(numberOfAliveAndDeadNeighbors, cell));
-            }
-        }
-
-        private void AddRevivedCellsToNewCells(List<CellPosition> allNeighbors, List<CellPosition> newCells)
-        {
-            foreach (var neighbor in allNeighbors)
-            {
-                if (!_currentGeneration.Contains(neighbor))
+                foreach (var neighborPosition in neighborsList)
                 {
-                    var neighborList = neighbor.GetNeighbors();
+                    if (_currentGeneration.Contains(neighborPosition))
+                        aliveNeighbors++;
+                }
 
-                    var numberOfAliveAndDeadNeighbors = GetAliveAndDeadNeighbors(neighborList, _currentGeneration);
+                var numberOfAliveAndDeadNeighbors = aliveNeighbors;
 
-                    newCells.AddRange(GetRevivedCells(numberOfAliveAndDeadNeighbors, neighbor));
+                List<CellPosition> newCells1 = new List<CellPosition>();
+
+                if (numberOfAliveAndDeadNeighbors == 2 || numberOfAliveAndDeadNeighbors == 3)
+                {
+                    newCells1.Add(cell);
+                }
+
+                newCells.AddRange(newCells1);
+            }
+
+            foreach (var neighbor1 in allNeighbors)
+            {
+                if (!_currentGeneration.Contains(neighbor1))
+                {
+                    var neighborList = neighbor1.GetNeighbors();
+
+                    var aliveNeighbors = 0;
+
+                    foreach (var neighborPosition in neighborList)
+                    {
+                        if (_currentGeneration.Contains(neighborPosition))
+                            aliveNeighbors++;
+                    }
+
+                    var numberOfAliveAndDeadNeighbors1 = aliveNeighbors;
+
+                    List<CellPosition> newCells1 = new List<CellPosition>();
+
+                    if (numberOfAliveAndDeadNeighbors1 == 3)
+                    {
+                        newCells1.Add(neighbor1);
+                    }
+
+                    newCells.AddRange(newCells1);
                 }
             }
-        }
-
-        private List<CellPosition> GetRevivedCells(int numberOfAliveAndDeadNeighbors, CellPosition neighbor)
-        {
-            List<CellPosition> newCells = new List<CellPosition>();
-
-            if (numberOfAliveAndDeadNeighbors == 3)
-            {
-                newCells.Add(neighbor);
-            }
 
             return newCells;
         }
-
-
-        private List<CellPosition> GetSurvivedCells(int numberOfNeighbors, CellPosition cell)
-        {
-            List<CellPosition> newCells = new List<CellPosition>();
-
-            if (numberOfNeighbors == 2 || numberOfNeighbors == 3)
-            {
-                newCells.Add(cell);
-            }
-
-            return newCells;
-        }
-
-        private int GetAliveAndDeadNeighbors(List<CellPosition> neighborsList, List<CellPosition> _initialCells)
-        {
-            var aliveNeighbors = 0;
-
-            foreach (var neighborPosition in neighborsList)
-            {
-                if (_initialCells.Contains(neighborPosition))
-                    aliveNeighbors++;
-            }
-
-            return aliveNeighbors;
-        }   
     }   
 }
