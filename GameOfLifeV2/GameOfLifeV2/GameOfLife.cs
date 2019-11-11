@@ -12,7 +12,7 @@ namespace GameOfLifeV2
             _ecosystem = ecosystem;
         }
 
-        public Ecosystem Play()
+        public List<CellPosition> Play()
         {
             var nextGeneration = _ecosystem.NewGeneration();
             return nextGeneration;

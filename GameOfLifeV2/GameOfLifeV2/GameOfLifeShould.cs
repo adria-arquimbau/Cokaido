@@ -175,7 +175,9 @@ namespace GameOfLifeV2
 
             var firstEvolve = gameOfLife.Play();
 
-            Assert.Equal(expectedEcosystem, firstEvolve);
+            Ecosystem newEcosystem = new Ecosystem(firstEvolve);
+
+            Assert.Equal(expectedEcosystem, newEcosystem);
         }
     }
 }
