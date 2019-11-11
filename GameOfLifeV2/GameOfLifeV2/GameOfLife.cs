@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace GameOfLifeV2
 {
@@ -11,9 +12,10 @@ namespace GameOfLifeV2
             _ecosystem = ecosystem;
         }
 
-        public void Play()
+        public List<CellPosition> Play()
         {
-            _ecosystem.NewGeneration();
+            var nextGeneration = _ecosystem.NewGeneration();
+            return nextGeneration;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GameOfLifeV2
         {
         }
 
-        public void NewGeneration()
+        public List<CellPosition> NewGeneration()
         {   
             var nextGeneration = new List<CellPosition>();
             var allNeighbors = new List<CellPosition>();
@@ -43,7 +43,7 @@ namespace GameOfLifeV2
             }
 
             _currentGeneration = nextGeneration;
-            
+            return _currentGeneration;
         }
 
         private void GetRevivedCells(CellPosition neighbor, List<CellPosition> nextGeneration)
