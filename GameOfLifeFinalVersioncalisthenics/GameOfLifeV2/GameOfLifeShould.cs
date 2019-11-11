@@ -143,5 +143,40 @@ namespace GameOfLifeV2
 
             Assert.Equal(expectedEcosystem, ecosystem);
         }
+
+        [Fact]
+        public void ReturnNewPatternWhenYouIntroduceAInitialPatternFromListToEcosystem()
+        {
+            var expectedGeneration = new List<CellPosition>{
+                new CellPosition(0,0),
+                new CellPosition(1,0),
+                new CellPosition(0,1),
+                new CellPosition(2,3),
+                new CellPosition(3,3),
+                new CellPosition(3,2) };
+
+            Ecosystem expectedEcosystem = new Ecosystem(expectedGeneration);
+            GameOfLife expectedGameOfLife = new GameOfLife(expectedEcosystem);
+
+            var generation = new List<CellPosition>
+            {
+                new CellPosition(0,0),
+                new CellPosition(0,1),
+                new CellPosition(1,1),
+                new CellPosition(1,0),
+                new CellPosition(2,2),
+                new CellPosition(2,3),
+                new CellPosition(3,2), 
+                new CellPosition(3,3)
+            };
+
+            Ecosystem ecosystem = new Ecosystem(generation);
+
+            GameOfLife gameOfLife = new GameOfLife(ecosystem);
+
+            var firstEvolve = gameOfLife.Play();
+
+            Assert.Equal(expectedGameOfLife, firstEvolve);
+        }
     }
 }
