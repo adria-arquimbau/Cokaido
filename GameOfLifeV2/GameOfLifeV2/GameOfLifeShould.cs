@@ -156,6 +156,7 @@ namespace GameOfLifeV2
                 new CellPosition(3,2) };
 
             Ecosystem expectedEcosystem = new Ecosystem(expectedGeneration);
+            GameOfLife expectedGameOfLife = new GameOfLife(expectedEcosystem);
 
             var generation = new List<CellPosition>
             {
@@ -175,7 +176,7 @@ namespace GameOfLifeV2
 
             var firstEvolve = gameOfLife.Play();
 
-            Assert.Equal(expectedEcosystem, firstEvolve);
+            Assert.Equal(expectedGameOfLife, firstEvolve);
         }
     }
 }
