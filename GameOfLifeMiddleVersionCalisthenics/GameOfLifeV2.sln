@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeV2", "GameOfLifeV2\GameOfLifeV2.csproj", "{4F2F1FC5-CFC4-4588-8127-8346F95FBC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfLife", "GameOfLifeV2\GameOfLife.csproj", "{4F2F1FC5-CFC4-4588-8127-8346F95FBC2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

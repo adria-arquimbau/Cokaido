@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameOfLifeV2
+namespace GameOfLife
 {
     public class GameOfLife
     {

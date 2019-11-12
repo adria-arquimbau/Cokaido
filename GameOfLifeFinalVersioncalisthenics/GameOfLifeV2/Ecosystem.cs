@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit.Sdk;
 
-namespace GameOfLifeV2
+namespace GameOfLife
 {
     public class Ecosystem
     {

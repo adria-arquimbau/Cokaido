@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace GameOfLifeV2
+namespace GameOfLife
 {
     //public class CellPositionShould
     //{
@@ -16,4 +16,4 @@ namespace GameOfLifeV2
     //        Assert.Equal(new Neighbors(new List<CellPosition>{ new CellPosition(1, 0), new CellPosition(-1,0), new CellPosition(0, 1), new CellPosition(0, -1), new CellPosition(1, 1), new CellPosition(-1, -1), new CellPosition(1,-1), new CellPosition(-1,1) }), result);
     //    }
     //}
-}
+}   

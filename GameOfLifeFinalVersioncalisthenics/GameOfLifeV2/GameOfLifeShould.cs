@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace GameOfLifeV2
+namespace GameOfLife
 {
     public class GameOfLifeShould
     {
