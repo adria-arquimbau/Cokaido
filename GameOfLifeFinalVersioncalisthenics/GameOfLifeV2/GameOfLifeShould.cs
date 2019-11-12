@@ -10,7 +10,7 @@ namespace GameOfLife
         public void ThrowExceptionIfNumberOfCellsIsZero()
         {
             Ecosystem ecosystem = new Ecosystem();
-
+                
             GameOfLife gameOfLife = new GameOfLife(ecosystem);
 
             Assert.Throws<Exception>(()=>gameOfLife.Play());
@@ -174,9 +174,9 @@ namespace GameOfLife
 
             GameOfLife gameOfLife = new GameOfLife(ecosystem);
 
-            var firstEvolve = gameOfLife.Play();
+            var evolve = gameOfLife.Play();
 
-            Assert.Equal(expectedGameOfLife, firstEvolve);
+            Assert.Equal(expectedGameOfLife, evolve);
         }
     }
 }

@@ -14,10 +14,14 @@ namespace GameOfLifeChallenge
         public List<CellPosition> Play()
         {
             if (_generation.Count == 0)
+            {
                 throw new Exception();
+            }
 
             if (_generation.Count < 3)
+            {
                 return null;
+            }
 
             var cells = new List<CellPosition>();
             var neighbors = new List<CellPosition>();
@@ -28,7 +32,10 @@ namespace GameOfLifeChallenge
 
                 foreach (var neighbor in neighborsList)
                 {
-                    if (!neighbors.Contains(neighbor)) neighbors.Add(neighbor);
+                    if (!neighbors.Contains(neighbor))
+                    {
+                        neighbors.Add(neighbor);
+                    }
                 }
 
                 var aliveNeighbors = 0;
@@ -36,7 +43,9 @@ namespace GameOfLifeChallenge
                 foreach (var neighbor in neighborsList)
                 {
                     if (_generation.Contains(neighbor))
+                    {
                         aliveNeighbors++;
+                    }
                 }
 
                 var aliveAndDead = aliveNeighbors;
@@ -62,7 +71,9 @@ namespace GameOfLifeChallenge
                     foreach (var neighborPosition in neighborList)
                     {
                         if (_generation.Contains(neighborPosition))
+                        {
                             aliveNeighbors++;
+                        }
                     }
 
                     var aliveAndDeadNeighbors1 = aliveNeighbors;

@@ -20,11 +20,14 @@ namespace GameOfLife
 
         protected bool Equals(GameOfLife other)
         {
-            if (this._ecosystem.Equals(other._ecosystem)) return true;
+            if (this._ecosystem.Equals(other._ecosystem))
+            {
+                return true;
+            }
 
             return false;
         }
-
+            
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;

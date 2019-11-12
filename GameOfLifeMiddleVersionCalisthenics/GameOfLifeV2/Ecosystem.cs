@@ -12,12 +12,14 @@ namespace GameOfLife
         private const int MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive = 3;
 
         public void NewGeneration()
-        {   
+        {       
             var nextGeneration = new List<CellPosition>();
             var allNeighbors = new List<CellPosition>();
 
             if (_currentGeneration.Count < MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive)
+            {
                 throw new Exception("Game of Life ended, you need more than 3 cells of current generation to continue");
+            }
 
             foreach (var cell in _currentGeneration)
             {
@@ -43,7 +45,10 @@ namespace GameOfLife
                 neighborsCount = NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(neighborOfNeighbor, neighborsCount);
             }
 
-            if (neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive) nextGeneration.Add(neighbor);
+            if (neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive)
+            {
+                nextGeneration.Add(neighbor);
+            }
         }
 
         private int NeighborsCountPlusOneIfNeighborOfNeighborsIsOnCurrentGeneration(CellPosition neighborOfNeighbor,
@@ -78,12 +83,19 @@ namespace GameOfLife
                 neighborsCount = IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(neighbor, neighborsCount);
             }
 
-            if (neighborsCount == MinNeighborsToSurvive || neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive) nextGeneration.Add(cell);
+            if (neighborsCount == MinNeighborsToSurvive || neighborsCount == MaxNeighborsToSurviveAndCellsToStartAndNeighborsToRevive)
+            {
+                nextGeneration.Add(cell);
+            }
         }
 
         private int IfNeighborIsOnCurrentGenerationPlusOneNeighborsCount(CellPosition neighbor, int neighborsCount)
         {
-            if (_currentGeneration.Contains(neighbor)) neighborsCount++;
+            if (_currentGeneration.Contains(neighbor))
+            {
+                neighborsCount++;
+            }
+
             return neighborsCount;
         }
 
