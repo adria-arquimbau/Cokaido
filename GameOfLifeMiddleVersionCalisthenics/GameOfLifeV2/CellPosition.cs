@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameOfLifeV2
+namespace GameOfLife
 {
     public class CellPosition
     {
@@ -13,9 +13,9 @@ namespace GameOfLifeV2
             _positionY = positionY;
         }
 
-        public Neighbors GetNeighbors()
+        public List<CellPosition> GetNeighbors()
         {
-            return new Neighbors(new List<CellPosition> { new CellPosition(_positionX + 1, _positionY), new CellPosition(_positionX - 1, _positionY), new CellPosition(_positionX, _positionY + 1), new CellPosition(_positionX, _positionY - 1), new CellPosition(_positionX + 1, _positionY + 1), new CellPosition(_positionX - 1, _positionY - 1), new CellPosition(_positionX + 1, _positionY - 1), new CellPosition(_positionX - 1, _positionY + 1) });
+            return new List<CellPosition> { new CellPosition(_positionX + 1, _positionY), new CellPosition(_positionX - 1, _positionY), new CellPosition(_positionX, _positionY + 1), new CellPosition(_positionX, _positionY - 1), new CellPosition(_positionX + 1, _positionY + 1), new CellPosition(_positionX - 1, _positionY - 1), new CellPosition(_positionX + 1, _positionY - 1), new CellPosition(_positionX - 1, _positionY + 1) };
         }
 
         protected bool Equals(CellPosition other)

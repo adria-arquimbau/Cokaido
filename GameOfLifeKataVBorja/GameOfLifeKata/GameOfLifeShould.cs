@@ -117,8 +117,9 @@ namespace GameOfLifeKata
         {
             Ecosystem expectedEcosystem = new Ecosystem();
             expectedEcosystem.AddCell(0, 0);
-            expectedEcosystem.AddCell(1, 0);
+           
             expectedEcosystem.AddCell(1, 1);
+            expectedEcosystem.AddCell(1, 0);
             expectedEcosystem.AddCell(0, 1);
 
             Ecosystem ecosystem = new Ecosystem();
