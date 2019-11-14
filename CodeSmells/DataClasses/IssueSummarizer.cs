@@ -1,0 +1,17 @@
+namespace DataClasses
+{
+    public class IssueSummarizer
+    {
+        private readonly Issue issue;
+
+        public IssueSummarizer(Issue issue)
+        {
+            this.issue = issue;
+        }
+
+        public Issue Issue
+        {
+            get { return issue; }
+        }
+    }
+}
