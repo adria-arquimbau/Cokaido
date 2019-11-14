@@ -4,30 +4,42 @@ namespace GameOfLifeChallenge
 {
     public class CellPosition
     {
-        private int _positionX;
-        private int _positionY;
+        private readonly int _x;
+        private readonly int _y;
 
-        public CellPosition(int positionX, int positionY)
+        public CellPosition(int x, int y)
         {
-            _positionY = positionY;
-            _positionX = positionX;
+            _y = y;
+            _x = x;
         }
 
         public List<CellPosition> GetNeighbors()
         {
-            return new List<CellPosition> { new CellPosition(_positionX +1, _positionY), new CellPosition(_positionX - 1, _positionY), new CellPosition(_positionX, _positionY + 1), new CellPosition(_positionX, _positionY - 1), new CellPosition(_positionX + 1, _positionY + 1), new CellPosition(_positionX -1, _positionY - 1), new CellPosition(_positionX + 1, _positionY - 1), new CellPosition(_positionX -1, _positionY + 1) };
+            return new List<CellPosition> { new CellPosition(_x +1, _y), new CellPosition(_x - 1, _y), new CellPosition(_x, _y + 1), new CellPosition(_x, _y - 1), new CellPosition(_x + 1, _y + 1), new CellPosition(_x -1, _y - 1), new CellPosition(_x + 1, _y - 1), new CellPosition(_x -1, _y + 1) };
         }
 
-        protected bool Equals(CellPosition other)
+        protected bool Equals(CellPosition other)   
         {
-            return _positionX == other._positionX && _positionY == other._positionY;
+            return _x == other._x && _y == other._y;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
             return Equals((CellPosition) obj);
         }
 
@@ -35,7 +47,7 @@ namespace GameOfLifeChallenge
         {
             unchecked
             {
-                return (_positionX * 397) ^ _positionY;
+                return (_x * 397) ^ _y;
             }
         }
 
