@@ -4,21 +4,28 @@ namespace TwitKaido
 {
     public class TwitKaido
     {
-        private readonly string _message;
+        private readonly string _post;
 
-        public TwitKaido(string message)
+        public TwitKaido(string post)
         {
-            _message = message;
+            _post = post;
         }
 
         public string ReturnMessage()
         {
-            if(_message.Length == 0)
+            if(_post.Length == 0)
             {
                 throw new Exception();
             }
 
-            return _message;
+            if (_post.Contains("->"))
+            {
+                var splitedPost = _post.Split(" ");
+
+                return splitedPost[2];
+            }
+
+            return _post;
         }
     }
 }

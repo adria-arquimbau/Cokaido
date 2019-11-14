@@ -9,20 +9,29 @@ namespace TwitKaido
         [Fact]
         public void ThrowExceptionIfMessageLengthIsZero()
         {
-            var message = "";
-            TwitKaido twitkaido = new TwitKaido(message);
-            Assert.Throws<Exception>(() => twitkaido.ReturnMessage());
+            var post = "";
+            TwitKaido twitKaido = new TwitKaido(post);
+            Assert.Throws<Exception>(() => twitKaido.ReturnMessage());
         }
 
         [Fact]
         public void ReturnHelloWhenAUserPostSameMessage()
         {
-            var message = "Hello";
-            TwitKaido twitKaido = new TwitKaido(message);
+            var post = "Hello";
+            TwitKaido twitKaido = new TwitKaido(post);
 
             var result = twitKaido.ReturnMessage();
 
             Assert.Equal("Hello", result);
+        }
+
+        [Fact]
+        public void ReturnMessageWithoutUserIfMessageContainsTheNameOfUserFollowedOfAnArrowAndTheMessage()
+        {
+            var post = "Adria -> Holi";
+            TwitKaido twitKaido = new TwitKaido(post);
+            var result = twitKaido.ReturnMessage();
+            Assert.Equal("Holi", result);
         }
     }
 }
