@@ -7,31 +7,18 @@ namespace TwitKaido
     public class TwitKaidoShould
     {
         [Fact]
-        public void ThrowExceptionIfMessageLengthIsZero()
+        public void ReturnHoliAndHowAreYouOfUserAdriaAfterIntroduceTwoPosts()
         {
-            var post = "";
-            TwitKaido twitKaido = new TwitKaido(post);
-            Assert.Throws<Exception>(() => twitKaido.ReturnMessage());
-        }
+            var firstPost = "Adria -> Holi";
+            var secondPost = "Adria -> How are you";    
 
-        [Fact]
-        public void ReturnHelloWhenAUserPostSameMessage()
-        {
-            var post = "Hello";
-            TwitKaido twitKaido = new TwitKaido(post);
+            List<string> posts = new List<string>{ firstPost, secondPost };
 
-            var result = twitKaido.ReturnMessage();
+            TwitKaido twitKaido = new TwitKaido(posts);
 
-            Assert.Equal("Hello", result);
-        }
+            var result = twitKaido.ReturnPosts();
 
-        [Fact]
-        public void ReturnMessageWithoutUserIfMessageContainsTheNameOfUserFollowedOfAnArrowAndTheMessage()
-        {
-            var post = "Adria -> Holi";
-            TwitKaido twitKaido = new TwitKaido(post);
-            var result = twitKaido.ReturnMessage();
-            Assert.Equal("Holi", result);
+            Assert.Equal(new List<string>{ "Holi", "How are you" }, result);   
         }
     }
 }

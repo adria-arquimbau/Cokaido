@@ -1,31 +1,30 @@
 using System;
+using System.Collections.Generic;
 
 namespace TwitKaido
 {
     public class TwitKaido
     {
-        private readonly string _post;
+        private readonly List<string> _posts;
+        private readonly string _message;
 
-        public TwitKaido(string post)
+        public TwitKaido(List<string> posts)
         {
-            _post = post;
+            _posts = posts;
         }
 
-        public string ReturnMessage()
+        public List<string> ReturnPosts()
         {
-            if(_post.Length == 0)
+            var allPosts = new List<string>();
+
+            foreach (var post in _posts)
             {
-                throw new Exception();
+                var splitPost = post.Split(" -> ");
+
+                allPosts.Add(splitPost[1]);
             }
 
-            if (_post.Contains("->"))
-            {
-                var splitedPost = _post.Split(" ");
-
-                return splitedPost[2];
-            }
-
-            return _post;
+            return allPosts;
         }
     }
 }
