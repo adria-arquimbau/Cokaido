@@ -12,6 +12,28 @@ namespace TwitKaido
             _posts = posts;
         }
 
+        public TwitKaido()
+        {
+            _posts = new List<string>();
+        }
+
+        public void AddPost(string post)
+        {
+           _posts.Add(post);
+        }
+
+        public List<string> Output(string command)
+        {
+            var allPosts = new List<string>();
+
+            foreach (var post in _posts)
+            {
+                ReturnPostOfAnSpecificUserWithoutNameAnArrow(command, post, allPosts);
+            }
+
+            return allPosts;
+        }
+
         public List<string> ReturnPosts(string userToReturnPosts)
         {
             var allPosts = new List<string>();

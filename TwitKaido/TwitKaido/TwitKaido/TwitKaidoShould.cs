@@ -62,7 +62,7 @@ namespace TwitKaido
         }
 
         [Fact]
-        public void ReturnPostsOfJuanAfterIntroducePostFrom3DifferentUsers()
+        public void ReturnPostsOfJuanAfterIntroducePostFrom3DifferentUsers()    
         {
             string adriaPost = "Adria -> Hello! My name is Adria";
             string annaPost = "Anna -> Hey! My name is Anna";
@@ -73,6 +73,18 @@ namespace TwitKaido
             string userToReturnPost = "Adria";
             var result = twitKaido.ReturnPosts(userToReturnPost);
             Assert.Equal(new List<string> { "Hello! My name is Adria" }, result);
+        }
+
+        [Fact]
+        public void ReturnAdriaPostsIntroducingAdriaAfterIntroduceOnePostFromAdria()
+        {
+            TwitKaido twitKaido = new TwitKaido();
+            string adriaPost = "Adria -> Hello dude!";
+            twitKaido.AddPost(adriaPost);
+                
+            string command = "Adria";
+            var result = twitKaido.Output(command);
+            Assert.Equal(new List<string>{ "Hello dude!" }, result);
         }
     }
 }
