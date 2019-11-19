@@ -6,7 +6,6 @@ namespace TwitKaido
     public class TwitKaido
     {
         private readonly List<string> _posts;
-        private readonly string _message;
 
         public TwitKaido(List<string> posts)
         {
@@ -19,9 +18,15 @@ namespace TwitKaido
 
             foreach (var post in _posts)
             {
-                var splitPost = post.Split(" -> ");
+                if (post.Contains("->"))
+                {
+                    var splitPost = post.Split(" -> ");
 
-                allPosts.Add(splitPost[1]);
+                    allPosts.Add(splitPost[1]);
+                }
+                if(!post.Contains("->"))
+                    allPosts.Add(post);
+                
             }
 
             return allPosts;

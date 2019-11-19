@@ -7,6 +7,15 @@ namespace TwitKaido
     public class TwitKaidoShould
     {
         [Fact]
+        public void ReturnTheSamePostAfterIntroduceAPost()
+        {
+            List<string> post = new List<string>{ "My first post" };
+            TwitKaido twitKaido = new TwitKaido(post);
+            var result = twitKaido.ReturnPosts();
+            Assert.Equal(new List<string>{ "My first post" }, result);
+        }
+
+        [Fact]
         public void ReturnHoliAndHowAreYouOfUserAdriaAfterIntroduceTwoPosts()
         {
             var firstPost = "Adria -> Holi";
