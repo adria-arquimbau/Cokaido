@@ -11,7 +11,9 @@ namespace TwitKaido
         {
             List<string> post = new List<string>{ "My first post" };
             TwitKaido twitKaido = new TwitKaido(post);
-            var result = twitKaido.ReturnPosts();
+            string userToReturnPost = "Adria";
+
+            var result = twitKaido.ReturnPosts(userToReturnPost);
             Assert.Equal(new List<string>{ "My first post" }, result);
         }
 
@@ -24,8 +26,9 @@ namespace TwitKaido
             List<string> posts = new List<string>{ firstPost, secondPost };
 
             TwitKaido twitKaido = new TwitKaido(posts);
+            string userToReturnPost = "Adria";
 
-            var result = twitKaido.ReturnPosts();
+            var result = twitKaido.ReturnPosts(userToReturnPost);
 
             Assert.Equal(new List<string>{ "Holi", "How are you" }, result);   
         }
@@ -40,8 +43,8 @@ namespace TwitKaido
             List<string> posts = new List<string> { firstPost, secondPost, thirdPost };
 
             TwitKaido twitKaido = new TwitKaido(posts);
-
-            var result = twitKaido.ReturnPosts();
+            string userToReturnPost = "Adria";
+            var result = twitKaido.ReturnPosts(userToReturnPost);
 
             Assert.Equal(new List<string> { "Holi", "How are you", "Where are you from?"}, result);
         }
