@@ -7,11 +7,6 @@ namespace TwitKaido
     {
         private readonly List<string> _posts;
 
-        public TwitKaido(List<string> posts)
-        {
-            _posts = posts;
-        }
-
         public TwitKaido()
         {
             _posts = new List<string>();
@@ -28,30 +23,20 @@ namespace TwitKaido
 
             foreach (var post in _posts)
             {
-                ReturnPostOfAnSpecificUserWithoutNameAnArrow(command, post, allPosts);
+                if(command.Contains("wall"))
+                    ReturnPostOfAnSpecificUserWithoutNameAnArrow(command, post, allPosts);
             }
 
             return allPosts;
         }
 
-        public List<string> ReturnPosts(string userToReturnPosts)
-        {
-            var allPosts = new List<string>();
-
-            foreach (var post in _posts)
-            {
-                ReturnPostOfAnSpecificUserWithoutNameAnArrow(userToReturnPosts, post, allPosts);
-            }
-
-            return allPosts;
-        }
-
-        private static void ReturnPostOfAnSpecificUserWithoutNameAnArrow(string userToReturnPosts, string post, List<string> allPosts)
+        private static void ReturnPostOfAnSpecificUserWithoutNameAnArrow(string command, string post, List<string> allPosts)
         {
             var splitPost = post.Split(" -> ");
+            var commandSplit = command.Split(" ");
 
-            if (post.Contains("->") && splitPost[0] == userToReturnPosts)
-            {
+            if (post.Contains("->") && splitPost[0] == commandSplit[0])
+            {   
                 allPosts.Add(splitPost[1]);
             }
 
