@@ -2,25 +2,25 @@ using System.Collections.Generic;
 
 namespace TwitKaidoKata
 {
-    public class Post
+    public class Output
     {
-        private readonly List<string> _posts;
+        private readonly List<string> _output;
 
-        public Post(List<string> posts)
+        public Output(List<string> output)
         {
-            _posts = posts;
+            _output = output;
         }
 
-        protected bool Equals(Post other)
+        protected bool Equals(Output other)
         {
-            if (this._posts.Count != other._posts.Count)
+            if (this._output.Count != other._output.Count)
             {
                 return false;
             }
 
-            foreach (var post in _posts)
+            foreach (var output in _output)
             {
-                if (!other._posts.Contains(post)) return false;
+                if (!other._output.Contains(output)) return false;
             }
 
             return true;
@@ -31,12 +31,12 @@ namespace TwitKaidoKata
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Post) obj);
+            return Equals((Output)obj);
         }
 
         public override int GetHashCode()
         {
-            return (_posts != null ? _posts.GetHashCode() : 0);
+            return (_output != null ? _output.GetHashCode() : 0);
         }
     }
 }
