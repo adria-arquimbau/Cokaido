@@ -60,5 +60,19 @@ namespace TwitKaido
             var result = twitKaido.ReturnPosts(userToReturnPost);
             Assert.Equal(new List<string>{ "Hello! My name is Adria" }, result);
         }
+
+        [Fact]
+        public void ReturnPostsOfJuanAfterIntroducePostFrom3DifferentUsers()
+        {
+            string adriaPost = "Adria -> Hello! My name is Adria";
+            string annaPost = "Anna -> Hey! My name is Anna";
+            string juanPost = "Juan -> Holi! Yo soy Juan";
+            string juanSecondPost = "Juan -> De donde sois?";
+            List<string> posts = new List<string> { adriaPost, annaPost, juanSecondPost, juanPost };
+            TwitKaido twitKaido = new TwitKaido(posts);
+            string userToReturnPost = "Adria";
+            var result = twitKaido.ReturnPosts(userToReturnPost);
+            Assert.Equal(new List<string> { "Hello! My name is Adria" }, result);
+        }
     }
 }
