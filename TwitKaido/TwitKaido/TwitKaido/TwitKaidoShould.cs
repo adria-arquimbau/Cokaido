@@ -15,7 +15,9 @@ namespace TwitKaido
                 
             string command = "Adria wall";
             var result = twitKaido.Output(command);
-            Assert.Equal(new List<string>{ "Hello dude!" }, result);
-        }
+            List<string> expectedListPosts = new List<string> {"Hello dude!"};
+            Posts expectedPosts = new Posts(expectedListPosts);
+            Assert.Equal(expectedPosts, result);
+        }   
     }
 }

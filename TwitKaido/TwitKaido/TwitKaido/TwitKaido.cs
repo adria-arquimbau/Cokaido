@@ -14,10 +14,10 @@ namespace TwitKaido
 
         public void AddPost(string post)
         {
-           _posts.Add(post);
+            _posts.Add(post);
         }
 
-        public List<string> Output(string command)
+        public Posts Output(string command)
         {
             var allPosts = new List<string>();
 
@@ -27,20 +27,23 @@ namespace TwitKaido
                     ReturnPostOfAnSpecificUserWithoutNameAnArrow(command, post, allPosts);
             }
 
-            return allPosts;
+            return new Posts(allPosts);
         }
 
         private static void ReturnPostOfAnSpecificUserWithoutNameAnArrow(string command, string post, List<string> allPosts)
         {
-            var splitPost = post.Split(" -> ");
-            var commandSplit = command.Split(" ");
+            string space = " ";
+            string arrow = " -> ";
 
-            if (post.Contains("->") && splitPost[0] == commandSplit[0])
+            var splitPost = post.Split(arrow);
+            var commandSplit = command.Split(space);
+
+            if (post.Contains(arrow) && splitPost[0] == commandSplit[0])
             {   
                 allPosts.Add(splitPost[1]);
             }
 
-            if (!post.Contains("->"))
+            if (!post.Contains(arrow))
             {
                 allPosts.Add(post);
             }
