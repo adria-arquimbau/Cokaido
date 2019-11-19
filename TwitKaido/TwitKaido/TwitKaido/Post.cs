@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 
-namespace TwitKaido
+namespace TwitKaidoKata
 {
-    public class Posts
+    public class Post
     {
         private readonly List<string> _posts;
 
-        public Posts(List<string> posts)
+        public Post(List<string> posts)
         {
             _posts = posts;
         }
 
-        protected bool Equals(Posts other)
+        protected bool Equals(Post other)
         {
             if (this._posts.Count != other._posts.Count)
             {
@@ -31,7 +31,7 @@ namespace TwitKaido
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Posts) obj);
+            return Equals((Post) obj);
         }
 
         public override int GetHashCode()

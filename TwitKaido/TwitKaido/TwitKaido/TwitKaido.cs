@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TwitKaido
+namespace TwitKaidoKata
 {
     public class TwitKaido
     {
@@ -17,7 +17,7 @@ namespace TwitKaido
             _posts.Add(post);
         }
 
-        public Posts Output(string command)
+        public Post Output(string command)
         {
             var allPosts = new List<string>();
 
@@ -27,7 +27,7 @@ namespace TwitKaido
                     ReturnPostOfAnSpecificUserWithoutNameAnArrow(command, post, allPosts);
             }
 
-            return new Posts(allPosts);
+            return new Post(allPosts);
         }
 
         private static void ReturnPostOfAnSpecificUserWithoutNameAnArrow(string command, string post, List<string> allPosts)
