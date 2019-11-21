@@ -132,7 +132,13 @@ namespace GameOfLife
             {
                 return false;
             }
-            return _currentGeneration.All(cell => other._currentGeneration.Contains(cell));
+
+            foreach (var cell in _currentGeneration)
+            {
+                if (!other._currentGeneration.Contains(cell)) return false;
+            }
+
+            return true;
         }
 
         public override bool Equals(object obj)
