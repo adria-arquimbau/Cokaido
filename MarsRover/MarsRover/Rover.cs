@@ -34,19 +34,13 @@ namespace MarsRover
         private void Action(char command)
         {
             if (command == 'L')
-            {
                 TurnLeft();
-            }
 
             if (command == 'R')
-            {
                 TurnRight();
-            }
 
             if (command == 'M')
-            {
                 Move();
-            }
         }
 
         private void Move()
