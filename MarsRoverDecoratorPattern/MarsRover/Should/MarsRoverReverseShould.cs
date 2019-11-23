@@ -38,5 +38,12 @@ namespace MarsRover
             var position = _roverReverse.Execute("RRL");
             Assert.Equal("0:0:W", position.ToString());
         }
+            
+        [Fact]
+        public void TurnLeftThreeTimesAndRightTwoTimesAndFinalyTurnRightTwoTimesGivenOppositeCommands()
+        {
+            var position = _roverReverse.Execute("RRRLLLL");
+            Assert.Equal("0:0:E", position.ToString());
+        }
     }
-}
+}   
