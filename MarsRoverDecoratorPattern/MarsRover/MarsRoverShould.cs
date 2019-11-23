@@ -144,6 +144,14 @@ namespace MarsRover
             var position = roverReverse.Execute("R");
             Assert.Equal("0:0:W", position.ToString());
         }
+
+        [Fact]
+        public void TurnRightGivenCommandLWithReverseCommandsActivated()
+        {
+            var roverReverse = new RoverReverse(new RoverBase());
+            var position = roverReverse.Execute("L");
+            Assert.Equal("0:0:E", position.ToString());
+        }   
     }
 }
     

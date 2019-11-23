@@ -2,6 +2,8 @@ namespace MarsRover
 {
     public class RoverReverse : Decorator
     {
+        private string _reverseCommands = string.Empty;
+
         public RoverReverse(Rover roverBase) : base(roverBase)
         {   
         }
@@ -10,9 +12,19 @@ namespace MarsRover
         {
             const string commandTurnRight = "R";
             const string commandTurnLeft = "L";
-            var reverseCommands = commands.Replace(commandTurnRight, commandTurnLeft);
-            var position = base.Execute(reverseCommands);
+            
+            if (commands.Contains("R"))
+            {
+                _reverseCommands = commands.Replace(commandTurnRight, commandTurnLeft);
+            }
+
+            if (commands.Contains("L"))
+            {
+                _reverseCommands = commands.Replace(commandTurnLeft, commandTurnRight);
+            }
+
+            var position = base.Execute(_reverseCommands);
             return position;
         }
     }   
-}
+}   
