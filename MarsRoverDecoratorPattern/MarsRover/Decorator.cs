@@ -13,5 +13,10 @@ namespace MarsRover
         {
             return _roverBase.Execute(commands);
         }
+
+        public override Position ExecuteReverse(string commands)
+        {
+            return _roverBase.ExecuteReverse(commands);
+        }
     }
 }
