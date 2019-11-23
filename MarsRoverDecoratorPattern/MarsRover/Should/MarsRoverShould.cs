@@ -6,14 +6,10 @@ namespace MarsRover
     public class MarsRoverShould
     {
         private readonly RoverBase _roverBase;
-        private readonly MarsRoverBoosterShould _marsRoverBoosterShould;
-        private readonly MarsRoverReverseShould _marsRoverReverseShould;
 
         public MarsRoverShould()
         {
             _roverBase = new RoverBase();
-            _marsRoverBoosterShould = new MarsRoverBoosterShould();
-            _marsRoverReverseShould = new MarsRoverReverseShould();
         }
 
         [Fact]

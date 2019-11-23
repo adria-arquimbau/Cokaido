@@ -33,12 +33,12 @@ namespace MarsRover
 
         private void Action(char command)
         {
-            if (command == 'L')
+            if (command == 'L' || command == 'I')
             {
                 TurnLeft();
             }
 
-            if (command == 'R')
+            if (command == 'R' || command == 'D')
             {
                 TurnRight();
             }

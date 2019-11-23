@@ -10,18 +10,7 @@ namespace MarsRover
 
         public override Position Execute(string commands)
         {
-            const string commandTurnRight = "R";
-            const string commandTurnLeft = "L";
-            
-            if (commands.Contains("R"))
-            {
-                _reverseCommands = commands.Replace(commandTurnRight, commandTurnLeft);
-            }
-
-            if (commands.Contains("L"))
-            {
-                _reverseCommands = commands.Replace(commandTurnLeft, commandTurnRight);
-            }
+            _reverseCommands = commands.Replace("R", "I").Replace("L", "D");
 
             var position = base.Execute(_reverseCommands);
             return position;
