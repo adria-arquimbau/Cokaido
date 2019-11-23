@@ -5,11 +5,15 @@ namespace MarsRover
 {
     public class MarsRoverShould
     {
-        private readonly RoverBase _roverBase;    
+        private readonly RoverBase _roverBase;
+        private readonly MarsRoverBoosterShould _marsRoverBoosterShould;
+        private readonly MarsRoverReverseShould _marsRoverReverseShould;
 
         public MarsRoverShould()
         {
             _roverBase = new RoverBase();
+            _marsRoverBoosterShould = new MarsRoverBoosterShould();
+            _marsRoverReverseShould = new MarsRoverReverseShould();
         }
 
         [Fact]
@@ -95,63 +99,6 @@ namespace MarsRover
 
             Assert.Equal("1:1:W", position.ToString());
         }
-
-        [Fact]
-        public void MoveTwiceUsingRoverBoosters()
-        {
-            var boostedRover = new RoverBooster(new RoverBase());
-            var position = boostedRover.Execute("M");
-            Assert.Equal("0:2:N", position.ToString());
-        }
-
-        [Fact]
-        public void WalkThePathOfHappinessWithBoosterActivated()
-        {
-            var roverBooster = new RoverBooster(new RoverBase());
-            var position = roverBooster.Execute("RMMLMMRMRMRMM");
-
-            Assert.Equal("2:2:W", position.ToString());
-        }
-
-        [Fact]
-        public void MoveTwiceUsingRoverSuperBooster()
-        {
-            var roverSuperBooster = new RoverSuperBooster(new RoverBase());
-            var position = roverSuperBooster.Execute("M");
-            Assert.Equal("0:3:N", position.ToString());
-        }
-
-        [Fact]
-        public void WalkThePathOfHappinessWithSuperBoosterActivated()
-        {
-            var roverSuperBooster = new RoverSuperBooster(new RoverBase());
-            var position = roverSuperBooster.Execute("RMMLMMRMRMRMM");
-            Assert.Equal("3:3:W", position.ToString());
-        }
-
-        [Fact]
-        public void MoveTwiceUsingRoverSuperBoosterAndRoverBooster()
-        {
-            var roverSuperBooster = new RoverSuperBooster(new RoverBooster(new RoverBase()));
-            var position = roverSuperBooster.Execute("M");
-            Assert.Equal("0:6:N", position.ToString());
-        }
-
-        [Fact]
-        public void TurnLeftGivenCommandRWithReverseCommandsActivated()
-        {
-            var roverReverse = new RoverReverse(new RoverBase());
-            var position = roverReverse.Execute("R");
-            Assert.Equal("0:0:W", position.ToString());
-        }
-
-        [Fact]
-        public void TurnRightGivenCommandLWithReverseCommandsActivated()
-        {
-            var roverReverse = new RoverReverse(new RoverBase());
-            var position = roverReverse.Execute("L");
-            Assert.Equal("0:0:E", position.ToString());
-        }   
     }
 }
     
