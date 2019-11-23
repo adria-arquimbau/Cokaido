@@ -140,8 +140,8 @@ namespace MarsRover
         [Fact]
         public void TurnLeftGivenCommandRWithReverseCommandsActivated()
         {
-            var roverReverse = new RoverBase();
-            var position = roverReverse.ExecuteReverse("R");
+            var roverReverse = new RoverReverse(new RoverBase());
+            var position = roverReverse.Execute("R");
             Assert.Equal("0:0:W", position.ToString());
         }
     }

@@ -31,20 +31,6 @@ namespace MarsRover
             return _position;
         }
 
-        public override Position ExecuteReverse(string commands)
-        {
-            const string rightCommand = "R";
-            const string leftCommand = "L";
-            var reverseCommands = commands.Replace(rightCommand, leftCommand);
-
-            foreach (var command in reverseCommands)
-            {
-                Action(command);
-            }
-
-            return _position;
-        }
-
         private void Action(char command)
         {
             if (command == 'L')
