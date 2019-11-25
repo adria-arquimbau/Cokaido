@@ -35,6 +35,14 @@ namespace MarsRoverTrioPrograming
             var position = marsRover.Execute(command);
             Assert.Equal(expectedPosition, position);
         }
+
+        [Fact]
+        public void DoA360GivenFourRCommands()
+        {
+            var marsRover = new MarsRover();
+            var position = marsRover.Execute("RRRR");
+            Assert.Equal("0:0:N", position);
+        }
     }
 }   
     

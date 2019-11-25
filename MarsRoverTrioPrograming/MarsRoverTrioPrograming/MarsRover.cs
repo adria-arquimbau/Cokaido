@@ -22,6 +22,11 @@ namespace MarsRoverTrioPrograming
         {
             if (command == TurnRightCommand)
             {
+                if (_compass == Compass.W)
+                {
+                    _compass = Compass.N;
+                    return;
+                }
                 _compass++;
             }
         }
