@@ -36,6 +36,18 @@ namespace MarsRoverTrioPrograming
             var position = marsRover.Execute(command);
             Assert.Equal(expectedPosition, position);
         }
+
+        [Theory]
+        [InlineData("0:0:W", "L")]
+        [InlineData("0:0:S", "LL")]
+        [InlineData("0:0:E", "LLL")]
+        [InlineData("0:0:N", "LLLL")]
+        public void TurnLeftGivenCommandL(string expectedPosition, string command)
+        {
+            var marsRover = new MarsRover();
+            var position = marsRover.Execute(command);
+            Assert.Equal(expectedPosition, position);
+        }
     }
 }   
     

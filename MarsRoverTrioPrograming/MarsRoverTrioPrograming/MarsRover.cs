@@ -6,6 +6,7 @@ namespace MarsRoverTrioPrograming
         private Compass _compass;
         private const char MoveCommand = 'M';
         private const char TurnRightCommand = 'R';
+        private const char TurnLeftCommand = 'L';
 
         public string Execute(string commands)
         {
@@ -13,6 +14,7 @@ namespace MarsRoverTrioPrograming
             {
                 Move(command);
                 TurnRight(command);
+                TurnLeft(command);
             }
 
             return $"0:{_position}:{_compass}";
@@ -28,6 +30,18 @@ namespace MarsRoverTrioPrograming
                     return;
                 }
                 _compass++;
+            }
+        }
+        private void TurnLeft(char command)
+        {
+            if (command == TurnLeftCommand)
+            {
+                if (_compass == Compass.N)
+                {
+                    _compass = Compass.W;
+                    return;
+                }
+                _compass--;
             }
         }
 
