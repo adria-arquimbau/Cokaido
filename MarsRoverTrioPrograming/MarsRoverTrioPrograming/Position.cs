@@ -61,5 +61,29 @@ namespace MarsRoverTrioPrograming
                 PositionX--;
             }
         }
+
+        public void TurnRight()
+        {
+            
+            if (Compass == Compass.W)
+            {
+                Compass = Compass.N;
+                return;
+            }
+
+            Compass++;
+        }
+
+        public void TurnLeft()
+        {
+            
+            if (Compass == Compass.N)
+            {
+                Compass = Compass.W;
+                return;
+            }
+
+            Compass--;
+        }
     }
 }   

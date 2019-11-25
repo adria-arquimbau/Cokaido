@@ -1,57 +1,45 @@
+using System;
+using System.Collections.Generic;
+
 namespace MarsRoverTrioPrograming
 {
+    public enum Commands
+    {
+        Move,
+        Right,
+        Left
+    }
+
     public class MarsRover
     {
         private readonly Position _position;
-        private const char MoveCommand = 'M';
-        private const char TurnRightCommand = 'R';
-        private const char TurnLeftCommand = 'L';
 
         public MarsRover(Position position = null)
         {
             _position = position ?? new Position(Compass.N,0,0);
         }
 
-        public string Execute(string commands)
+        public string Execute(string textCommands)
         {
-            foreach (var command in commands)
+            foreach (var command in textCommands)
             {
-                if (command == MoveCommand)
+                if (CommandFactory.GenerateCommandFromText(command) == Commands.Move)
                 {
                     _position.Move();
                 }
-                TurnRight(command);
-                TurnLeft(command);
+
+                if (CommandFactory.GenerateCommandFromText(command) == Commands.Right)
+                {
+                    _position.TurnRight();
+                }
+
+                if (CommandFactory.GenerateCommandFromText(command) == Commands.Left)
+                {
+                    _position.TurnLeft();
+                }
             }
 
             return _position.ToString();
-        }
-
-        private void TurnRight(char command)
-        {
-            if (command == TurnRightCommand)
-            {
-                if (_position.Compass == Compass.W)
-                {
-                    _position.Compass = Compass.N;
-                    return;
-                }
-
-                _position.Compass++;
-            }
-        }
-        private void TurnLeft(char command)
-        {
-            if (command == TurnLeftCommand)
-            {
-                if (_position.Compass == Compass.N)
-                {
-                    _position.Compass = Compass.W;
-                    return;
-                }
-
-                _position.Compass--;
-            }
         }
     }
 }
