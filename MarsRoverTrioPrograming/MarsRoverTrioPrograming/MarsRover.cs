@@ -16,6 +16,11 @@ namespace MarsRoverTrioPrograming
                 return "0:2:N";
             }
 
+            if (command == MoveCommand + MoveCommand + MoveCommand)
+            {
+                return "0:3:N";
+            }
+
             return "0:0:N";
         }
     }

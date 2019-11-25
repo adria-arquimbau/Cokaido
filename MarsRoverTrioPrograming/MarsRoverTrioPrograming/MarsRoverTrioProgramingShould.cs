@@ -29,6 +29,14 @@ namespace MarsRoverTrioPrograming
             var result = marsRover.Execute("MM");
             Assert.Equal("0:2:N", result);
         }
+
+        [Fact]
+        public void MoveThreePositionsGivenTwoMCommands()
+        {
+            var marsRover = new MarsRover();
+            var result = marsRover.Execute("MMM");
+            Assert.Equal("0:3:N", result);
+        }
     }
-}
+}   
     
