@@ -20,46 +20,45 @@ namespace MarsRoverTrioPrograming
 
         public void Move()
         {
-            MoveNorth();
-
-            MoveEast();
-
-            MoveSouth();
-
-            MoveWest();
-
-        }
-
-        public void MoveNorth()
-        {
-            if (this.Compass == Compass.N)
+            if (Compass == Compass.N)
             {
-                this.PositionY++;
+                MoveNorth();
             }
-        }
 
-        public void MoveSouth()
-        {
-            if (Compass == Compass.S)
-            {
-                PositionY--;
-            }
-        }
-
-        public void MoveEast()
-        {
             if (Compass == Compass.E)
             {
-                PositionX++;
+                MoveEast();
+            }
+
+            if (Compass == Compass.S)
+            {
+                MoveSouth();
+            }
+
+            if (Compass == Compass.W)
+            {
+                MoveWest();
             }
         }
 
-        public void MoveWest()
+        private void MoveNorth()
         {
-            if (Compass == Compass.W)
-            {
-                PositionX--;
-            }
+            PositionY++;
+        }
+
+        private void MoveEast()
+        {
+            PositionX++;
+        }
+
+        private void MoveSouth()
+        {
+            PositionY--;
+        }
+
+        private void MoveWest()
+        {
+            PositionX--;
         }
 
         public void TurnRight()
