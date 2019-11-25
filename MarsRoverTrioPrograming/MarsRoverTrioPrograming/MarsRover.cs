@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 namespace MarsRoverTrioPrograming
 {
-    public enum Commands
-    {
-        Move,
-        Right,
-        Left
-    }
 
     public class MarsRover
     {
@@ -23,28 +17,15 @@ namespace MarsRoverTrioPrograming
         {
             foreach (var command in textCommands)
             {
-                ExecuteCommand(CommandFactory.GenerateCommandFromText(command));
+                ExecuteCommand(CommandFactory.GenerateCommandFromText(command, _position));
             }
 
             return _position.ToString();
         }
 
-        private void ExecuteCommand(Commands command)
+        private void ExecuteCommand(ICommand command)
         {
-            if (command == Commands.Move)
-            {
-                _position.Move();
-            }
-
-            if (command == Commands.Right)
-            {
-                _position.TurnRight();
-            }
-
-            if (command == Commands.Left)
-            {
-                _position.TurnLeft();
-            }
+            command.Execute();
         }
     }
 }

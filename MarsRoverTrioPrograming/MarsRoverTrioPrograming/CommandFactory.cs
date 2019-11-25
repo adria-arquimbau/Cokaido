@@ -5,19 +5,19 @@ namespace MarsRoverTrioPrograming
         private const char MoveCommand = 'M';
         private const char TurnLeftCommand = 'L';
 
-        public static Commands GenerateCommandFromText(char charCommand)
+        public static ICommand GenerateCommandFromText(char charCommand, Position position)
         {
             if (charCommand == MoveCommand)
             {
-                return Commands.Move;
+                return new MoveCommand(position);
             }
 
             if (charCommand == TurnLeftCommand)
             {
-                return Commands.Left;
+                return new TurnLeftCommand(position);
             }
-            
-            return Commands.Right;
+
+            return new TurnRightCommand(position);
         }
     }
-}
+}   
