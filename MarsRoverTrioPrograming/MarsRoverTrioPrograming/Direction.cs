@@ -38,6 +38,9 @@ namespace MarsRoverTrioPrograming
 
         public override bool Equals(object obj)
         {
+            if (obj == null)
+                return false;
+
             return ((Direction) obj)._compass == this._compass;
         }
     }
