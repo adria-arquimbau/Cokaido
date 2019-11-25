@@ -12,9 +12,9 @@ namespace MarsRoverTrioPrograming
 
     public class MarsRover
     {
-        private readonly Position _position;
+        private readonly IPosition _position;
 
-        public MarsRover(Position position = null)
+        public MarsRover(IPosition position = null)
         {
             _position = position ?? new Position(Compass.N,0,0);
         }
