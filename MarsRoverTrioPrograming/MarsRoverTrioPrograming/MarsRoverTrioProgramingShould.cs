@@ -71,6 +71,14 @@ namespace MarsRoverTrioPrograming
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
+
+        [Fact]
+        public void MoveTwoPositionGivenOneMcommand()
+        {
+            var marsRover = new MarsRover(new Position(new BoosterAxisBase(new Axis()), new Direction()));
+            var position = marsRover.Execute("M");
+            Assert.Equal("0:2:N", position);
+        }
     }
 }   
     

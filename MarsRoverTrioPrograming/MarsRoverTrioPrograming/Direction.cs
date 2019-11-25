@@ -4,7 +4,7 @@ namespace MarsRoverTrioPrograming
     {
         private Compass _compass;
 
-        public Direction(Compass compass)
+        public Direction(Compass compass = Compass.N)
         {
             _compass = compass;
         }

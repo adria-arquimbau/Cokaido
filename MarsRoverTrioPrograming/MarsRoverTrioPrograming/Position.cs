@@ -3,39 +3,45 @@ namespace MarsRoverTrioPrograming
     public class Position
     {
         public Direction _direction;
-        private readonly Axis _axis;
+        private readonly IAxisBase _axisBase;
 
         public Position(Compass direction, int positionY, int positionX)
         {
-            _axis = new Axis(positionY, positionX);
+            _axisBase = new Axis(positionY, positionX);
             _direction = new Direction(direction);
+        }
+
+        public Position(IAxisBase axisBase, Direction direction)
+        {
+            _axisBase = axisBase;
+            _direction = direction;
         }
 
         public override string ToString()
         {
-            return $"{_axis}:{_direction}";
+            return $"{_axisBase}:{_direction}";
         }
 
         public void Move()
         {
             if (Equals(_direction, new Direction(Compass.N)))
             {
-                _axis.MoveNorth();
+                _axisBase.MoveNorth();
             }
 
             if (Equals(_direction, new Direction(Compass.E)))
             {
-                _axis.MoveEast();
+                _axisBase.MoveEast();
             }
 
             if (Equals(_direction, new Direction(Compass.S)))
             {
-                _axis.MoveSouth();
+                _axisBase.MoveSouth();
             }
 
             if (Equals(_direction, new Direction(Compass.W)))
             {
-                _axis.MoveWest();
+                _axisBase.MoveWest();
             }
         }
 

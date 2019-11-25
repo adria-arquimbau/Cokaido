@@ -1,15 +1,17 @@
 namespace MarsRoverTrioPrograming
 {
-    public class Axis
+    public class Axis : IAxisBase
     {
-        public int PositionY;
-        public int PositionX;
 
-        public Axis(int positionY, int positionX)
+        public Axis(int positionY = 0, int positionX = 0)
         {
-            PositionY = positionY;
             PositionX = positionX;
+            PositionY = positionY;
         }
+
+        private int PositionY { get; set; }
+
+        private int PositionX { get; set; }
 
         public void MoveNorth()
         {
