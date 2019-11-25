@@ -6,11 +6,17 @@ namespace MarsRoverTrioPrograming
 {
     public class MarsRoverTrioProgramingShould
     {
+        private readonly MarsRover _marsRover;
+
+        public MarsRoverTrioProgramingShould()
+        {
+            _marsRover = new MarsRover();
+        }
+
         [Fact]
         public void StayInPlaceGivenNoCommand()
         {
-            var marsRover = new MarsRover();
-            var result = marsRover.Execute(string.Empty);
+            var result = _marsRover.Execute(string.Empty);
             Assert.Equal("0:0:N", result);
         }
 
@@ -20,8 +26,7 @@ namespace MarsRoverTrioPrograming
         [InlineData("0:3:N", "MMM")]
         public void MoveAnyPositionsGivenCommandM(string expectedPosition, string command)
         {
-            var marsRover = new MarsRover();
-            var position = marsRover.Execute(command);
+            var position = _marsRover.Execute(command);
             Assert.Equal(expectedPosition, position);
         }
 
@@ -32,8 +37,7 @@ namespace MarsRoverTrioPrograming
         [InlineData("0:0:N", "RRRR")]
         public void TurnRightGivenCommandR(string expectedPosition, string command)
         {
-            var marsRover = new MarsRover();
-            var position = marsRover.Execute(command);
+            var position = _marsRover.Execute(command);
             Assert.Equal(expectedPosition, position);
         }
 
@@ -44,9 +48,8 @@ namespace MarsRoverTrioPrograming
         [InlineData("0:0:N", "LLLL")]
         public void TurnLeftGivenCommandL(string expectedPosition, string command)
         {
-            var marsRover = new MarsRover();
-            var position = marsRover.Execute(command);
-            Assert.Equal(expectedPosition, position);
+            var position = _marsRover.Execute(command);
+            Assert.Equal(expectedPosition, position);   
         }
     }
 }   
