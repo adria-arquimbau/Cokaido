@@ -2,12 +2,15 @@ namespace MarsRoverTrioPrograming
 {
     public class MarsRover
     {
-        private int _position;
-        private Compass _compass;
-        private int _positionX;
+        private readonly Position _position;
         private const char MoveCommand = 'M';
         private const char TurnRightCommand = 'R';
         private const char TurnLeftCommand = 'L';
+
+        public MarsRover(Position position = null)
+        {
+            _position = position ?? new Position(Compass.N,0,0);
+        }
 
         public string Execute(string commands)
         {
@@ -18,44 +21,46 @@ namespace MarsRoverTrioPrograming
                 TurnLeft(command);
             }
 
-            return $"{_positionX}:{_position}:{_compass}";
+            return _position.ToString();
         }
 
         private void TurnRight(char command)
         {
             if (command == TurnRightCommand)
             {
-                if (_compass == Compass.W)
+                if (_position.Compass == Compass.W)
                 {
-                    _compass = Compass.N;
+                    _position.Compass = Compass.N;
                     return;
                 }
-                _compass++;
+
+                _position.Compass++;
             }
         }
         private void TurnLeft(char command)
         {
             if (command == TurnLeftCommand)
             {
-                if (_compass == Compass.N)
+                if (_position.Compass == Compass.N)
                 {
-                    _compass = Compass.W;
+                    _position.Compass = Compass.W;
                     return;
                 }
-                _compass--;
+
+                _position.Compass--;
             }
         }
 
         private void Move(char command)
         {
-            if (command == MoveCommand && _compass == Compass.N)
+            if (command == MoveCommand && _position.Compass == Compass.N)
             {
-                _position++;
+                _position.PositionY++;
             }
 
-            if (command == MoveCommand && _compass == Compass.E)
+            if (command == MoveCommand && _position.Compass == Compass.E)
             {
-                _positionX++;
+                _position.PositionX++;
             }
         }
     }
