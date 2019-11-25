@@ -4,6 +4,7 @@ namespace MarsRoverTrioPrograming
     {
         private int _position;
         private Compass _compass;
+        private int _positionX;
         private const char MoveCommand = 'M';
         private const char TurnRightCommand = 'R';
         private const char TurnLeftCommand = 'L';
@@ -17,7 +18,7 @@ namespace MarsRoverTrioPrograming
                 TurnLeft(command);
             }
 
-            return $"0:{_position}:{_compass}";
+            return $"{_positionX}:{_position}:{_compass}";
         }
 
         private void TurnRight(char command)
@@ -47,9 +48,14 @@ namespace MarsRoverTrioPrograming
 
         private void Move(char command)
         {
-            if (command == MoveCommand)
+            if (command == MoveCommand && _compass == Compass.N)
             {
                 _position++;
+            }
+
+            if (command == MoveCommand && _compass == Compass.E)
+            {
+                _positionX++;
             }
         }
     }

@@ -51,6 +51,13 @@ namespace MarsRoverTrioPrograming
             var position = _marsRover.Execute(command);
             Assert.Equal(expectedPosition, position);   
         }
+
+        [Fact]
+        public void TurnRightAndMoveOnePosition()
+        {
+            var position = _marsRover.Execute("RM");
+            Assert.Equal("1:0:E", position);
+        }   
     }
 }   
     
