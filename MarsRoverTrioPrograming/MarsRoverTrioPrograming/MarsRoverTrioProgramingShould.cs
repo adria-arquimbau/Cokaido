@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace MarsRoverTrioPrograming
@@ -58,6 +59,18 @@ namespace MarsRoverTrioPrograming
             var position = _marsRover.Execute("RM");
             Assert.Equal("1:0:E", position);
         }   
+
+        [Theory]
+        [InlineData("2:1:E", "RM")]
+        [InlineData("0:1:W", "LM")]
+        [InlineData("1:0:S", "RRM")]
+        public void MoveOnePositionForEachCompassDirection(string expectedPosition, string commands)
+        {
+            Position startPosition = new Position(Compass.N, 1, 1);
+            var marsRover = new MarsRover(startPosition);
+            var position = marsRover.Execute(commands);
+            Assert.Equal(expectedPosition, position);
+        }
     }
 }   
     

@@ -62,6 +62,17 @@ namespace MarsRoverTrioPrograming
             {
                 _position.PositionX++;
             }
+
+            if (command == MoveCommand && _position.Compass == Compass.S)
+            {
+                _position.PositionY--;
+            }
+
+            if (command == MoveCommand && _position.Compass == Compass.W)
+            {
+                _position.PositionX--;
+            }
+
         }
     }
 }
