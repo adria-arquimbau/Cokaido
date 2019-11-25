@@ -13,13 +13,13 @@ namespace MarsRoverTrioPrograming
             var result = marsRover.Execute(string.Empty);
             Assert.Equal("0:0:N", result);
         }
-    }
 
-    public class MarsRover
-    {
-        public string Execute(string empty)
+        [Fact]
+        public void MoveOnePositionGivenCommandM()
         {
-            return "0:0:N";
+            var marsRover = new MarsRover();
+            var result = marsRover.Execute("M");
+            Assert.Equal("0:1:N", result);
         }
     }
 }
