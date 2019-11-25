@@ -2,7 +2,7 @@ namespace MarsRoverTrioPrograming
 {
     public class MoveCommand : ICommand
     {
-        private Position _position;
+        private readonly Position _position;
 
         public MoveCommand(Position position)
         {

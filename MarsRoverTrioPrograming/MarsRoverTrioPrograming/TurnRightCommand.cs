@@ -2,7 +2,7 @@ namespace MarsRoverTrioPrograming
 {
     public class TurnRightCommand : ICommand
     {
-        private Position _position;
+        private readonly Position _position;
 
         public TurnRightCommand(Position position)
         {
@@ -14,4 +14,4 @@ namespace MarsRoverTrioPrograming
             _position.TurnRight();
         }
     }
-}
+}       
