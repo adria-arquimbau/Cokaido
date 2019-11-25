@@ -25,12 +25,15 @@ namespace MarsRoverTrioPrograming
             Assert.Equal(expectedPosition, position);
         }
 
-        [Fact]
-        public void TurnRightGivenCommandR()
+        [Theory]
+        [InlineData("0:0:E", "R")]
+        [InlineData("0:0:S", "RR")]
+        [InlineData("0:0:W", "RRR")]
+        public void TurnRightGivenCommandR(string expectedPosition, string command)
         {
             var marsRover = new MarsRover();
-            var position = marsRover.Execute("R");
-            Assert.Equal("0:0:E", position);
+            var position = marsRover.Execute(command);
+            Assert.Equal(expectedPosition, position);
         }
     }
 }   
