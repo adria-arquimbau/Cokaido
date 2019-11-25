@@ -2,26 +2,25 @@ namespace MarsRoverTrioPrograming
 {
     public class MarsRover
     {
-        private const string MoveCommand = "M";
+        private int _position;
+        private const char MoveCommand = 'M';
 
-        public string Execute(string command)
+        public string Execute(string commands)
+        {
+            foreach (var command in commands)
+            {
+                Move(command);
+            }
+
+            return $"0:{_position}:N";
+        }
+
+        private void Move(char command)
         {
             if (command == MoveCommand)
             {
-                return "0:1:N";
+                _position++;
             }
-
-            if (command == MoveCommand + MoveCommand)
-            {
-                return "0:2:N";
-            }
-
-            if (command == MoveCommand + MoveCommand + MoveCommand)
-            {
-                return "0:3:N";
-            }
-
-            return "0:0:N";
         }
     }
 }
