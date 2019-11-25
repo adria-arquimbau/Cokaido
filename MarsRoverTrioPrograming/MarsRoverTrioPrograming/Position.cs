@@ -2,87 +2,51 @@ namespace MarsRoverTrioPrograming
 {
     public class Position
     {
-        public Compass Compass;
-        public int PositionY;
-        public int PositionX;
+        public Direction _direction;
+        private readonly Axis _axis;
 
-        public Position(Compass compass, int positionY, int positionX)
+        public Position(Compass direction, int positionY, int positionX)
         {
-            Compass = compass;
-            PositionY = positionY;
-            PositionX = positionX;
+            _axis = new Axis(positionY, positionX);
+            _direction = new Direction(direction);
         }
 
         public override string ToString()
         {
-            return $"{PositionX}:{PositionY}:{Compass}";
+            return $"{_axis}:{_direction}";
         }
 
         public void Move()
         {
-            if (Compass == Compass.N)
+            if (Equals(_direction, new Direction(Compass.N)))
             {
-                MoveNorth();
+                _axis.MoveNorth();
             }
 
-            if (Compass == Compass.E)
+            if (Equals(_direction, new Direction(Compass.E)))
             {
-                MoveEast();
+                _axis.MoveEast();
             }
 
-            if (Compass == Compass.S)
+            if (Equals(_direction, new Direction(Compass.S)))
             {
-                MoveSouth();
+                _axis.MoveSouth();
             }
 
-            if (Compass == Compass.W)
+            if (Equals(_direction, new Direction(Compass.W)))
             {
-                MoveWest();
+                _axis.MoveWest();
             }
-        }
-
-        private void MoveNorth()
-        {
-            PositionY++;
-        }
-
-        private void MoveEast()
-        {
-            PositionX++;
-        }
-
-        private void MoveSouth()
-        {
-            PositionY--;
-        }
-
-        private void MoveWest()
-        {
-            PositionX--;
         }
 
         public void TurnRight()
         {
-            
-            if (Compass == Compass.W)
-            {
-                Compass = Compass.N;
-                return;
-            }
-
-            Compass++;
+            _direction.TurnRight();
         }
 
         public void TurnLeft()
         {
-            
-            if (Compass == Compass.N)
-            {
-                Compass = Compass.W;
-                return;
-            }
-
-            Compass--;
+            _direction.TurnLeft();
         }
     }
 }   
