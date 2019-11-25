@@ -16,7 +16,10 @@ namespace MarsRoverTrioPrograming
         {
             foreach (var command in commands)
             {
-                Move(command);
+                if (command == MoveCommand)
+                {
+                    _position.Move();
+                }
                 TurnRight(command);
                 TurnLeft(command);
             }
@@ -49,30 +52,6 @@ namespace MarsRoverTrioPrograming
 
                 _position.Compass--;
             }
-        }
-
-        private void Move(char command)
-        {
-            if (command == MoveCommand && _position.Compass == Compass.N)
-            {
-                _position.PositionY++;
-            }
-
-            if (command == MoveCommand && _position.Compass == Compass.E)
-            {
-                _position.PositionX++;
-            }
-
-            if (command == MoveCommand && _position.Compass == Compass.S)
-            {
-                _position.PositionY--;
-            }
-
-            if (command == MoveCommand && _position.Compass == Compass.W)
-            {
-                _position.PositionX--;
-            }
-
         }
     }
 }
