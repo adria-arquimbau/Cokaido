@@ -23,23 +23,28 @@ namespace MarsRoverTrioPrograming
         {
             foreach (var command in textCommands)
             {
-                if (CommandFactory.GenerateCommandFromText(command) == Commands.Move)
-                {
-                    _position.Move();
-                }
-
-                if (CommandFactory.GenerateCommandFromText(command) == Commands.Right)
-                {
-                    _position.TurnRight();
-                }
-
-                if (CommandFactory.GenerateCommandFromText(command) == Commands.Left)
-                {
-                    _position.TurnLeft();
-                }
+                ExecuteCommand(CommandFactory.GenerateCommandFromText(command));
             }
 
             return _position.ToString();
+        }
+
+        private void ExecuteCommand(Commands command)
+        {
+            if (command == Commands.Move)
+            {
+                _position.Move();
+            }
+
+            if (command == Commands.Right)
+            {
+                _position.TurnRight();
+            }
+
+            if (command == Commands.Left)
+            {
+                _position.TurnLeft();
+            }
         }
     }
 }
