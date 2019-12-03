@@ -15,6 +15,11 @@ namespace ShoppingCartKata
             _quantity = quantity;
         }
 
+        public string GetUserId()
+        {
+            return _userId;
+        }
+
         protected bool Equals(ShoppingBasket other)
         {
             return _userId == other._userId && _productId == other._productId && _quantity == other._quantity;

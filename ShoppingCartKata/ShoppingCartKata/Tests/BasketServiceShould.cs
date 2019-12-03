@@ -6,7 +6,7 @@ namespace ShoppingCartKata.Tests
     public class BasketServiceShould
     {
         [Fact]
-        public void SaveItemOnUserCart()
+        public void SaveShoppingBasketOnBasketRepository()
         {
             var shoppingBasketRepository = Substitute.For<IShoppingBasketRepository>();
             var shoppingBasketService = new ShoppingBasketService(shoppingBasketRepository);
@@ -22,4 +22,4 @@ namespace ShoppingCartKata.Tests
             shoppingBasketRepository.Received().Save(shoppingBasket);
         }
     }
-}       
+}           
