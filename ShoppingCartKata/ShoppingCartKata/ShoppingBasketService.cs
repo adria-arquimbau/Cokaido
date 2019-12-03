@@ -14,12 +14,13 @@ namespace ShoppingCartKata
 
         public void AddItem(string userId, string productId, int quantity)
         {
-            _shoppingBasketRepository.Save(userId, productId, quantity);
-        }
+            var shoppingBasket = new ShoppingBasket(userId, productId, quantity);
+            _shoppingBasketRepository.Save(shoppingBasket);
+        }   
 
         public string BasketFor(User userId)
         {
             throw new System.NotImplementedException();
         }
-    }   
+    }
 }   
