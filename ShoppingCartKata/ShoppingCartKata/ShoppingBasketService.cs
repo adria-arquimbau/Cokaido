@@ -19,7 +19,7 @@ namespace ShoppingCartKata
             _shoppingBasketRepository.Save(shoppingBasket);
         }   
 
-        public string BasketFor(User userId)
+        public string BasketFor(string userId)
         {
             throw new System.NotImplementedException();
         }

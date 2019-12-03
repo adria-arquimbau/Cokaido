@@ -16,17 +16,15 @@ namespace ShoppingCartKata.Tests
             var shoppingBasketRepository = new ShoppingBasketRepository();
 
             var shoppingBasketService = new ShoppingBasketService(shoppingBasketRepository);
-            var user = new User();
-
             const string breakingBadProductId = "20110";
             const string hobbitProductId = "10002";
 
             //Act
-            var userId = user.GetId();
+            const string userId = "1";
             shoppingBasketService.AddItem(userId, hobbitProductId, 2);
             shoppingBasketService.AddItem(userId, breakingBadProductId, 5);
 
-            var userCart = shoppingBasketService.BasketFor(user);
+            var userCart = shoppingBasketService.BasketFor(userId);
                 
             //Assert
             Assert.Equal(expectedUserCart, userCart);
