@@ -45,35 +45,5 @@ namespace ShoppingCartKata
                 return ((_userId != null ? _userId.GetHashCode() : 0) * 397) ^ (_items != null ? _items.GetHashCode() : 0);
             }
         }
-
-       
-
-        //protected bool Equals(Ecosystem other)
-        //{
-        //    if (this._currentGeneration.Count != other._currentGeneration.Count)
-        //    {
-        //        return false;
-        //    }
-
-        //    foreach (var cell in _currentGeneration)
-        //    {
-        //        if (!other._currentGeneration.Contains(cell)) return false;
-        //    }
-
-        //    return true;
-        //}
-
-        //public override bool Equals(object obj)
-        //{
-        //    if (ReferenceEquals(null, obj)) return false;
-        //    if (ReferenceEquals(this, obj)) return true;
-        //    if (obj.GetType() != this.GetType()) return false;
-        //    return Equals((Ecosystem)obj);
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return (_currentGeneration != null ? _currentGeneration.GetHashCode() : 0);
-        //}
     }
 }
