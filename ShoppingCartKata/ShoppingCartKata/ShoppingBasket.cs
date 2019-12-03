@@ -5,14 +5,12 @@ namespace ShoppingCartKata
     public class ShoppingBasket
     {
         private readonly string _userId;
-        private readonly string _productId;
-        private readonly int _quantity;
+        private readonly Item _item;
 
-        public ShoppingBasket(string userId, string productId, int quantity)
+        public ShoppingBasket(string userId, Item item)
         {
             _userId = userId;
-            _productId = productId;
-            _quantity = quantity;
+            _item = item;
         }
 
         public string GetUserId()
@@ -22,7 +20,7 @@ namespace ShoppingCartKata
 
         protected bool Equals(ShoppingBasket other)
         {
-            return _userId == other._userId && _productId == other._productId && _quantity == other._quantity;
+            return _userId == other._userId && Equals(_item, other._item);
         }
 
         public override bool Equals(object obj)
@@ -37,11 +35,10 @@ namespace ShoppingCartKata
         {
             unchecked
             {
-                var hashCode = (_userId != null ? _userId.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (_productId != null ? _productId.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ _quantity;
-                return hashCode;
+                return ((_userId != null ? _userId.GetHashCode() : 0) * 397) ^ (_item != null ? _item.GetHashCode() : 0);
             }
         }
+
+       
     }
 }

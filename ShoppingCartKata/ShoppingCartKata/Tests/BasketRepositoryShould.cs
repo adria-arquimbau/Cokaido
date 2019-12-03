@@ -12,8 +12,9 @@ namespace ShoppingCartKata.Tests
             string userId = "1";
             string productId = "10002";
             int quantity = 2;
+            var item = new Item(productId, quantity);
 
-            var shoppingBasket = new ShoppingBasket(userId, productId, quantity);
+            var shoppingBasket = new ShoppingBasket(userId, item);
 
             shoppingBasketRepository.Save(shoppingBasket);
 

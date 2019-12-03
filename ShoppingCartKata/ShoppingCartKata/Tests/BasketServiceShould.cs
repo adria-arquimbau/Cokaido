@@ -14,8 +14,9 @@ namespace ShoppingCartKata.Tests
             const string userId = "1";
             const string productId = "10002";
             const int quantity = 2;
+            var item = new Item(productId, quantity);
 
-            var shoppingBasket = new ShoppingBasket(userId, productId, quantity);
+            var shoppingBasket = new ShoppingBasket(userId, item);
 
             shoppingBasketService.AddItem(userId, productId, 2);
 
