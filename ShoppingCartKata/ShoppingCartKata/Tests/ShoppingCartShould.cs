@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
 using Xunit;
 
-namespace ShoppingCartKata
+namespace ShoppingCartKata.Tests
 {
     public class ShoppingCartShould
     {
@@ -16,11 +13,13 @@ namespace ShoppingCartKata
                                             "- 5 x Breaking Bad // 5 x 7.00 = £35.00" +
                                             "- Total: £45.00";
 
-            var shoppingBasketService = new ShoppingBasketService();
+            var shoppingBasketRepository = new ShoppingBasketRepository();
+
+            var shoppingBasketService = new ShoppingBasketService(shoppingBasketRepository);
             var user = new User();
 
-            var breakingBadProductId = new Product("Breaking Bad", 7.00, ProductType.Dvd);
-            var hobbitProductId = new Product("The Hobbit", 5.00, ProductType.Book);
+            const string breakingBadProductId = "20110";
+            const string hobbitProductId = "10002";
 
             //Act
             var userId = user.GetId();
@@ -29,7 +28,7 @@ namespace ShoppingCartKata
 
             var userCart = shoppingBasketService.BasketFor(user);
                 
-            //Assert    
+            //Assert
             Assert.Equal(expectedUserCart, userCart);
         }
     }
