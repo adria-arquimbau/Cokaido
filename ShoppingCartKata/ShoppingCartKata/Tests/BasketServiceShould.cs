@@ -22,5 +22,6 @@ namespace ShoppingCartKata.Tests
 
             shoppingBasketRepository.Received().Save(shoppingBasket);
         }
+        
     }
 }           
