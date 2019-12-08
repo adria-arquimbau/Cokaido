@@ -11,7 +11,6 @@ namespace MarsRoverTrioPrograming
         public MarsRoverShould()
         {
             _marsRover = new MarsRover();
-            _boostedPositionShould = new BoostedPositionShould();   
         }
 
         [Fact]
@@ -83,6 +82,15 @@ namespace MarsRoverTrioPrograming
             var position = _marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
-    }   
+
+        [Fact]
+        public void MoveBeyondTheLimitsOfTheField()
+        {
+            var flightModeMarsRover =  new MarsRover(new FlightMode());
+
+            var position = flightModeMarsRover.Execute("LMMMMM");
+            Assert.Equal("-5:0:W", position);
+        }   
+    }
 }   
             

@@ -23,28 +23,24 @@ namespace MarsRoverTrioPrograming
             const int upRightLimitPosition = 10;
             const int downLeftLimitPosition = 0;
 
-            if (Equals(Direction, new Direction(Compass.N)))
+            if (Equals(Direction, new Direction(Compass.N)) && _axis.PositionY < upRightLimitPosition)
             {
-                if (_axis.PositionY < upRightLimitPosition)
-                    _axis.MoveNorth();
+                _axis.MoveNorth();
             }
 
-            if (Equals(Direction, new Direction(Compass.E)))
+            if (Equals(Direction, new Direction(Compass.E)) && _axis.PositionX < upRightLimitPosition)
             {
-                if (_axis.PositionX < upRightLimitPosition)
-                    _axis.MoveEast();
+                _axis.MoveEast();
             }
 
-            if (Equals(Direction, new Direction(Compass.S)))
+            if (Equals(Direction, new Direction(Compass.S)) && _axis.PositionY > downLeftLimitPosition)
             {
-                if (_axis.PositionY > downLeftLimitPosition)
-                    _axis.MoveSouth();
+                _axis.MoveSouth();
             }
 
-            if (Equals(Direction, new Direction(Compass.W)))
-            {  
-                if(_axis.PositionX > downLeftLimitPosition)
-                    _axis.MoveWest();
+            if (Equals(Direction, new Direction(Compass.W)) && _axis.PositionX > downLeftLimitPosition)
+            {
+                _axis.MoveWest();
             }
         }   
 
