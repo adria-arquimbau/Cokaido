@@ -10,7 +10,7 @@ namespace MarsRoverTrioPrograming
 
         public MarsRover(IPosition initialPosition = null, Axis obstacle = null)
         {
-            _position = initialPosition ?? new Position(Compass.N,0,0, obstacle);
+            _position = initialPosition ?? new Position(Compass.N,0,0);
         }
             
         public string Execute(string textCommands)

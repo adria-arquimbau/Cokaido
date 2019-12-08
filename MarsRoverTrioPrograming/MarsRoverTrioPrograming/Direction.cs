@@ -11,7 +11,7 @@ namespace MarsRoverTrioPrograming
 
         public void TurnRight()
         {
-            if (_compass == Compass.W)
+            if (_compass == Compass.NW)
             {
                 _compass = Compass.N;
                 return;
@@ -24,7 +24,7 @@ namespace MarsRoverTrioPrograming
         {
             if (_compass == Compass.N)
             {
-                _compass = Compass.W;
+                _compass = Compass.NW;
                 return;
             }
 

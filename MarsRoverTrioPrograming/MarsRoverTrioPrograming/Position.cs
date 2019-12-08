@@ -8,7 +8,7 @@ namespace MarsRoverTrioPrograming
         public Direction Direction;
         private readonly Axis _axis;
 
-        public Position(Compass direction, int positionY, int positionX, Axis _obstacle = null)
+        public Position(Compass direction, int positionY, int positionX)
         {
             _axis = new Axis(positionY, positionX);
             Direction = new Direction(direction);   
@@ -26,20 +26,40 @@ namespace MarsRoverTrioPrograming
                 _axis.MoveNorth();
             }
 
+            if (Equals(Direction, new Direction(Compass.NE)) && DoNotExceedLimits(Compass.NE))
+            {
+                _axis.MoveNorthEast();
+            }
+
             if (Equals(Direction, new Direction(Compass.E)) && DoNotExceedLimits(Compass.E))
             {
                 _axis.MoveEast();
             }
 
+            if (Equals(Direction, new Direction(Compass.SE)) && DoNotExceedLimits(Compass.SE))
+            {
+                _axis.MoveSouthEast();
+            }
+                
             if (Equals(Direction, new Direction(Compass.S)) && DoNotExceedLimits(Compass.S))
             {
                 _axis.MoveSouth();
+            }
+
+            if (Equals(Direction, new Direction(Compass.SW)) && DoNotExceedLimits(Compass.SW))
+            {
+                _axis.MoveSouthWest();
             }
 
             if (Equals(Direction, new Direction(Compass.W)) && DoNotExceedLimits(Compass.W))
             {
                 _axis.MoveWest();
             }
+
+            if (Equals(Direction, new Direction(Compass.NW)) && DoNotExceedLimits(Compass.NW))
+            {
+                _axis.MoveNorthWest();
+            }   
         }
 
         private bool DoNotExceedLimits(Compass compass)

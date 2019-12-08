@@ -3,8 +3,12 @@ namespace MarsRoverTrioPrograming
     public enum Compass
     {
         N,
+        NE,
         E,
+        SE,
         S,
-        W
+        SW,
+        W,
+        NW
     }
 }

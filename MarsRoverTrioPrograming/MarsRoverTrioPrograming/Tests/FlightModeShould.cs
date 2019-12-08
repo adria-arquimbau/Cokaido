@@ -13,7 +13,7 @@ namespace MarsRoverTrioPrograming.Tests
         {
             var flightModeMarsRover =  new MarsRover(new FlightMode());
 
-            var position = flightModeMarsRover.Execute("LMMMMM");
+            var position = flightModeMarsRover.Execute("LLMMMMM");
             Assert.Equal("-5:0:W", position);
         }
     }

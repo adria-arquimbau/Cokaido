@@ -31,6 +31,30 @@ namespace MarsRoverTrioPrograming
             PositionX--;
         }
 
+        public void MoveNorthEast()
+        {
+            PositionX++;
+            PositionY++;
+        }
+
+        public void MoveSouthEast()
+        {
+            PositionX++;
+            PositionY--;
+        }
+
+        public void MoveSouthWest()
+        {
+            PositionX--;
+            PositionY--;
+        }
+
+        public void MoveNorthWest()
+        {
+            PositionX--;
+            PositionY++;
+        }
+
         public override string ToString()
         {
             return PositionX+":"+PositionY;
