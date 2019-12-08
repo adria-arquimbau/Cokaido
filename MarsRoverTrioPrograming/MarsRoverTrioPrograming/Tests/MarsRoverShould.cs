@@ -83,13 +83,13 @@ namespace MarsRoverTrioPrograming.Tests
         }
 
         [Fact]
-        public void DoNotMoveIfRoverIsInFrontOfAnObstacle()
+        public void TurnRightMoveOneCellTurnLeftMoveTwoCellsTurnLeftMoveOneCellAndTurnRightIfRoverIsInFrontOfAnObstacle()
         {
-            var obstacle = new Axis(0,1);
+            var obstacle = new Axis(1,0);
             var marsRover = new MarsRover(null, obstacle);
             var position = marsRover.Execute("M");
-            Assert.Equal("0:0:N", position);
+            Assert.Equal("0:3:N", position);
         }
     }
 }   
-            
+                

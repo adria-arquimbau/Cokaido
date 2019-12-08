@@ -8,11 +8,11 @@ namespace MarsRoverTrioPrograming
     {
         private readonly IPosition _position;
 
-        public MarsRover(IPosition position = null, Axis obstacle = null)
+        public MarsRover(IPosition initialPosition = null, Axis obstacle = null)
         {
-            _position = position ?? new Position(Compass.N,0,0, obstacle);
+            _position = initialPosition ?? new Position(Compass.N,0,0, obstacle);
         }
-
+            
         public string Execute(string textCommands)
         {   
             foreach (var command in textCommands)

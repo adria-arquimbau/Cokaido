@@ -26,32 +26,30 @@ namespace MarsRoverTrioPrograming
             const int upRightLimitPosition = 10;
             const int downLeftLimitPosition = 0;
 
-         
-
-            if (_obstacle == null)
+            if (Equals(Direction, new Direction(Compass.N)) && _axis.PositionY < upRightLimitPosition)
             {
-
-                if (Equals(Direction, new Direction(Compass.N)) && _axis.PositionY < upRightLimitPosition)
+                if (_obstacle != null && _obstacle.PositionX == _axis.PositionX && _obstacle.PositionY == _axis.PositionY + 1)
                 {
-                    _axis.MoveNorth();
+                    Direction.TurnRight(); _axis.MoveEast(); Direction.TurnLeft(); _axis.MoveNorth(); _axis.MoveNorth(); Direction.TurnLeft(); _axis.MoveWest(); Direction.TurnRight();
                 }
 
-                if (Equals(Direction, new Direction(Compass.E)) && _axis.PositionX < upRightLimitPosition)
-                {
-                    _axis.MoveEast();
-                }
-
-                if (Equals(Direction, new Direction(Compass.S)) && _axis.PositionY > downLeftLimitPosition)
-                {
-                    _axis.MoveSouth();
-                }
-
-                if (Equals(Direction, new Direction(Compass.W)) && _axis.PositionX > downLeftLimitPosition)
-                {
-                    _axis.MoveWest();
-                }
+                _axis.MoveNorth();
             }
 
+            if (Equals(Direction, new Direction(Compass.E)) && _axis.PositionX < upRightLimitPosition)
+            {
+                _axis.MoveEast();
+            }
+
+            if (Equals(Direction, new Direction(Compass.S)) && _axis.PositionY > downLeftLimitPosition)
+            {
+                _axis.MoveSouth();
+            }
+
+            if (Equals(Direction, new Direction(Compass.W)) && _axis.PositionX > downLeftLimitPosition)
+            {
+                _axis.MoveWest();
+            }
         }   
 
         public void TurnRight() 
