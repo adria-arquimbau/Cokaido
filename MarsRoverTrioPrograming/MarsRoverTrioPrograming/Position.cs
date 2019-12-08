@@ -1,52 +1,61 @@
+using Xunit.Abstractions;
+
 namespace MarsRoverTrioPrograming
 {
     public class Position : IPosition
     {
-        public Direction _direction;
+        public Direction Direction;
         private readonly Axis _axis;
 
         public Position(Compass direction, int positionY, int positionX)
         {
             _axis = new Axis(positionY, positionX);
-            _direction = new Direction(direction);
-        }
+            Direction = new Direction(direction);
+            }
 
         public override string ToString()
         {
-            return $"{_axis}:{_direction}";
+            return $"{_axis}:{Direction}";
         }
 
         public void Move()
         {
-            if (Equals(_direction, new Direction(Compass.N)))
+            const int upRightLimitPosition = 10;
+            const int downLeftLimitPosition = 0;
+
+            if (Equals(Direction, new Direction(Compass.N)))
             {
-                _axis.MoveNorth();
+                if (_axis.PositionY < upRightLimitPosition)
+                    _axis.MoveNorth();
             }
 
-            if (Equals(_direction, new Direction(Compass.E)))
+            if (Equals(Direction, new Direction(Compass.E)))
             {
-                _axis.MoveEast();
+                if (_axis.PositionX < upRightLimitPosition)
+                    _axis.MoveEast();
             }
 
-            if (Equals(_direction, new Direction(Compass.S)))
+            if (Equals(Direction, new Direction(Compass.S)))
             {
-                _axis.MoveSouth();
+                if (_axis.PositionY > downLeftLimitPosition)
+                    _axis.MoveSouth();
             }
 
-            if (Equals(_direction, new Direction(Compass.W)))
-            {
-                _axis.MoveWest();
+            if (Equals(Direction, new Direction(Compass.W)))
+            {  
+                if(_axis.PositionX > downLeftLimitPosition)
+                    _axis.MoveWest();
             }
-        }
+        }   
 
-        public void TurnRight()
+        public void TurnRight() 
         {
-            _direction.TurnRight();
+            Direction.TurnRight();
         }
 
         public void TurnLeft()
         {
-            _direction.TurnLeft();
+            Direction.TurnLeft();
         }
     }
 }   

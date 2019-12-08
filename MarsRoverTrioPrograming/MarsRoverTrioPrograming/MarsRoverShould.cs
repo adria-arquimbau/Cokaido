@@ -1,17 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Xunit;
 
 namespace MarsRoverTrioPrograming
 {
-    public class MarsRoverTrioProgramingShould
+    public class MarsRoverShould    
     {
         private readonly MarsRover _marsRover;
+        private readonly BoostedPositionShould _boostedPositionShould;
 
-        public MarsRoverTrioProgramingShould()
+        public MarsRoverShould()
         {
             _marsRover = new MarsRover();
+            _boostedPositionShould = new BoostedPositionShould();   
         }
 
         [Fact]
@@ -73,15 +73,16 @@ namespace MarsRoverTrioPrograming
         }
 
         [Theory]
-        [InlineData("0:2:N", "M")]
-        [InlineData("0:4:N", "MM")]
-        [InlineData("2:2:N", "RMLM")]
-        public void MoveTwoPositionsGivenOneMCommand(string expectedPosition, string commands)
+        [InlineData("0:0:W", "LM")]
+        [InlineData("0:0:S", "RRM")]
+        [InlineData("0:10:N", "MMMMMMMMMMM")]
+        [InlineData("10:0:E", "RMMMMMMMMMMM")]
+        [InlineData("0:2:W", "RMMMLMMLMMMM")]
+        public void DoNotMoveIfTheNextMoveYouWillBeOverTheField(string expectedPosition, string commands)
         {
-            var marsRover = new MarsRover(new BoostedPosition());
-            var position = marsRover.Execute(commands);
+            var position = _marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
-    }
+    }   
 }   
-    
+            

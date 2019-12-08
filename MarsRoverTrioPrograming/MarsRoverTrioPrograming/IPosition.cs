@@ -6,7 +6,5 @@ namespace MarsRoverTrioPrograming
         void Move();
         void TurnRight();
         void TurnLeft();
-
-
     }
 }
