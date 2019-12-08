@@ -1,26 +1,20 @@
 using System;
 using System.Collections.Generic;
+using MarsRoverTrioPrograming.Tests;
 
 namespace MarsRoverTrioPrograming
 {
-    public enum Commands
-    {
-        Move,
-        Right,
-        Left
-    }
-
     public class MarsRover
     {
         private readonly IPosition _position;
 
-        public MarsRover(IPosition position = null)
+        public MarsRover(IPosition position = null, Axis obstacle = null)
         {
-            _position = position ?? new Position(Compass.N,0,0);
+            _position = position ?? new Position(Compass.N,0,0, obstacle);
         }
 
         public string Execute(string textCommands)
-        {
+        {   
             foreach (var command in textCommands)
             {
                 ExecuteCommand(CommandFactory.GenerateCommandFromText(command));
@@ -32,7 +26,7 @@ namespace MarsRoverTrioPrograming
         private void ExecuteCommand(Commands command)
         {
             if (command == Commands.Move)
-            {
+            {   
                 _position.Move();
             }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace MarsRoverTrioPrograming.Tests
@@ -74,11 +75,20 @@ namespace MarsRoverTrioPrograming.Tests
         [InlineData("0:0:S", "RRM")]
         [InlineData("0:10:N", "MMMMMMMMMMM")]
         [InlineData("10:0:E", "RMMMMMMMMMMM")]
-        [InlineData("0:2:W", "RMMMLMMLMMMM")]
+        [InlineData("0:1:S", "RMMMLMMLMMMMLM")]
         public void DoNotMoveIfTheNextMoveYouWillBeOverTheField(string expectedPosition, string commands)
         {
             var position = _marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
+        }
+
+        [Fact]
+        public void DoNotMoveIfRoverIsInFrontOfAnObstacle()
+        {
+            var obstacle = new Axis(0,1);
+            var marsRover = new MarsRover(null, obstacle);
+            var position = marsRover.Execute("M");
+            Assert.Equal("0:0:N", position);
         }
     }
 }   
