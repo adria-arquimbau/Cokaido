@@ -5,13 +5,11 @@ namespace MarsRoverTrioPrograming
 {
     public class Position : IPosition
     {
-        private readonly Axis _obstacle;
         public Direction Direction;
         private readonly Axis _axis;
 
         public Position(Compass direction, int positionY, int positionX, Axis _obstacle = null)
         {
-            this._obstacle = _obstacle;
             _axis = new Axis(positionY, positionX);
             Direction = new Direction(direction);   
         }
