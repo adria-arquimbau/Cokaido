@@ -17,8 +17,6 @@ namespace MarsRoverTrioPrograming
 
         public void Move()
         {
-            const int upRightLimitPosition = 10;
-            const int downLeftLimitPosition = 0;
 
             if (Equals(Direction, new Direction(Compass.N)))
             {

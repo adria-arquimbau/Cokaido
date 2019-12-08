@@ -1,12 +1,10 @@
-using System.Collections.Generic;
 using Xunit;
 
-namespace MarsRoverTrioPrograming
+namespace MarsRoverTrioPrograming.Tests
 {
     public class MarsRoverShould    
     {
         private readonly MarsRover _marsRover;
-        private readonly BoostedPositionShould _boostedPositionShould;
 
         public MarsRoverShould()
         {
@@ -82,15 +80,6 @@ namespace MarsRoverTrioPrograming
             var position = _marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
-
-        [Fact]
-        public void MoveBeyondTheLimitsOfTheField()
-        {
-            var flightModeMarsRover =  new MarsRover(new FlightMode());
-
-            var position = flightModeMarsRover.Execute("LMMMMM");
-            Assert.Equal("-5:0:W", position);
-        }   
     }
 }   
             

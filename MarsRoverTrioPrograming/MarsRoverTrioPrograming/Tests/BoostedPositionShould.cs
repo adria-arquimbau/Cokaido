@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace MarsRoverTrioPrograming
+namespace MarsRoverTrioPrograming.Tests
 {
     public class BoostedPositionShould
     {
