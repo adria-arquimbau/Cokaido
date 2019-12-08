@@ -23,34 +23,49 @@ namespace MarsRoverTrioPrograming
 
         public void Move()
         {
-            const int upRightLimitPosition = 10;
-            const int downLeftLimitPosition = 0;
-
-            if (Equals(Direction, new Direction(Compass.N)) && _axis.PositionY < upRightLimitPosition)
+            if (Equals(Direction, new Direction(Compass.N)) && DoNotExceedLimits(Compass.N))
             {
-                if (_obstacle != null && _obstacle.PositionX == _axis.PositionX && _obstacle.PositionY == _axis.PositionY + 1)
-                {
-                    Direction.TurnRight(); _axis.MoveEast(); Direction.TurnLeft(); _axis.MoveNorth(); _axis.MoveNorth(); Direction.TurnLeft(); _axis.MoveWest(); Direction.TurnRight();
-                }
-
                 _axis.MoveNorth();
             }
 
-            if (Equals(Direction, new Direction(Compass.E)) && _axis.PositionX < upRightLimitPosition)
+            if (Equals(Direction, new Direction(Compass.E)) && DoNotExceedLimits(Compass.E))
             {
                 _axis.MoveEast();
             }
 
-            if (Equals(Direction, new Direction(Compass.S)) && _axis.PositionY > downLeftLimitPosition)
+            if (Equals(Direction, new Direction(Compass.S)) && DoNotExceedLimits(Compass.S))
             {
                 _axis.MoveSouth();
             }
 
-            if (Equals(Direction, new Direction(Compass.W)) && _axis.PositionX > downLeftLimitPosition)
+            if (Equals(Direction, new Direction(Compass.W)) && DoNotExceedLimits(Compass.W))
             {
                 _axis.MoveWest();
             }
-        }   
+        }
+
+        private bool DoNotExceedLimits(Compass compass)
+        {
+            const int upRightLimitPosition = 10;
+            const int downLeftLimitPosition = 0;
+
+            if(compass == Compass.N)
+            {
+                return _axis.PositionY < upRightLimitPosition;
+            }
+
+            if (compass == Compass.W)
+            {
+                return _axis.PositionX > downLeftLimitPosition;
+            }
+
+            if (compass == Compass.E)
+            {
+                return _axis.PositionX < upRightLimitPosition;
+            }
+
+            return _axis.PositionY > downLeftLimitPosition;
+        }
 
         public void TurnRight() 
         {
