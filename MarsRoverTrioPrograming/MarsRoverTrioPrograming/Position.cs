@@ -82,7 +82,27 @@ namespace MarsRoverTrioPrograming
                 return _axis.PositionX < upRightLimitPosition;
             }
 
-            return _axis.PositionY > downLeftLimitPosition;
+            if (compass == Compass.S)
+            {
+                return _axis.PositionY > downLeftLimitPosition;
+            }
+
+            if (compass == Compass.NE)
+            {
+                return _axis.PositionY < upRightLimitPosition && _axis.PositionX < upRightLimitPosition;
+            }
+
+            if (compass == Compass.NW)
+            {
+                return _axis.PositionY < upRightLimitPosition && _axis.PositionX > downLeftLimitPosition;
+            }
+
+            if (compass == Compass.SE)
+            {
+                return _axis.PositionY > downLeftLimitPosition && _axis.PositionX < upRightLimitPosition;
+            }
+
+            return _axis.PositionY > downLeftLimitPosition && _axis.PositionX > downLeftLimitPosition;
         }
 
         public void TurnRight() 
