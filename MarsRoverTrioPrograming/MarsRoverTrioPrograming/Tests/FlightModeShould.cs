@@ -15,21 +15,12 @@ namespace MarsRoverTrioPrograming.Tests
         }
         
         [Fact]
-        public void MoveOnly5MovementsOutOfTheFieldIfTheFuelIs5AndAreMoreMovements()
+        public void MoveOnly4MovementsOutOfTheFieldIfTheFuelIs8AndAreMoreMovements()
         {
-            const int fuel = 5;
+            const int fuel = 8;
             var flightModeMarsRover =  new MarsRover(new FlightMode(fuel));
             var position = flightModeMarsRover.Execute("LLMMMMMMMM");
-            Assert.Equal("-5:0:W", position);
-        }
-
-        [Fact]
-        public void ReturnToTheInitialPositionIfAllTheFuelIsSpend()
-        {
-            const int fuel = 5;
-            var flightModeMarsRover =  new MarsRover(new FlightMode(fuel));
-            var position = flightModeMarsRover.Execute("MMMMMMMMMMMMM");
-            Assert.Equal("0:0:N", position);
+            Assert.Equal("-4:0:W", position);
         }
     }
 }

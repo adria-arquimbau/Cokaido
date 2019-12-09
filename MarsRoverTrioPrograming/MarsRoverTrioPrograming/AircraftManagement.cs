@@ -8,98 +8,72 @@ namespace MarsRoverTrioPrograming
         private int _fuel;
         private readonly Axis _axis;
         private readonly List<Compass> _wayBack = new List<Compass>();
-        private readonly int _emptyFuel = 0;
+        private int _highFuel;
         
         public AircraftManagement(int fuel, Axis axis)
         {
-            _fuel = fuel;
+            _fuel = fuel;    
             _axis = axis;
-        }    
-    
+            GetHighFuel(fuel);
+        }
+
         public void NavigateTo(Compass compass)
         {
-            
-            if (compass == Compass.N && IsFuelPositive())
+            if (_fuel > _highFuel)
             {
-                _axis.MoveNorth();
-                DiscountFuel();
-                SaveWayBack(Compass.S);
-            }
+                if (compass == Compass.N )
+                {
+                    _axis.MoveNorth();
+                    _fuel --;
+                }
             
-            if (compass == Compass.NE && IsFuelPositive())
-            {
-                _axis.MoveNorthEast();
-                DiscountFuel();
-            }
+                if (compass == Compass.NE )
+                {
+                    _axis.MoveNorthEast();
+                    _fuel --;
+                }
 
-            if (compass == Compass.E && IsFuelPositive())
-            {
-                _axis.MoveEast();
-                DiscountFuel();
-            }
+                if (compass == Compass.E )
+                {
+                    _axis.MoveEast();
+                    _fuel --;
+                }
             
-            if (compass == Compass.SE && IsFuelPositive())
-            {
-                _axis.MoveSouthEast();
-                DiscountFuel();
-            }
+                if (compass == Compass.SE )
+                {
+                    _axis.MoveSouthEast();
+                    _fuel --;
+                }
             
-            if (compass == Compass.S && IsFuelPositive())
-            {
-                _axis.MoveSouth();
-                DiscountFuel();
-            }
+                if (compass == Compass.S )
+                {
+                    _axis.MoveSouth();
+                    _fuel --;
+                }
 
-            if (compass == Compass.SW && IsFuelPositive())
-            {
-                _axis.MoveSouthWest();
-                DiscountFuel();
-            }
+                if (compass == Compass.SW )
+                {
+                    _axis.MoveSouthWest();
+                    _fuel --;
+                }
             
-            if (compass == Compass.W && IsFuelPositive())
-            {
-                _axis.MoveWest();
-                DiscountFuel();
-            }
+                if (compass == Compass.W)
+                {
+                    _axis.MoveWest();
+                    _fuel --;
+                }
             
-            if (compass == Compass.NW && IsFuelPositive())
-            {
-                _axis.MoveNorthWest();
-                DiscountFuel();
+                if (compass == Compass.NW )
+                {
+                    _axis.MoveNorthWest();
+                    _fuel --;
+                }
             }
         }
-
-        private void SaveWayBack(Compass compass)
+        private void GetHighFuel(int fuel)
         {
-            _wayBack.Add(compass);
-            GoToHome();
+            _highFuel = _fuel / 2 + fuel % 2;
         }
-
-        private void GoToHome()
-        {
-            if (_fuel == _emptyFuel)
-            {
-                AddOnePointFuelAndBackOfOneMovement();
-            }
-        }
-
-        private void AddOnePointFuelAndBackOfOneMovement()
-        {
-            foreach (var compass in _wayBack)
-            {
-                _fuel++;
-                NavigateTo(compass);
-            }
-        }
-
-        private bool IsFuelPositive()
-        {
-            return _fuel > _emptyFuel;
-        }
-
-        private void DiscountFuel()
-        {
-            _fuel --;
-        }
+        
     }
 }
