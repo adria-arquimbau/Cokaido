@@ -25,42 +25,42 @@ namespace MarsRoverTrioPrograming
         {
             if (Equals(_direction, new Direction(Compass.N)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.N, _axis);
+                _marsMap.NavigateTo(Compass.N, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.NE)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.NE, _axis);
+                _marsMap.NavigateTo(Compass.NE, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.E)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.E, _axis);
+                _marsMap.NavigateTo(Compass.E, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.SE)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.SE, _axis);
+                _marsMap.NavigateTo(Compass.SE, _axis);
             }
                 
             if (Equals(_direction, new Direction(Compass.S)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.S, _axis);
+                _marsMap.NavigateTo(Compass.S, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.SW)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.SW, _axis);
+                _marsMap.NavigateTo(Compass.SW, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.W)))
             {
-                MarsMap.OutOfBoundsAndMove(Compass.W, _axis);
+                _marsMap.NavigateTo(Compass.W, _axis);
             }
 
             if (Equals(_direction, new Direction(Compass.NW)))
             {
-               MarsMap.OutOfBoundsAndMove(Compass.NW, _axis);
+                _marsMap.NavigateTo(Compass.NW, _axis);
             }   
         }
 

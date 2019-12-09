@@ -10,27 +10,26 @@ namespace MarsRoverTrioPrograming
             _height = height;
         }
 
-        public static void OutOfBoundsAndMove(Compass compass, Axis axis)
+        public void NavigateTo(Compass compass, Axis axis)
         {
-            const int upRightLimitPosition = 10;
             const int downLeftLimitPosition = 0;
             
-            if (compass == Compass.N && axis.PositionY < upRightLimitPosition)
+            if (compass == Compass.N && axis.PositionY < _height)
             {
                 axis.MoveNorth();
             }
             
-            if (compass == Compass.NE && axis.PositionY < upRightLimitPosition && axis.PositionX < upRightLimitPosition)
+            if (compass == Compass.NE && axis.PositionY < _height && axis.PositionX < _width)
             {
                 axis.MoveNorthEast();
             }
 
-            if (compass == Compass.E && axis.PositionX < upRightLimitPosition)
+            if (compass == Compass.E && axis.PositionX < _width)
             {
                 axis.MoveEast();
             }
             
-            if (compass == Compass.SE && axis.PositionY > downLeftLimitPosition && axis.PositionX < upRightLimitPosition)
+            if (compass == Compass.SE && axis.PositionY > downLeftLimitPosition && axis.PositionX < _width)
             {
                 axis.MoveSouthEast();
             }
@@ -51,7 +50,7 @@ namespace MarsRoverTrioPrograming
                 axis.MoveWest();
             }
             
-            if (compass == Compass.NW && axis.PositionY < upRightLimitPosition && axis.PositionX > downLeftLimitPosition)
+            if (compass == Compass.NW && axis.PositionY < _height && axis.PositionX > downLeftLimitPosition)
             {
                axis.MoveNorthWest();
             }
