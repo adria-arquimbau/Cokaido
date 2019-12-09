@@ -59,19 +59,21 @@ namespace MarsRoverTrioPrograming.Tests
         }   
 
         [Theory]
-        [InlineData("2:1:E", "MRRMM")]
-        [InlineData("0:1:W", "MRRMLLLLM")]
-        [InlineData("1:0:S", "MRRMRRM")]
-        public void GoToPositionX1Y1MoveOnePositionForEachCompassDirection(string expectedPosition, string commands)
+        [InlineData("2:1:E", "RRM")]
+        [InlineData("0:1:W", "LLM")]
+        [InlineData("1:0:S", "RRRRM")]
+        public void MoveOnePositionForEachCompassDirection(string expectedPosition, string commands)
         {
-            var position = _marsRover.Execute(commands);
+            Position startPosition = new Position(Compass.N, 1, 1);
+            var marsRover = new MarsRover(startPosition);
+            var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
 
         [Theory]
         [InlineData("0:0:W", "LLM")]
         [InlineData("0:0:S", "RRRRM")]
-        [InlineData("0:0:SW", "LLLM")]    
+        [InlineData("0:0:SW", "LLLM")]
         [InlineData("10:0:SE", "RRMMMMMMMMMMRM")]
         [InlineData("0:10:NW", "MMMMMMMMMMLM")]
         [InlineData("10:10:NE", "MMMMMMMMMMRRMMMMMMMMMMLM")]

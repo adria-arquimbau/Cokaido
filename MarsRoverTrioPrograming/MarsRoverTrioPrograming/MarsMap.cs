@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using MarsRoverTrioPrograming.Tests;
+
 namespace MarsRoverTrioPrograming
 {
     public class MarsMap
