@@ -5,114 +5,73 @@ namespace MarsRoverTrioPrograming
 {
     public class Position : IPosition
     {
-        public Direction Direction;
+        private readonly Direction _direction;
         private readonly Axis _axis;
+        private readonly MarsMap _marsMap;
 
-        public Position(Compass direction, int positionY, int positionX)
+        public Position(Compass direction, int positionY, int positionX, MarsMap marsMap = null)
         {
             _axis = new Axis(positionY, positionX);
-            Direction = new Direction(direction);   
+            _direction = new Direction(direction);   
+            _marsMap = marsMap ?? new MarsMap(10, 10);
         }
 
-        public override string ToString()   
+        public override string ToString()
         {
-            return $"{_axis}:{Direction}";
+            return $"{_axis}:{_direction}";
         }
 
         public void Move()
         {
-            if (Equals(Direction, new Direction(Compass.N)) && DoNotExceedLimits(Compass.N))
+            if (Equals(_direction, new Direction(Compass.N)))
             {
-                _axis.MoveNorth();
+                MarsMap.OutOfBoundsAndMove(Compass.N, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.NE)) && DoNotExceedLimits(Compass.NE))
+            if (Equals(_direction, new Direction(Compass.NE)))
             {
-                _axis.MoveNorthEast();
+                MarsMap.OutOfBoundsAndMove(Compass.NE, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.E)) && DoNotExceedLimits(Compass.E))
+            if (Equals(_direction, new Direction(Compass.E)))
             {
-                _axis.MoveEast();
+                MarsMap.OutOfBoundsAndMove(Compass.E, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.SE)) && DoNotExceedLimits(Compass.SE))
+            if (Equals(_direction, new Direction(Compass.SE)))
             {
-                _axis.MoveSouthEast();
+                MarsMap.OutOfBoundsAndMove(Compass.SE, _axis);
             }
                 
-            if (Equals(Direction, new Direction(Compass.S)) && DoNotExceedLimits(Compass.S))
+            if (Equals(_direction, new Direction(Compass.S)))
             {
-                _axis.MoveSouth();
+                MarsMap.OutOfBoundsAndMove(Compass.S, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.SW)) && DoNotExceedLimits(Compass.SW))
+            if (Equals(_direction, new Direction(Compass.SW)))
             {
-                _axis.MoveSouthWest();
+                MarsMap.OutOfBoundsAndMove(Compass.SW, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.W)) && DoNotExceedLimits(Compass.W))
+            if (Equals(_direction, new Direction(Compass.W)))
             {
-                _axis.MoveWest();
+                MarsMap.OutOfBoundsAndMove(Compass.W, _axis);
             }
 
-            if (Equals(Direction, new Direction(Compass.NW)) && DoNotExceedLimits(Compass.NW))
+            if (Equals(_direction, new Direction(Compass.NW)))
             {
-                _axis.MoveNorthWest();
+               MarsMap.OutOfBoundsAndMove(Compass.NW, _axis);
             }   
-        }
-
-        private bool DoNotExceedLimits(Compass compass)
-        {
-            const int upRightLimitPosition = 10;
-            const int downLeftLimitPosition = 0;
-
-            if(compass == Compass.N)
-            {
-                return _axis.PositionY < upRightLimitPosition;
-            }
-
-            if (compass == Compass.W)
-            {
-                return _axis.PositionX > downLeftLimitPosition;
-            }
-
-            if (compass == Compass.E)
-            {
-                return _axis.PositionX < upRightLimitPosition;
-            }
-
-            if (compass == Compass.S)
-            {
-                return _axis.PositionY > downLeftLimitPosition;
-            }
-
-            if (compass == Compass.NE)
-            {
-                return _axis.PositionY < upRightLimitPosition && _axis.PositionX < upRightLimitPosition;
-            }
-
-            if (compass == Compass.NW)
-            {
-                return _axis.PositionY < upRightLimitPosition && _axis.PositionX > downLeftLimitPosition;
-            }
-
-            if (compass == Compass.SE)
-            {
-                return _axis.PositionY > downLeftLimitPosition && _axis.PositionX < upRightLimitPosition;
-            }
-
-            return _axis.PositionY > downLeftLimitPosition && _axis.PositionX > downLeftLimitPosition;
         }
 
         public void TurnRight() 
         {
-            Direction.TurnRight();
+            _direction.TurnRight();
         }
 
         public void TurnLeft()
         {
-            Direction.TurnLeft();
+            _direction.TurnLeft();
         }
     }
-}   
+}       
