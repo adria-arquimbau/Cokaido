@@ -4,10 +4,10 @@ namespace MarsRoverTrioPrograming
     {
         private readonly int _width;
         private readonly int _height;
-        public MarsMap(int width, int height)
+        public MarsMap()
         {
-            _width = width;
-            _height = height;
+            _width = 10;
+            _height = 10;
         }
 
         public void NavigateTo(Compass compass, Axis axis)

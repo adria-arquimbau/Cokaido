@@ -9,11 +9,11 @@ namespace MarsRoverTrioPrograming
         private readonly Axis _axis;
         private readonly MarsMap _marsMap;
 
-        public Position(Compass direction, int positionY, int positionX, MarsMap marsMap = null)
+        public Position(Compass direction, int positionY, int positionX)
         {
             _axis = new Axis(positionY, positionX);
             _direction = new Direction(direction);   
-            _marsMap = marsMap ?? new MarsMap(10, 10);
+            _marsMap = new MarsMap();
         }
 
         public override string ToString()
