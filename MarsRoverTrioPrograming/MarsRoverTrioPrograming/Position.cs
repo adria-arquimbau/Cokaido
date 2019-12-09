@@ -10,14 +10,14 @@ namespace MarsRoverTrioPrograming
         private readonly Axis _axis;
         private readonly MarsMap _marsMap;
 
-        public Position(Compass direction, int positionY, int positionX, List<Axis> obstacles = null)
+        public Position(Compass direction, int positionY, int positionX)
         {
             _axis = new Axis(positionY, positionX);
             _direction = new Direction(direction);
             _marsMap = new MarsMap();
         }    
 
-        public override string ToString()
+        public override string ToString()    
         {
             return $"{_axis}:{_direction}";
         }
