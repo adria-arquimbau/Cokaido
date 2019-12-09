@@ -9,6 +9,16 @@ namespace MarsRoverTrioPrograming
             _compass = compass;
         }
 
+        protected bool Equals(Direction other)
+        {
+            return _compass == other._compass;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int) _compass;
+        }
+
         public void TurnRight()
         {
             if (_compass == Compass.NW)
@@ -38,10 +48,10 @@ namespace MarsRoverTrioPrograming
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
-
-            return ((Direction) obj)._compass == this._compass;
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Direction) obj);
         }
     }
 }
