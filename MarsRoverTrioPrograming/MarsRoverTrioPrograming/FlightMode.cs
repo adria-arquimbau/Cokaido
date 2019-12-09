@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using MarsRoverTrioPrograming.Tests;
 using Xunit.Abstractions;
 
@@ -8,11 +9,13 @@ namespace MarsRoverTrioPrograming
     {
         private readonly Direction _direction;
         private readonly Axis _axis;
+        private AircraftManagement _aircraftManagement;
 
-        public FlightMode(Compass direction = Compass.N, int positionY = 0, int positionX = 0)    
+        public FlightMode(int fuel, Compass direction = Compass.N, int positionY = 0, int positionX = 0)    
         {
             _axis = new Axis(positionY, positionX);
             _direction = new Direction(direction);
+            _aircraftManagement = new AircraftManagement(fuel, _axis);   
         }    
     
         public override string ToString()
@@ -24,42 +27,42 @@ namespace MarsRoverTrioPrograming
         {
             if (Equals(_direction, new Direction(Compass.N)))
             {
-                _axis.MoveNorth();
+                _aircraftManagement.NavigateTo(Compass.N);
             }
 
             if (Equals(_direction, new Direction(Compass.NE)))
             {
-                _axis.MoveNorthEast();
+                _aircraftManagement.NavigateTo(Compass.NE);
             }
 
             if (Equals(_direction, new Direction(Compass.E)))
             {
-                _axis.MoveEast();
+                _aircraftManagement.NavigateTo(Compass.E);
             }
 
             if (Equals(_direction, new Direction(Compass.SE)))
             {
-                _axis.MoveSouthEast();
+                _aircraftManagement.NavigateTo(Compass.SE);
             }
                 
             if (Equals(_direction, new Direction(Compass.S)))
             {
-               _axis.MoveSouth();
+                _aircraftManagement.NavigateTo(Compass.S);
             }
 
             if (Equals(_direction, new Direction(Compass.SW)))
             {
-                _axis.MoveSouthWest();
+                _aircraftManagement.NavigateTo(Compass.SW);
             }
 
             if (Equals(_direction, new Direction(Compass.W)))
             {
-                _axis.MoveWest();
+                _aircraftManagement.NavigateTo(Compass.W);
             }
 
             if (Equals(_direction, new Direction(Compass.NW)))
             {
-                _axis.MoveNorthWest();
+                _aircraftManagement.NavigateTo(Compass.NW);
             }   
         }
 
