@@ -56,7 +56,7 @@ namespace MarsRoverDemo.Tests
         {
             var position = _marsRover.Execute("RRM");
             Assert.Equal("1:0:E", position);
-        }   
+        }
 
         [Theory]
         [InlineData("2:1:E", "RRM")]

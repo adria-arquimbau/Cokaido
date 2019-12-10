@@ -6,11 +6,11 @@ namespace MarsRoverDemo
 {
     public class MarsRover
     {
-        private readonly INavigate _navigate;
-
-        public MarsRover(INavigate initialNavigate = null, Axis obstacle = null)
+        private readonly Navigate _navigate;
+            
+        public MarsRover(Navigate initialNavigate = null)
         {
-            _navigate = initialNavigate ?? new Navigate(Compass.N,0,0);
+            _navigate = initialNavigate ?? new Navigate(Compass.N, positionX:0, positionY:0);
         }
             
         public string Execute(string textCommands)
