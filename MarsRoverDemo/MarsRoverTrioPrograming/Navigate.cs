@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using MarsRoverDemo.Tests;
-using Xunit.Abstractions;
-
 namespace MarsRoverDemo
 {
     public class Navigate : INavigate

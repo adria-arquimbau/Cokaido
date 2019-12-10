@@ -20,7 +20,6 @@ namespace MarsRoverDemo
             {Compass.W, (axisToChange)=> { axisToChange.MoveWest(); }},
             {Compass.NW, (axisToChange)=> { axisToChange.MoveNorthWest(); }},
         };
-        private Dictionary<Compass, Action> _simulateNavigateTo;
 
         public MarsMap()
         {
