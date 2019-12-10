@@ -19,28 +19,52 @@ namespace MarsRoverTrioPrograming
 
         public void Move()
         {
-            if (Equals(Direction, new Direction(Compass.N)) && DoNotExceedLimits(Compass.N))
+            if (Direction == new Direction(Compass.N) && DoNotExceedLimits(Compass.N))
             {
                 _axis.MoveNorth();
                 _axis.MoveNorth();
             }
 
-            if (Equals(Direction, new Direction(Compass.E)) && DoNotExceedLimits(Compass.E))
+            if (Direction == new Direction(Compass.E) && DoNotExceedLimits(Compass.E))
             {
                 _axis.MoveEast();
                 _axis.MoveEast();
             }
 
-            if (Equals(Direction, new Direction(Compass.S)) && DoNotExceedLimits(Compass.S))
+            if (Direction == new Direction(Compass.S) && DoNotExceedLimits(Compass.S))
             {
                 _axis.MoveSouth();
                 _axis.MoveSouth();
             }
 
-            if (Equals(Direction, new Direction(Compass.W)) && DoNotExceedLimits(Compass.W))
+            if (Direction == new Direction(Compass.W) && DoNotExceedLimits(Compass.W))
             {
                 _axis.MoveWest();
                 _axis.MoveWest();
+            }
+
+            if (Direction == new Direction(Compass.NE) && DoNotExceedLimits(Compass.NE))
+            {
+                _axis.MoveNorthEast();
+                _axis.MoveNorthEast();
+            }
+
+            if (Direction == new Direction(Compass.SE) && DoNotExceedLimits(Compass.SE))
+            {
+                _axis.MoveSouthEast();
+                _axis.MoveSouthEast();
+            }
+
+            if (Direction == new Direction(Compass.SW) && DoNotExceedLimits(Compass.SW))
+            {
+                _axis.MoveSouthWest();
+                _axis.MoveSouthWest();
+            }
+
+            if (Direction == new Direction(Compass.NW) && DoNotExceedLimits(Compass.NW))
+            {
+                _axis.MoveNorthWest();
+                _axis.MoveNorthWest();
             }
         }
 

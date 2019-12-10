@@ -25,42 +25,42 @@ namespace MarsRoverTrioPrograming
     
         public void Move()
         {
-            if (Equals(_direction, new Direction(Compass.N)))
+            if (_direction == new Direction(Compass.N))
             {
                 _aircraftManagement.NavigateTo(Compass.N);
             }
 
-            if (Equals(_direction, new Direction(Compass.NE)))
+            if (_direction == new Direction(Compass.NE))
             {
                 _aircraftManagement.NavigateTo(Compass.NE);
             }
 
-            if (Equals(_direction, new Direction(Compass.E)))
+            if (_direction == new Direction(Compass.E))
             {
                 _aircraftManagement.NavigateTo(Compass.E);
             }
 
-            if (Equals(_direction, new Direction(Compass.SE)))
+            if (_direction == new Direction(Compass.SE))
             {
                 _aircraftManagement.NavigateTo(Compass.SE);
             }
                 
-            if (Equals(_direction, new Direction(Compass.S)))
+            if (_direction == new Direction(Compass.S))
             {
                 _aircraftManagement.NavigateTo(Compass.S);
             }
 
-            if (Equals(_direction, new Direction(Compass.SW)))
+            if (_direction == new Direction(Compass.SW))
             {
                 _aircraftManagement.NavigateTo(Compass.SW);
             }
 
-            if (Equals(_direction, new Direction(Compass.W)))
+            if (_direction == new Direction(Compass.W))
             {
                 _aircraftManagement.NavigateTo(Compass.W);
             }
 
-            if (Equals(_direction, new Direction(Compass.NW)))
+            if (_direction == new Direction(Compass.NW))
             {
                 _aircraftManagement.NavigateTo(Compass.NW);
             }   
