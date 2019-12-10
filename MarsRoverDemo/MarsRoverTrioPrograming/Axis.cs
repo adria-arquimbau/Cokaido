@@ -65,5 +65,36 @@ namespace MarsRoverDemo
             var cloneAxis = new Axis(PositionY, PositionX);
             return cloneAxis;
         }
+
+        protected bool Equals(Axis other)
+        {
+            return PositionY == other.PositionY && PositionX == other.PositionX;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Axis)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (PositionY * 397) ^ PositionX;
+            }
+        }
+
+        public static bool operator ==(Axis left, Axis right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Axis left, Axis right)
+        {
+            return !Equals(left, right);
+        }
     }
 }   
