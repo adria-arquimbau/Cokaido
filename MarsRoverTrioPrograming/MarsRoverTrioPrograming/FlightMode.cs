@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace MarsRoverTrioPrograming
 {
-    public class FlightMode : IPosition
+    public class FlightMode : INavigate
     {
         private readonly Direction _direction;
         private readonly Axis _axis;

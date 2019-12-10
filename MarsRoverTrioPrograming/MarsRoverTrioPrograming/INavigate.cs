@@ -1,6 +1,6 @@
 namespace MarsRoverTrioPrograming
 {
-    public interface IPosition
+    public interface INavigate
     {
         string ToString();
         void Move();

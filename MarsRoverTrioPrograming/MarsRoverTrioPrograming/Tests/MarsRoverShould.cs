@@ -64,8 +64,8 @@ namespace MarsRoverTrioPrograming.Tests
         [InlineData("1:0:S", "RRRRM")]
         public void MoveOnePositionForEachCompassDirection(string expectedPosition, string commands)
         {
-            Position startPosition = new Position(Compass.N, 1, 1);
-            var marsRover = new MarsRover(startPosition);
+            Navigate startNavigate = new Navigate(Compass.N, 1, 1);
+            var marsRover = new MarsRover(startNavigate);
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
@@ -93,20 +93,9 @@ namespace MarsRoverTrioPrograming.Tests
         [InlineData("0:0:SW", "LLLM")]
         public void MoveDiagonalIfYouAreOnDirectionNWESAndRobotTurnLeftOrRightAndMove(string expectedPosition, string commands)
         {
-            Position startPosition = new Position(Compass.N, 1, 1);
-            var marsRover = new MarsRover(startPosition);
+            Navigate startNavigate = new Navigate(Compass.N, 1, 1);
+            var marsRover = new MarsRover(startNavigate);
             var position = marsRover.Execute(commands);
-            Assert.Equal(expectedPosition, position);
-        }
-
-        [Theory]
-        [InlineData("0:0:W", "LLMMM")]
-        [InlineData("0:0:S", "LLLL")]
-        [InlineData("10:0:E", "RRMMMMMMMMMMM")]
-        [InlineData("0:10:N", "MMMMMMMMMMMM")]
-        public void DoNotExceedLimits(string expectedPosition, string commands)
-        {
-            var position = _marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
     }

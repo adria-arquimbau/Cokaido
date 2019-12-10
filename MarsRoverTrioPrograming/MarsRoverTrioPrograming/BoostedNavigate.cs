@@ -1,12 +1,12 @@
 namespace MarsRoverTrioPrograming
 {
-    public class BoostedPosition : IPosition
+    public class BoostedNavigate : INavigate
     {
         public Direction Direction;
         private readonly Axis _axis;
 
 
-        public BoostedPosition(Compass direction = Compass.N, int positionY = 0, int positionX = 0)
+        public BoostedNavigate(Compass direction = Compass.N, int positionY = 0, int positionX = 0)
         {   
             _axis = new Axis(positionY, positionX);
             Direction = new Direction(direction);
@@ -15,7 +15,7 @@ namespace MarsRoverTrioPrograming
         public override string ToString()
         {
             return $"{_axis}:{Direction}";
-        }
+        }   
 
         public void Move()
         {

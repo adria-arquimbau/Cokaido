@@ -4,13 +4,13 @@ using Xunit.Abstractions;
 
 namespace MarsRoverTrioPrograming
 {
-    public class Position : IPosition
+    public class Navigate : INavigate
     {
         private readonly Direction _direction;
         private readonly Axis _axis;
         private readonly MarsMap _marsMap;
 
-        public Position(Compass direction, int positionY, int positionX)
+        public Navigate(Compass direction, int positionY, int positionX)
         {
             _axis = new Axis(positionY, positionX);
             _direction = new Direction(direction);

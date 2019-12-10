@@ -2,10 +2,10 @@ using Xunit;
 
 namespace MarsRoverTrioPrograming.Tests
 {
-    public class BoostedPositionShould
+    public class BoostedNavigateShould
     {
-        public BoostedPositionShould()
-        {
+        public BoostedNavigateShould()
+        {   
         }
 
         [Theory]
@@ -14,7 +14,7 @@ namespace MarsRoverTrioPrograming.Tests
         [InlineData("2:2:N", "RRMLLM")]
         public void MoveTwoPositionsGivenOneMCommand(string expectedPosition, string commands)
         {
-            var marsRover = new MarsRover(new BoostedPosition());
+            var marsRover = new MarsRover(new BoostedNavigate());
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }

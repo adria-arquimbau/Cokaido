@@ -6,11 +6,11 @@ namespace MarsRoverTrioPrograming
 {
     public class MarsRover
     {
-        private readonly IPosition _position;
+        private readonly INavigate _navigate;
 
-        public MarsRover(IPosition initialPosition = null, Axis obstacle = null)
+        public MarsRover(INavigate initialNavigate = null, Axis obstacle = null)
         {
-            _position = initialPosition ?? new Position(Compass.N,0,0);
+            _navigate = initialNavigate ?? new Navigate(Compass.N,0,0);
         }
             
         public string Execute(string textCommands)
@@ -20,24 +20,24 @@ namespace MarsRoverTrioPrograming
                 ExecuteCommand(CommandFactory.GenerateCommandFromText(command));
             }
 
-            return _position.ToString();
+            return _navigate.ToString();
         }
 
         private void ExecuteCommand(Commands command)
         {
             if (command == Commands.Move)
             {   
-                _position.Move();
+                _navigate.Move();
             }
 
             if (command == Commands.Right)
             {
-                _position.TurnRight();
+                _navigate.TurnRight();
             }
 
             if (command == Commands.Left)
             {
-                _position.TurnLeft();
+                _navigate.TurnLeft();
             }
         }
     }
