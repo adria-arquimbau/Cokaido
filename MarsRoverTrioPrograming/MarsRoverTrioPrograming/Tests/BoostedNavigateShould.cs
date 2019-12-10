@@ -4,9 +4,6 @@ namespace MarsRoverTrioPrograming.Tests
 {
     public class BoostedNavigateShould
     {
-        public BoostedNavigateShould()
-        {   
-        }
 
         [Theory]
         [InlineData("0:2:N", "M")]

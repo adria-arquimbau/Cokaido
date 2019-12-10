@@ -21,7 +21,7 @@ namespace MarsRoverTrioPrograming
             PositionX++;
         }
 
-        public void MoveSouth()
+        public void MoveSouth() 
         {
             PositionY--;
         }
@@ -34,7 +34,7 @@ namespace MarsRoverTrioPrograming
         public void MoveNorthEast()
         {
             PositionX++;
-            PositionY++;
+            PositionY++;    
         }
 
         public void MoveSouthEast()
