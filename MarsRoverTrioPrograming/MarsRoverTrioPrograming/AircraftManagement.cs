@@ -11,8 +11,8 @@ namespace MarsRoverTrioPrograming
         private readonly List<Compass> _wayBack = new List<Compass>();
         private int _fuelToReturnHome;
         private readonly Dictionary<Compass,Compass> _goBackCompass ;
-        private Dictionary<Compass, Action> _navigateToDictionary;
-        const int Empty = 0;
+        private readonly Dictionary<Compass, Action> _navigateToDictionary;
+        private const int Empty = 0;
         
         public AircraftManagement(int fuel, Axis axis)
         {
@@ -45,18 +45,30 @@ namespace MarsRoverTrioPrograming
 
         public void NavigateTo(Compass compass)
         {
-            if (_fuel > _fuelToReturnHome)
-            {
-                _wayBack.Add(_goBackCompass[compass]);
-
-                _navigateToDictionary[compass]();
-                _fuel--;
-            }
-
-
             if (_fuel == Empty)
             {
                 return;
+            }
+
+            if (_fuel > _fuelToReturnHome)
+            {
+                _navigateToDictionary[compass]();
+                _wayBack.Add(_goBackCompass[compass]);
+                _fuel--;
+            }
+
+            if (_fuel <= _fuelToReturnHome)
+            {
+                GoHome();
+            }
+        }
+
+        private void GoHome()
+        {
+            foreach (var compass in _wayBack)
+            {
+                _navigateToDictionary[compass]();
+                _fuel--;
             }
         }
 
@@ -64,7 +76,6 @@ namespace MarsRoverTrioPrograming
         private void CalculateFuelToReturnHome(int fuel)
         {
             _fuelToReturnHome = _fuel / 2 + fuel % 2;
-        }       
-        
+        }
     }
 }
