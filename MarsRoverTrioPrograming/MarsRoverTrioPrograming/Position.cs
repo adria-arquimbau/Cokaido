@@ -24,42 +24,42 @@ namespace MarsRoverTrioPrograming
 
         public void Move()
         {
-            if (Equals(_direction, new Direction(Compass.N)))
+            if (_direction == new Direction(Compass.N))
             {
                 _marsMap.NavigateTo(Compass.N, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.NE)))
+            if (_direction == new Direction(Compass.NE))
             {
                 _marsMap.NavigateTo(Compass.NE, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.E)))
+            if (_direction == new Direction(Compass.E))
             {
                 _marsMap.NavigateTo(Compass.E, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.SE)))
+            if (_direction == new Direction(Compass.SE))
             {
                 _marsMap.NavigateTo(Compass.SE, _axis);
             }
                 
-            if (Equals(_direction, new Direction(Compass.S)))
+            if (_direction == new Direction(Compass.S))
             {
                 _marsMap.NavigateTo(Compass.S, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.SW)))
+            if (_direction == new Direction(Compass.SW))
             {
                 _marsMap.NavigateTo(Compass.SW, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.W)))
+            if (_direction == new Direction(Compass.W))
             {
                 _marsMap.NavigateTo(Compass.W, _axis);
             }
 
-            if (Equals(_direction, new Direction(Compass.NW)))
+            if (_direction == new Direction(Compass.NW))
             {
                 _marsMap.NavigateTo(Compass.NW, _axis);
             }   

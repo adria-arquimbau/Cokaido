@@ -14,11 +14,6 @@ namespace MarsRoverTrioPrograming
             return _compass == other._compass;
         }
 
-        public override int GetHashCode()
-        {
-            return (int) _compass;
-        }
-
         public void TurnRight()
         {
             if (_compass == Compass.NW)
@@ -51,7 +46,22 @@ namespace MarsRoverTrioPrograming
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Direction) obj);
+            return Equals((Direction)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)_compass;
+        }
+
+        public static bool operator ==(Direction left, Direction right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Direction left, Direction right)
+        {
+            return !Equals(left, right);
         }
     }
 }
