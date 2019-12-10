@@ -9,11 +9,6 @@ namespace MarsRoverDemo
             _compass = compass;
         }
 
-        protected bool Equals(Direction other)
-        {
-            return _compass == other._compass;
-        }
-
         public void TurnRight()
         {
             if (_compass == Compass.NW)
@@ -39,6 +34,11 @@ namespace MarsRoverDemo
         public override string ToString()
         {
             return _compass.ToString();
+        }
+
+        protected bool Equals(Direction other)
+        {
+            return _compass == other._compass;
         }
 
         public override bool Equals(object obj)

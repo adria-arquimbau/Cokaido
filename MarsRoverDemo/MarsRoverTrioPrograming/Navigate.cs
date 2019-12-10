@@ -1,6 +1,6 @@
 namespace MarsRoverDemo
 {
-    public class Navigate : INavigate
+    public class Navigate
     {
         private readonly Direction _direction;
         private readonly Axis _axis;
@@ -12,11 +12,6 @@ namespace MarsRoverDemo
             _direction = new Direction(direction);
             _marsMap = new MarsMap();
         }    
-
-        public override string ToString()    
-        {
-            return $"{_axis}:{_direction}";
-        }
 
         public void Move()
         {
@@ -69,6 +64,11 @@ namespace MarsRoverDemo
         public void TurnLeft()
         {
             _direction.TurnLeft();
+        }
+
+        public override string ToString()
+        {
+            return $"{_axis}:{_direction}";
         }
     }
 }       

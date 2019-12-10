@@ -9,7 +9,7 @@ namespace MarsRoverDemo
         private readonly int _width;
         private readonly int _height;
         private readonly List<Axis> _gridPositions = new List<Axis>();
-        private Dictionary<Compass, Action<Axis>> _navigateTo = new Dictionary<Compass, Action<Axis>>
+        private readonly Dictionary<Compass, Action<Axis>> _navigateTo = new Dictionary<Compass, Action<Axis>>
         {
             {Compass.N, (axisToChange)=> { axisToChange.MoveNorth(); }},
             {Compass.NE, (axisToChange)=> { axisToChange.MoveNorthEast(); }},
