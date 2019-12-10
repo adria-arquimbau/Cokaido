@@ -59,5 +59,11 @@ namespace MarsRoverDemo
         {
             return PositionX+":"+PositionY;
         }
+
+        public Axis CloneAxis()
+        {   
+            var cloneAxis = new Axis(PositionY, PositionX);
+            return cloneAxis;
+        }
     }
-}
+}   

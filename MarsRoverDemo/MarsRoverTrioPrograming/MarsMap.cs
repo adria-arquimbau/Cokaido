@@ -7,17 +7,37 @@ namespace MarsRoverDemo
     {
         private readonly int _width;
         private readonly int _height;
+        private List<Axis> _gridPositions = new List<Axis>();
+
         public MarsMap()
         {
             _width = 10;
             _height = 10;
+            
+            GenerateGridPositionsList(_width, _height); 
+        }
+
+        private void GenerateGridPositionsList(int width, int height)
+        {
+            var count = 0;
+            for (int i = 0; i <= width; i++)
+            {
+                for (int y = 0; y <= width; y++)
+                {
+                    _gridPositions.Add(new Axis(count, y));
+                }
+                count++;
+            }
+           
         }
 
         public void NavigateTo(Compass compass, Axis axis)
         {
             const int downLeftLimitPosition = 0;
-            
-            if (compass == Compass.N && axis.PositionY < _height)
+
+            var cloneAxis = axis.CloneAxis();
+
+            if (compass == Compass.N)
             {
                 axis.MoveNorth();
             }
