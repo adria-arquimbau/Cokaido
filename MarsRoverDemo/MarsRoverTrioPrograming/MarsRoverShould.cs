@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace MarsRoverDemo.Tests
+namespace MarsRoverDemo
 {
     public class MarsRoverShould    
     {
