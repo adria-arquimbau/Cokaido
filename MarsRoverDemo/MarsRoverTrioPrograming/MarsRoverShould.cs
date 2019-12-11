@@ -91,10 +91,10 @@ namespace MarsRoverDemo
         [InlineData("2:2:NE", "RM")]
         [InlineData("2:0:SE", "RRRM")]
         [InlineData("0:0:SW", "LLLM")]
-        public void MoveDiagonalIfYouAreOnDirectionNWESAndRobotTurnLeftOrRightAndMove(string expectedPosition, string commands)
+        public void MoveDiagonalIfYouAreOnDirectionNorthWestEastSouthAndRobotTurnLeftOrRightAndMove(string expectedPosition, string commands)
         {
             Navigate startNavigate = new Navigate(Compass.N, 1, 1);
-            var marsRover = new MarsRover(startNavigate);
+            var marsRover = new MarsRover(startNavigate);   
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
