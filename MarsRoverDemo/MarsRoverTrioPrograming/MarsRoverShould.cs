@@ -64,7 +64,7 @@ namespace MarsRoverDemo
         [InlineData("1:0:S", "RRRRM")]
         public void MoveOnePositionForEachCompassDirection(string expectedPosition, string commands)
         {
-            Navigate startNavigate = new Navigate(Compass.N, 1, 1);
+            var startNavigate = new Navigate(Compass.N, 1, 1);
             var marsRover = new MarsRover(startNavigate);
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
@@ -93,11 +93,12 @@ namespace MarsRoverDemo
         [InlineData("0:0:SW", "LLLM")]
         public void MoveDiagonalIfYouAreOnDirectionNorthWestEastSouthAndRobotTurnLeftOrRightAndMove(string expectedPosition, string commands)
         {
-            Navigate startNavigate = new Navigate(Compass.N, 1, 1);
+            var startNavigate = new Navigate(Compass.N, 1, 1);
             var marsRover = new MarsRover(startNavigate);   
             var position = marsRover.Execute(commands);
             Assert.Equal(expectedPosition, position);
         }
+
     }
 }   
                             
