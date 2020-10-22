@@ -2,6 +2,7 @@
 ​
 Implement a bank account that can deposit, withdraw and print a statement to the console.
 ​
+
 ## Rules 
 - Follow the `Tell, don't ask` principle. All methods should be void.
 - You can't change the public interface of this class. We start simple with int´s for money and string for dates ( even if this is primitive obsession)
@@ -15,6 +16,7 @@ public class Account
     void PrintStatement();
 }
 ```
+
 ## Hint 
 ​
 An acceptance test to start:
